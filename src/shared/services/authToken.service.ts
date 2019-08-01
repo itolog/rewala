@@ -8,6 +8,10 @@ class AuthTokenService {
     setAuthToken(token: string) {
         window.localStorage.setItem(this.token, token);
     }
+
+    removeAuthToken() {
+        window.localStorage.removeItem(this.token);
+    }
 }
 
 export const authTokenService = new AuthTokenService();

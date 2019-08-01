@@ -24,16 +24,19 @@ export const Auth = () => {
         });
     };
 
+    const loginMutation = (data: any) => {
+        authTokenService.setAuthToken(data.login.authToken);
+        window.location.reload()
+    }
+
     return (
         <div className='auth'>
-            <h1>Rewala</h1>
+            <h1>Rewala YoYo</h1>
             <br/>
 
             <Mutation
                 mutation={LOG_IN}
-                onCompleted={(data: any) => {
-                    authTokenService.setAuthToken(data.login.authToken)
-                }}
+                onCompleted={(data: any) => loginMutation(data)}
             >
                 {(login: any, {loading, error}: any) => (
                     <div>

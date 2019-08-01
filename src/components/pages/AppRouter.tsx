@@ -6,7 +6,7 @@ import Auth from './Auth/Auth';
 import MainRouter from './Main/MainRouter';
 
 function AppRouter() {
-    const [token, setToken] = useState(authTokenService.getAuthToken());
+    const [token] = useState(authTokenService.getAuthToken());
     return (
         <Router>
             <>
