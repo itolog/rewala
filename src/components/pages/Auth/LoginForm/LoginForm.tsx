@@ -1,10 +1,11 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form'
+import {Field, reduxForm} from 'redux-form';
 import Button from '@material-ui/core/Button';
 
 import './loginForm.css'
 import {CustomInput} from './customFields';
 import loginValidator from './validate';
+
 
 const LoginForm = React.memo((props: any) => {
     const {handleSubmit} = props;
