@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 
+import AppRouter from './pages/AppRouter';
+
 const App: React.FC = () => {
     return (
-        <div className="App">
-            <h1>hello</h1>
-        </div>
+        <AppRouter />
     );
 };
 
