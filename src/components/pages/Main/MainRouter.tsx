@@ -1,73 +1,100 @@
 import React from 'react';
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import Home from './Home/Home';
+
 import Search from './Search/Search';
+import Home from  './Home/Home';
+import Profile from './Profile/Profile';
 
 interface TabPanelProps {
     children?: React.ReactNode;
+    dir?: string;
     index: any;
     value: any;
 }
 
 function TabPanel(props: TabPanelProps) {
-    const {children, value, index, ...other} = props;
+    const { children, value, index, ...other } = props;
 
     return (
         <Typography
             component="div"
             role="tabpanel"
             hidden={value !== index}
-            id={`scrollable-prevent-tabpanel-${index}`}
-            aria-labelledby={`scrollable-prevent-tab-${index}`}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
             {...other}
         >
-            <Box p={2}>{children}</Box>
+            <Box p={3}>{children}</Box>
         </Typography>
     );
 }
 
 function a11yProps(index: any) {
     return {
-        id: `scrollable-prevent-tab-${index}`,
-        'aria-controls': `scrollable-prevent-tabpanel-${index}`,
+        id: `full-width-tab-${index}`,
+        'aria-controls': `full-width-tabpanel-${index}`,
     };
 }
 
-function ScrollableTabsButtonPrevent() {
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            backgroundColor: theme.palette.background.paper
+        },
+    }),
+);
+
+export default function MainRouter() {
+    const classes = useStyles();
+    const theme = useTheme();
     const [value, setValue] = React.useState(0);
 
     function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
         setValue(newValue);
     }
 
+    function handleChangeIndex(index: number) {
+        setValue(index);
+    }
+
     return (
-        <div>
-            <AppBar position="static">
+        <div className={classes.root}>
+            <AppBar position="static" color="default">
                 <Tabs
                     value={value}
                     onChange={handleChange}
-                    variant="scrollable"
-                    scrollButtons="off"
-                    aria-label="scrollable prevent tabs example"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                    aria-label="full width tabs example"
                 >
-                    <Tab aria-label="phone" {...a11yProps(0)} />
-                    <Tab aria-label="favorite" {...a11yProps(1)} />
+                    <Tab label="Home" {...a11yProps(0)} />
+                    <Tab label="Search" {...a11yProps(1)} />
+                    <Tab label="Profile" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
-            <TabPanel value={value} index={0}>
-                <Home/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Search/>
-            </TabPanel>
+            <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={value}
+                onChangeIndex={handleChangeIndex}
+            >
+                <TabPanel value={value} index={0} dir={theme.direction}>
+                    <Home />
+                </TabPanel>
+                <TabPanel value={value} index={1} dir={theme.direction}>
+                    <Search />
+                </TabPanel>
+                <TabPanel value={value} index={2} dir={theme.direction}>
+                    <Profile />
+                </TabPanel>
+            </SwipeableViews>
         </div>
     );
 }
-
-export default ScrollableTabsButtonPrevent;

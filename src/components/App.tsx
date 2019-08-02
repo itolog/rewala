@@ -10,7 +10,7 @@ import AppRouter from './pages/AppRouter';
 const client = new ApolloClient({
     uri: "https://rewala-api.2mc.team/graphql",
     headers: {
-        "Authorization": `Basic ${authTokenService.getAuthToken()}`
+        "Authorization": `Bearer ${authTokenService.getAuthToken()}`
     }
 });
 

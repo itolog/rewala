@@ -33,7 +33,6 @@ export const Auth = () => {
         <div className='auth'>
             <h1>Rewala YoYo</h1>
             <br/>
-
             <Mutation
                 mutation={LOG_IN}
                 onCompleted={(data: any) => loginMutation(data)}
