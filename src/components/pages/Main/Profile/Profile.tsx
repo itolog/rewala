@@ -1,11 +1,16 @@
 import React from 'react';
-import LogOut from './LogOut/LogOut';
+
+import './profile.css';
+
+import ProfileSetingsModal from './ProfileSettingsModal/ProfileSetingsModal';
 
 const Profile = () => {
     return (
-        <main>
-            <h1>Profile</h1>
-            <LogOut />
+        <main className='profile-page'>
+            <div className='profile-info'>
+                <h1>Profile</h1>
+            </div>
+            <ProfileSetingsModal />
         </main>
     )
 };
