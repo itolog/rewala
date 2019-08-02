@@ -7,7 +7,8 @@ import Icon from '@material-ui/core/Icon';
 
 import './profileSettingsModal.css';
 
-import LogOut from '../LogOut/LogOut';
+import LogOut from '../../LogOut/LogOut';
+import ChangePasswordModal from '../ChangePasswordModal/ChangePasswordModal';
 
 function ProfileSettingsModal() {
     const [open, setOpen] = React.useState(false);
@@ -39,6 +40,8 @@ function ProfileSettingsModal() {
                         <h2>Profile settings</h2>
                     </div>
                     <div className='paper-actions'>
+                        <ChangePasswordModal />
+                        <br/>
                         <LogOut/>
                     </div>
 

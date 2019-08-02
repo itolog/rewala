@@ -1,4 +1,4 @@
-const loginValidator = (values: any) => {
+export const loginValidator = (values: any) => {
     const errors: any = {};
     // Email Validation
     if (!values.email) {
@@ -16,4 +16,25 @@ const loginValidator = (values: any) => {
     return errors;
 };
 
-export default loginValidator;
+export const changePasswordValidation = (values: any) => {
+    const errors: any = {};
+    // Password Validation
+    if (!values.oldPassword) {
+        errors.oldPassword = 'Required';
+    }
+
+    if (!values.newPassword) {
+        errors.newPassword = 'Required';
+    } else if (values.newPassword.length < 7) {
+        errors.newPassword = 'min length 6'
+    }
+
+    if (!values.confirmPassword) {
+        errors.confirmPassword = 'Required';
+    } else if (values.newPassword !== values.confirmPassword) {
+        errors.confirmPassword = 'confirm password not correct';
+    }
+
+    return errors;
+};
+

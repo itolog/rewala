@@ -3,8 +3,8 @@ import {Field, reduxForm} from 'redux-form';
 import Button from '@material-ui/core/Button';
 
 import './loginForm.css'
-import {CustomInput} from './customFields';
-import loginValidator from './validate';
+import {CustomInput} from '../../../../shared/components/FormElements/customFields';
+import {loginValidator} from '../../../../shared/components/FormElements/validate';
 
 
 const LoginForm = React.memo((props: any) => {

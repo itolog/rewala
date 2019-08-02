@@ -1,3 +1,13 @@
 export interface ProfileState {
-    isModalSettingsOpen: boolean
+    me: Me
+}
+
+export interface Profile {
+        fullName: string,
+        notifications: boolean
+}
+
+export interface Me {
+        email: string,
+        profile: Profile
 }
