@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6a7804d5-172a-4a1b-aa42-f7cf79355ab2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Auth/Auth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Auth/Auth.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Main/Profile/LogOut/LogOut.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Main/Profile/LogOut/LogOut.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Main/Profile/Modals/ChangePasswordModal/ChangePasswordModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Main/Profile/Modals/ChangePasswordModal/ChangePasswordModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Link/Link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Link/Link.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/services/authToken.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/authToken.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/profile/service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/profile/service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,8 +87,16 @@
       <workItem from="1564654239225" duration="18636000" />
       <workItem from="1564729401687" duration="28546000" />
       <workItem from="1564841769374" duration="3105000" />
-      <workItem from="1564907659638" duration="1668000" />
+      <workItem from="1564907659638" duration="2510000" />
     </task>
+    <task id="LOCAL-00001" summary="without react-apollo">
+      <created>1564910190891</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1564910190891</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,5 +114,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="without react-apollo" />
+    <option name="LAST_COMMIT_MESSAGE" value="without react-apollo" />
   </component>
 </project>
