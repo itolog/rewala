@@ -1,0 +1,9 @@
+query persons {
+    me{
+        email
+        profile {
+            fullName
+            notifications
+        }
+    }
+}

@@ -7,7 +7,7 @@ import gql from "graphql-tag";
 import {Mutation} from "react-apollo";
 
 import ChangePasswordForm from '../../ChangePasswordForm/ChangePasswordForm';
-import {authTokenService} from '../../../../../../shared/services/authToken.service';
+import AuthTokenService from '../../../../../../shared/services/authToken.service';
 
 function getModalStyle() {
     const top = 50;
@@ -70,7 +70,7 @@ const ChangePasswordModal = () => {
         })
     };
     const changePasswordMutation = (data: any) => {
-        authTokenService.setAuthToken(data.changePassword.authToken);
+        AuthTokenService.setAuthToken(data.changePassword.authToken);
         handleClose();
     };
 

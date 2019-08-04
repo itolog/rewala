@@ -2,7 +2,7 @@ import { createHttpLink } from "apollo-link-http";
 import { ApolloLink } from 'apollo-link';
 import { onError } from "apollo-link-error";
 
-import {authTokenService} from "../services/authToken.service";
+import AuthTokenService from "../services/authToken.service";
 
 const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors)
@@ -17,7 +17,7 @@ const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
 const httpLink = createHttpLink({
     uri: "https://rewala-api.2mc.team/graphqll" ,
     headers: {
-        "Authorization": `Bearer ${authTokenService.getAuthToken()}`
+        "Authorization": `Bearer ${AuthTokenService.getAuthToken()}`
     }
 });
 const link = ApolloLink.from([

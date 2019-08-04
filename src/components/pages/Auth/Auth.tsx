@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import {Mutation} from "react-apollo";
 import './auth.css'
 
-import {authTokenService} from '../../../shared/services/authToken.service';
+import AuthTokenService from '../../../shared/services/authToken.service';
 import LoginForm from './LoginForm/LoginForm';
 
 const LOG_IN = gql`
@@ -25,7 +25,7 @@ export const Auth = () => {
     };
 
     const loginMutation = (data: any) => {
-        authTokenService.setAuthToken(data.login.authToken);
+        AuthTokenService.setAuthToken(data.login.authToken);
         window.location.reload()
     }
 

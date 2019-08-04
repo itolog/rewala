@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
-import {Query} from "react-apollo";
-import gql from 'graphql-tag';
-
 import {Actions} from '../../../../store/profile/actions';
 
 import './profile.css';
@@ -12,18 +9,7 @@ import ProfileSettingsModal from './Modals/ProfileSettingsModal/ProfileSettingsM
 import {Dispatch} from "redux";
 import {getMe} from '../../../../store/profile/selectors';
 import {AppState} from '../../../../store';
-
-const GET_ME = gql`
-    query persons {
-        me{
-            email
-            profile {
-                fullName
-                notifications
-            }
-        }
-    }
-`;
+import {PersonsComponent} from "../../../../gen/graphql";
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -44,12 +30,11 @@ const Profile = (props: Props) => {
     const {getMeState} = props;
 
     return (
-        <Query
-            query={GET_ME}
-            onError={(error: Error) => setReqError(error.message)}
-            onCompleted={(data: any) => props.getMe(data)}
+        <PersonsComponent
+            onError={(error) => setReqError(error.message)}
+            onCompleted={(data) => props.getMe(data)}
         >
-            {({loading}: any) => {
+            {({loading}) => {
                 if (loading) return "Loading...";
                 if (reqError) return `Error! ${reqError}`;
                 return (
@@ -65,9 +50,8 @@ const Profile = (props: Props) => {
                     </main>
                 );
             }}
-        </Query>
-
-    )
+        </PersonsComponent>
+    );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

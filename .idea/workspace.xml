@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a7804d5-172a-4a1b-aa42-f7cf79355ab2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/shared/Link/Link.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/profile/service.ts" afterDir="false" />
+    <list default="true" id="356e355a-11e0-4cad-a0ae-5204f8ab1659" name="Default Changelist" comment="graphql types">
+      <change afterPath="$PROJECT_DIR$/codegen.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/me.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gen/graphql.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/AppRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AppRouter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Auth/Auth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Auth/Auth.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Main/Profile/LogOut/LogOut.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Main/Profile/LogOut/LogOut.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Main/Profile/Modals/ChangePasswordModal/ChangePasswordModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Main/Profile/Modals/ChangePasswordModal/ChangePasswordModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Main/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Main/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Link/Link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Link/Link.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/services/authToken.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/authToken.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +81,10 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.npm start" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -96,10 +111,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="graphql types" />
+    <option name="LAST_COMMIT_MESSAGE" value="graphql types" />
   </component>
 </project>
