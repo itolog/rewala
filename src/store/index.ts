@@ -1,24 +1,32 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 
 import {reducer as formReducer} from 'redux-form';
-import {reducer as profile} from './profile/reducers';
+// import {reducer as profile} from './profile/reducers';
 
-import {StateType} from 'typesafe-actions';
+import { StateType , ActionType } from 'typesafe-actions';
 import {composeWithDevTools} from "redux-devtools-extension";
 // EPICS
-import {fetchMe} from './profile/epics';
+import {
+    reducer as profileReducer,
+    epics as profileEpic,
+    ActionTypeUnion as ProfileActionTypesUnion
+} from './profile';
+
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
 
 const rootEpic = combineEpics(
-    fetchMe
+    ...profileEpic
 );
 const epicMiddleware = createEpicMiddleware();
 // Reducers
 const reducer = combineReducers({
     form: formReducer,
-    profile
+    profile: profileReducer
 });
 
+export type RootActions = ActionType<
+    | ProfileActionTypesUnion
+    >;
 export type AppState = StateType<typeof reducer>;
 
 function configureStore(preloadedState: any) {

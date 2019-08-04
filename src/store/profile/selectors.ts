@@ -6,5 +6,5 @@ export const getProfileState = (state: AppState) => state.profile;
 
 export const getMe  = createSelector(
     getProfileState,
-    (state) => state.me
+    (state) => state.getMe
 );

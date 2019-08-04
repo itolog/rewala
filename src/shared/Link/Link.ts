@@ -15,7 +15,7 @@ const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
 });
 
 const httpLink = createHttpLink({
-    uri: "https://rewala-api.2mc.team/graphqll" ,
+    uri: "https://rewala-api.2mc.team/graphql" ,
     headers: {
         "Authorization": `Bearer ${AuthTokenService.getAuthToken()}`
     }

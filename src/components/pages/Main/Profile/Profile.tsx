@@ -1,29 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-
-import {Query} from "react-apollo";
-import gql from 'graphql-tag';
-
-import {Actions} from '../../../../store/profile/actions';
 
 import './profile.css';
 
 import ProfileSettingsModal from './Modals/ProfileSettingsModal/ProfileSettingsModal';
 import {Dispatch} from "redux";
 import {getMe} from '../../../../store/profile/selectors';
+import {Actions} from '../../../../store/profile';
 import {AppState} from '../../../../store';
-
-const GET_ME = gql`
-    query persons {
-        me{
-            email
-            profile {
-                fullName
-                notifications
-            }
-        }
-    }
-`;
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -31,7 +15,7 @@ const mapStateToProps = (state: AppState) => {
     };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    getMe: (payload: any) => dispatch(Actions.getMe(payload))
+    getMe: () => dispatch(Actions.getMe.action())
 });
 
 type Props =
@@ -40,33 +24,21 @@ type Props =
     ;
 
 const Profile = (props: Props) => {
-    const [reqError, setReqError] = useState('');
     const {getMeState} = props;
+    useEffect(() => {
+        props.getMe();
+    }, []);
 
     return (
-        <Query
-            query={GET_ME}
-            onError={(error: Error) => setReqError(error.message)}
-            onCompleted={(data: any) => props.getMe(data)}
-        >
-            {({loading}: any) => {
-                if (loading) return "Loading...";
-                if (reqError) return `Error! ${reqError}`;
-                return (
-                    <main className='profile-page'>
-                        <h1>{getMeState.profile.fullName}</h1>
-                        <div className='profile-header'>
-                            <div className='profile-info'>
-                                <h2>Profile info</h2>
-                            </div>
-                            <ProfileSettingsModal/>
-                        </div>
-
-                    </main>
-                );
-            }}
-        </Query>
-
+        <main className='profile-page'>
+            <h1>{getMeState.data && getMeState.data.profile.fullName}</h1>
+            <div className='profile-header'>
+                <div className='profile-info'>
+                    <h2>Profile info</h2>
+                </div>
+                <ProfileSettingsModal/>
+            </div>
+        </main>
     )
 };
 
