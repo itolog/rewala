@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a7804d5-172a-4a1b-aa42-f7cf79355ab2" name="Default Changelist" comment="" />
+    <list default="true" id="356e355a-11e0-4cad-a0ae-5204f8ab1659" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/codegen.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/generated/graphql.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +39,7 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="/usr/local/lib/node_modules/prettier" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
@@ -70,13 +76,17 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.npm start" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6a7804d5-172a-4a1b-aa42-f7cf79355ab2" name="Default Changelist" comment="" />
+      <changelist id="356e355a-11e0-4cad-a0ae-5204f8ab1659" name="Default Changelist" comment="graphql types" />
       <created>1564652138271</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -84,24 +94,17 @@
       <workItem from="1564652139549" duration="1932000" />
       <workItem from="1564654239225" duration="18636000" />
       <workItem from="1564729401687" duration="28546000" />
-      <workItem from="1564841769374" duration="3105000" />
-      <workItem from="1564907659638" duration="2938000" />
+      <workItem from="1564841769374" duration="2912000" />
+      <workItem from="1564930304341" duration="2240000" />
     </task>
-    <task id="LOCAL-00001" summary="without react-apollo">
-      <created>1564910190891</created>
+    <task id="LOCAL-00001" summary="graphql types">
+      <created>1564930460067</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1564910190891</updated>
+      <updated>1564930460067</updated>
     </task>
-    <task id="LOCAL-00002" summary="without react-apollo">
-      <created>1564910785841</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1564910785841</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,7 +124,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="without react-apollo" />
-    <option name="LAST_COMMIT_MESSAGE" value="without react-apollo" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="graphql types" />
+    <option name="LAST_COMMIT_MESSAGE" value="graphql types" />
   </component>
 </project>
