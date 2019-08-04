@@ -4,7 +4,7 @@ import {Mutation} from "react-apollo";
 
 import Button from '@material-ui/core/Button';
 
-import {authTokenService} from '../../../../../shared/services/authToken.service';
+import AuthTokenService from '../../../../../shared/services/authToken.service';
 
 const LOG_OUT = gql`
     mutation LogOut($out: LogOutInput) {
@@ -13,7 +13,7 @@ const LOG_OUT = gql`
 `;
 
 const logOutMutatation = () => {
-    authTokenService.removeAuthToken();
+    AuthTokenService.removeAuthToken();
     window.location.reload();
 };
 
@@ -22,7 +22,7 @@ const logOut = (logout: any, data: any) => {
     logout({
         variables: {
             "out": {
-                "FCMToken": `${authTokenService.getAuthToken()}`
+                "FCMToken": `${AuthTokenService.getAuthToken()}`
             }
         }
     })

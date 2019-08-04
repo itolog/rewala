@@ -6,7 +6,7 @@ import { from, Observable } from 'rxjs';
 import link from '../../shared/Link/Link';
 
 class ProfileService {
-    getMe(): Observable<any> {
+    static getMe(): Observable<any> {
         const operation = {
             query: gql`
                 query getMe {
@@ -24,4 +24,4 @@ class ProfileService {
     }
 }
 
-export const profileService= new ProfileService();
+export default ProfileService;

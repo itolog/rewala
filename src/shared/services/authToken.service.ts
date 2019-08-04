@@ -1,17 +1,17 @@
 class AuthTokenService {
-    private token = 'auth-token';
+    static token = 'auth-token';
 
-    getAuthToken() {
+    static getAuthToken() {
        return window.localStorage.getItem(this.token);
     }
 
-    setAuthToken(token: string) {
+    static setAuthToken(token: string) {
         window.localStorage.setItem(this.token, token);
     }
 
-    removeAuthToken() {
+    static removeAuthToken() {
         window.localStorage.removeItem(this.token);
     }
 }
 
-export const authTokenService = new AuthTokenService();
+export default AuthTokenService;
