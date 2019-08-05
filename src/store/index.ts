@@ -1,46 +1,47 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-
-import {reducer as formReducer} from 'redux-form';
-// import {reducer as profile} from './profile/reducers';
-
-import { StateType , ActionType } from 'typesafe-actions';
-import {composeWithDevTools} from "redux-devtools-extension";
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { StateType, ActionType } from 'typesafe-actions';
+import { composeWithDevTools } from "redux-devtools-extension";
+// IMPORT REDUCERS
+import { reducer as formReducer } from 'redux-form';
+import { reducer as authReducer } from './auth/reducer';
 // EPICS
 import {
-    reducer as profileReducer,
-    epics as profileEpic,
-    ActionTypeUnion as ProfileActionTypesUnion
+  reducer as profileReducer,
+  epics as profileEpic,
+  ActionTypeUnion as ProfileActionTypesUnion
 } from './profile';
 
-import {combineEpics, createEpicMiddleware} from 'redux-observable';
+import { logInEpic } from './auth/epics';
+
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 const rootEpic = combineEpics(
-    ...profileEpic
+  ...profileEpic,
+  logInEpic
 );
 const epicMiddleware = createEpicMiddleware();
 // Reducers
 const reducer = combineReducers({
-    form: formReducer,
-    profile: profileReducer
+  form: formReducer,
+  profile: profileReducer,
+  auth: authReducer
 });
 
-export type RootActions = ActionType<
-    | ProfileActionTypesUnion
-    >;
+export type RootActions = ActionType<| ProfileActionTypesUnion>;
 export type AppState = StateType<typeof reducer>;
 
 function configureStore(preloadedState: any) {
-    const middlewares = [epicMiddleware];
-    const middlewareEnhancer = applyMiddleware(...middlewares);
+  const middlewares = [ epicMiddleware ];
+  const middlewareEnhancer = applyMiddleware(...middlewares);
 
-    const enhancers = [middlewareEnhancer];
-    const composedEnhancers: any = composeWithDevTools(...enhancers);
+  const enhancers = [ middlewareEnhancer ];
+  const composedEnhancers: any = composeWithDevTools(...enhancers);
 
-    const store = createStore(reducer, preloadedState, composedEnhancers);
+  const store = createStore(reducer, preloadedState, composedEnhancers);
 
-    epicMiddleware.run(rootEpic);
+  epicMiddleware.run(rootEpic);
 
-    return store;
+  return store;
 }
 
 export const rootStore = configureStore(undefined);

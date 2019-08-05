@@ -1,54 +1,50 @@
 import React from 'react';
-import gql from "graphql-tag";
-import {Mutation} from "react-apollo";
-import './auth.css'
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
-import AuthTokenService from '../../../shared/services/authToken.service';
+import './auth.css'
+// STORE
+import { AppState } from '../../../store';
+import { Actions } from '../../../store/auth/actions';
+import { getAuthState } from '../../../store/auth/selectors';
+
+import { LoginInput } from '../../../shared/generated/graphql';
 import LoginForm from './LoginForm/LoginForm';
 
-const LOG_IN = gql`
-    mutation LogIn($userLog: LoginInput) {
-        login(input: $userLog) {
-            _id
-            authToken
-        }
-    }
-`;
-
-export const Auth = () => {
-    const loginSubmit = (login: any, values: any) => {
-        login({
-            variables: {
-                "userLog": values
-            }
-        });
-    };
-
-    const loginMutation = (data: any) => {
-        AuthTokenService.setAuthToken(data.login.authToken);
-        window.location.reload()
-    };
-
-    return (
-        <div className='auth'>
-            <h1>Rewala YoYo</h1>
-            <br/>
-            <Mutation
-                mutation={LOG_IN}
-                onCompleted={(data: any) => loginMutation(data)}
-            >
-                {(login: any, {loading, error}: any) => (
-                    <div>
-                        <LoginForm
-                            onSubmit={(values) => loginSubmit(login, values)}
-                        />
-                        {loading && <p>Loging...</p>}
-                        {error && <p>{error.toString()}</p>}
-                    </div>
-                )}
-            </Mutation>
-        </div>
-    )
+// STORE PROPS
+const mapStateToProps = (state: AppState) => {
+  return {
+    getAuthState: getAuthState(state)
+  };
 };
 
-export default Auth;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  login: (payload: LoginInput) => dispatch(Actions.logIn(payload))
+});
+
+type Props =
+  & ReturnType<typeof mapDispatchToProps>
+  & ReturnType<typeof mapStateToProps>
+  ;
+
+export const Auth = (props: Props) => {
+  const { login, getAuthState } = props;
+
+  const loginSubmit = (values: LoginInput) => {
+    login(values);
+  };
+
+  return (
+    <div className='auth'>
+      <h1>Rewala YoYo</h1>
+      <br/>
+      {getAuthState.error && <h2>{getAuthState.error}</h2>}
+      <LoginForm
+        onSubmit={(values) => loginSubmit(values)}
+      />
+
+    </div>
+  )
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

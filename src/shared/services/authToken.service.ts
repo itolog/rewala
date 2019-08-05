@@ -1,16 +1,18 @@
+import { of } from 'rxjs';
+
 class AuthTokenService {
     static token = 'auth-token';
 
     static getAuthToken() {
-       return window.localStorage.getItem(this.token);
+       return of(window.localStorage.getItem(this.token));
     }
 
     static setAuthToken(token: string) {
-        window.localStorage.setItem(this.token, token);
+       return of(window.localStorage.setItem(this.token, token));
     }
 
     static removeAuthToken() {
-        window.localStorage.removeItem(this.token);
+       return of(window.localStorage.removeItem(this.token));
     }
 }
 

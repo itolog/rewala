@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from "graphql-tag";
-import {Mutation} from "react-apollo";
+import { Mutation } from "react-apollo";
 
 import Button from '@material-ui/core/Button';
 
@@ -13,38 +13,38 @@ const LOG_OUT = gql`
 `;
 
 const logOutMutatation = () => {
-    AuthTokenService.removeAuthToken();
-    window.location.reload();
+  AuthTokenService.removeAuthToken();
+  window.location.reload();
 };
 
 const logOut = (logout: any, data: any) => {
-    console.log(data);
-    logout({
-        variables: {
-            "out": {
-                "FCMToken": `${AuthTokenService.getAuthToken()}`
-            }
-        }
-    })
+  console.log(data);
+  logout({
+    variables: {
+      "out": {
+        "FCMToken": `${AuthTokenService.getAuthToken()}`
+      }
+    }
+  })
 };
 
 const LogOut = () => {
-    return (
-        <Mutation
-            mutation={LOG_OUT}
-            onCompleted={logOutMutatation}
-        >
-            {(logout: any, {loading, error, data}: any) => (
-                <>
-                <Button variant="outlined" color="secondary" onClick={() => logOut(logout, data)}>
-                    Log Out
-                </Button>
-                    {loading && <p>logOut requests....</p>}
-                    {error && <p>{error.toString()}</p>}
-                </>
-            )}
-        </Mutation>
-    )
+  return (
+    <Mutation
+      mutation={LOG_OUT}
+      onCompleted={logOutMutatation}
+    >
+      {(logout: any, { loading, error, data }: any) => (
+        <>
+          <Button variant="outlined" color="secondary" onClick={() => logOut(logout, data)}>
+            Log Out
+          </Button>
+          {loading && <p>logOut requests....</p>}
+          {error && <p>{error.toString()}</p>}
+        </>
+      )}
+    </Mutation>
+  )
 };
 
 export default LogOut;

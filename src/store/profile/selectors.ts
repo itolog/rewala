@@ -1,15 +1,19 @@
-import { createSelector } from 'reselect';
+import {createSelector} from 'reselect';
 
-import { AppState } from '../index';
+import {AppState} from '../index';
 
 export const getProfileState = (state: AppState) => state.profile;
 
-export const getMe  = createSelector(
+export const getMe = createSelector(
     getProfileState,
     (state) => state.getMe
 );
 
-export const getMeError  = createSelector(
+export const getMeError = createSelector(
     getProfileState,
-    (state) => state.getMe.data
+    (state) => {
+        if (state.getMe && state.getMe.data && state.getMe.data.result && state.getMe.data.result.errors) {
+            return state.getMe.data.result
+        }
+    }
 );

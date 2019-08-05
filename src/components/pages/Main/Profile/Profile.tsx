@@ -34,14 +34,11 @@ const Profile = (props: Props) => {
         getMe();
     }, []);
 
-    if (getMeError && getMeError.result && getMeError.result.errors ) {
+    if (getMeError && getMeError.errors) {
         return (
             <div>
-                <h1>
-                    {getMeError && getMeError.name}
-                </h1>
                 <h2>
-                    {getMeError && getMeError.result.errors.map((item: any, index: number) => {
+                    {getMeError && getMeError.errors.map((item: any, index: number) => {
                         return <p key={index}>{item.message}</p>
                     })}
                 </h2>
@@ -51,6 +48,7 @@ const Profile = (props: Props) => {
     } else {
         return (
             <main className='profile-page'>
+                {getMeState.loading && <span>loading ...</span>}
 
                 <h1>{getMeState.data && getMeState.data.profile.fullName}</h1>
                 <div className='profile-header'>
@@ -62,7 +60,6 @@ const Profile = (props: Props) => {
             </main>
         )
     }
-
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
