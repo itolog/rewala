@@ -11,13 +11,14 @@ import {
   ActionTypeUnion as ProfileActionTypesUnion
 } from './profile';
 
-import { logInEpic } from './auth/epics';
+import { logInEpic, logOutEpic } from './auth/epics';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 const rootEpic = combineEpics(
   ...profileEpic,
-  logInEpic
+  logInEpic,
+  logOutEpic
 );
 const epicMiddleware = createEpicMiddleware();
 // Reducers

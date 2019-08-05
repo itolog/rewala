@@ -29,7 +29,7 @@ class AuthService {
         variables: {  input },
       };
 
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{login: User}>>)
+    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{login: LoginInput}>>)
   }
 
   static logOut(input: LogOutInput): Observable<string> {
@@ -41,7 +41,7 @@ class AuthService {
           `,
         variables: { input },
       };
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ logout: string }>>)
+    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ logout: LogOutInput }>>)
   }
 }
 

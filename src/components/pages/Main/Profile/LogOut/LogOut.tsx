@@ -1,50 +1,32 @@
 import React from 'react';
-import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
+import { connect } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
+import { Dispatch } from 'redux';
 
-import AuthTokenService from '../../../../../shared/services/authToken.service';
+import { Actions } from '../../../../../store/auth/actions';
 
-const LOG_OUT = gql`
-    mutation LogOut($out: LogOutInput) {
-        logout(input: $out)
-    }
-`;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  logOut: () => dispatch(Actions.logOut())
+});
 
-const logOutMutatation = () => {
-  AuthTokenService.removeAuthToken();
-  window.location.reload();
-};
+type Props =
+  & ReturnType<typeof mapDispatchToProps>
+  ;
 
-const logOut = (logout: any, data: any) => {
-  console.log(data);
-  logout({
-    variables: {
-      "out": {
-        "FCMToken": `${AuthTokenService.getAuthToken()}`
-      }
-    }
-  })
-};
 
-const LogOut = () => {
+const LogOut = (props: Props) => {
+  const { logOut } = props;
+  const logOutHandler = () => {
+    logOut();
+  }
   return (
-    <Mutation
-      mutation={LOG_OUT}
-      onCompleted={logOutMutatation}
-    >
-      {(logout: any, { loading, error, data }: any) => (
-        <>
-          <Button variant="outlined" color="secondary" onClick={() => logOut(logout, data)}>
-            Log Out
-          </Button>
-          {loading && <p>logOut requests....</p>}
-          {error && <p>{error.toString()}</p>}
-        </>
-      )}
-    </Mutation>
+    <>
+      <Button variant="outlined" color="secondary" onClick={logOutHandler}>
+        Log Out
+      </Button>
+    </>
   )
 };
 
-export default LogOut;
+export default connect(null, mapDispatchToProps)(LogOut);

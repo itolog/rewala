@@ -23,6 +23,13 @@ export function reducer(state = initialState, action: ActionTypeUnion): AuthStat
         error: action.payload
       }
     }
+    case ActionTypes.LOG_OUT__SUCCEDED: {
+      return {
+        error: null,
+        isAuth: null,
+        token: null
+      }
+    }
     default : {
       return state
     }

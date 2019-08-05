@@ -15,6 +15,7 @@ class ProfileService {
               query getMe {
                   me{
                       email
+                      authToken
                       profile {
                           fullName
                           notifications

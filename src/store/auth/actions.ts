@@ -1,6 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
 
-import { LoginInput } from '../../shared/generated/graphql';
+import { LoginInput, LogOutInput } from '../../shared/generated/graphql';
 
 export enum ActionTypes {
   LOGIN = 'LOGIN',
@@ -15,7 +15,11 @@ export enum ActionTypes {
 export const Actions = {
   logIn: (payload: LoginInput) => action(ActionTypes.LOGIN, payload),
   logInSuccess: (token: string) => action(ActionTypes.LOGIN_SUCCEDED, token),
-  logInFailed: (paylod: any) => action(ActionTypes.LOGIN_FAILED, paylod)
+  logInFailed: (paylod: any) => action(ActionTypes.LOGIN_FAILED, paylod),
+
+  logOut: () => action(ActionTypes.LOG_OUT),
+  logOutSuccess: () => action(ActionTypes.LOG_OUT__SUCCEDED),
+  logOutFailed: (payload: any) => action(ActionTypes.LOG_OUT__SUCCEDED, payload)
 };
 
 export type ActionTypeUnion = ActionType<typeof Actions>;
