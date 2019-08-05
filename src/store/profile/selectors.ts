@@ -8,3 +8,8 @@ export const getMe  = createSelector(
     getProfileState,
     (state) => state.getMe
 );
+
+export const getMeError  = createSelector(
+    getProfileState,
+    (state) => state.getMe.data
+);

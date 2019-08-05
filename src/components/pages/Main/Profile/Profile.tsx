@@ -5,13 +5,14 @@ import './profile.css';
 
 import ProfileSettingsModal from './Modals/ProfileSettingsModal/ProfileSettingsModal';
 import {Dispatch} from "redux";
-import {getMe} from '../../../../store/profile/selectors';
+import {getMe, getMeError} from '../../../../store/profile/selectors';
 import {Actions} from '../../../../store/profile';
 import {AppState} from '../../../../store';
 
 const mapStateToProps = (state: AppState) => {
     return {
         getMeState: getMe(state),
+        getMeError: getMeError(state)
     };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -24,22 +25,44 @@ type Props =
     ;
 
 const Profile = (props: Props) => {
-    const {getMeState} = props;
+    const {
+        getMeState,
+        getMe,
+        getMeError
+    } = props;
     useEffect(() => {
-        props.getMe();
+        getMe();
     }, []);
 
-    return (
-        <main className='profile-page'>
-            <h1>{getMeState.data && getMeState.data.profile.fullName}</h1>
-            <div className='profile-header'>
-                <div className='profile-info'>
-                    <h2>Profile infoo</h2>
-                </div>
-                <ProfileSettingsModal/>
+    if (getMeError && getMeError.result && getMeError.result.errors ) {
+        return (
+            <div>
+                <h1>
+                    {getMeError && getMeError.name}
+                </h1>
+                <h2>
+                    {getMeError && getMeError.result.errors.map((item: any, index: number) => {
+                        return <p key={index}>{item.message}</p>
+                    })}
+                </h2>
             </div>
-        </main>
-    )
+
+        )
+    } else {
+        return (
+            <main className='profile-page'>
+
+                <h1>{getMeState.data && getMeState.data.profile.fullName}</h1>
+                <div className='profile-header'>
+                    <div className='profile-info'>
+                        <h2>Profile infoo</h2>
+                    </div>
+                    <ProfileSettingsModal/>
+                </div>
+            </main>
+        )
+    }
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
