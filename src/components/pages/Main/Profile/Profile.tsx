@@ -34,7 +34,7 @@ const Profile = (props: Props) => {
             <h1>{getMeState.data && getMeState.data.profile.fullName}</h1>
             <div className='profile-header'>
                 <div className='profile-info'>
-                    <h2>Profile info</h2>
+                    <h2>Profile infoo</h2>
                 </div>
                 <ProfileSettingsModal/>
             </div>
