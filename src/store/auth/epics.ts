@@ -35,7 +35,8 @@ export const logOutEpic: Epic = (action$: Observable<ActionTypeUnion>, state$: S
       map(() => {
         AuthTokenService.removeAuthToken();
         return Actions.logOutSuccess()
-      })
+      }),
+      catchError((error) => of(Actions.logOutFailed(error.message)))
     );
   })
 );

@@ -3,7 +3,7 @@ import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
 import { onError } from "apollo-link-error";
 
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import AuthTokenService from "../services/authToken.service";
 
