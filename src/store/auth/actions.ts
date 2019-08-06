@@ -1,6 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
 
-import { LoginInput, LogOutInput } from '../../shared/generated/graphql';
+import { LoginInput } from '../../shared/generated/graphql';
 
 export enum ActionTypes {
   LOGIN = 'LOGIN',

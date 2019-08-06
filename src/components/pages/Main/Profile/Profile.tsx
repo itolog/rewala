@@ -44,7 +44,6 @@ const Profile = (props: Props) => {
           })}
         </h2>
       </div>
-
     )
   } else {
     return (

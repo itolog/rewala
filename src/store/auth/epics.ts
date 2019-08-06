@@ -1,8 +1,8 @@
 import { Epic, ofType, StateObservable } from 'redux-observable';
-import { EMPTY, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { ActionTypeUnion, ActionTypes, Actions } from './actions';
-import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 
 import AuthService from './service';
 import AuthTokenService from '../../shared/services/authToken.service';
