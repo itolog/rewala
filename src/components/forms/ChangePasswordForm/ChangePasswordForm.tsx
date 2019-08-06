@@ -2,8 +2,8 @@ import React from 'react';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { CustomInput } from '../../../../shared/components/FormElements/customFields';
-import { changePasswordValidation } from '../../../../shared/components/FormElements/validate';
+import { CustomInput } from '../../../shared/components/FormElements/customFields';
+import { changePasswordValidation } from '../../../shared/components/FormElements/validate';
 import Button from "@material-ui/core/Button";
 
 interface Props {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './profile.css';
 
-import ProfileSettingsModal from './Modals/ProfileSettingsModal/ProfileSettingsModal';
+import ProfileSettingsModal from '../../../modals/ProfileSettingsModal/ProfileSettingsModal';
 import { Dispatch } from "redux";
 import { getMe, getMeError } from '../../../../store/profile/selectors';
 import { Actions } from '../../../../store/profile';

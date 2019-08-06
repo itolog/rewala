@@ -7,7 +7,7 @@ import Icon from '@material-ui/core/Icon';
 
 import './profileSettingsModal.css';
 
-import LogOut from '../../LogOut/LogOut';
+import LogOut from '../../../shared/components/LogOut/LogOut';
 import ChangePasswordModal from '../ChangePasswordModal/ChangePasswordModal';
 
 function ProfileSettingsModal() {

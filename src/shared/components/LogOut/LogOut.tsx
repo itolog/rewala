@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Dispatch } from 'redux';
 
-import { Actions } from '../../../../../store/auth/actions';
-import { getAuthState } from '../../../../../store/auth/selectors';
-import { AppState } from '../../../../../store';
+import { Actions } from '../../../store/auth/actions';
+import { getAuthState } from '../../../store/auth/selectors';
+import { AppState } from '../../../store';
 
 const mapStateToProps = (state: AppState) => {
   return {

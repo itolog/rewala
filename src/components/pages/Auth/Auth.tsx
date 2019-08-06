@@ -2,14 +2,17 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import './auth.css'
+import './auth.css';
+
+import ResetPasswordModal from '../../modals/ResetPasswordModal/ResetPasswordModal';
+
 // STORE
 import { AppState } from '../../../store';
 import { Actions } from '../../../store/auth/actions';
 import { getAuthState } from '../../../store/auth/selectors';
 
 import { LoginInput } from '../../../shared/generated/graphql';
-import LoginForm from './LoginForm/LoginForm';
+import LoginForm from '../../forms/LoginForm/LoginForm';
 
 // STORE PROPS
 const mapStateToProps = (state: AppState) => {
@@ -43,6 +46,7 @@ export const Auth = (props: Props) => {
         onSubmit={(values) => loginSubmit(values)}
       />
 
+      <ResetPasswordModal/>
     </div>
   )
 };

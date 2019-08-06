@@ -5,13 +5,13 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 
-import { getPasswordState } from '../../../../../../store/password/selectors';
+import { getPasswordState } from '../../../store/password/selectors';
 
-import ChangePasswordForm from '../../ChangePasswordForm/ChangePasswordForm';
+import ChangePasswordForm from '../../forms/ChangePasswordForm/ChangePasswordForm';
 import { Dispatch } from 'redux';
 
-import { Actions } from '../../../../../../store/password';
-import { AppState } from '../../../../../../store';
+import { Actions } from '../../../store/password';
+import { AppState } from '../../../store';
 
 function getModalStyle() {
   const top = 50;

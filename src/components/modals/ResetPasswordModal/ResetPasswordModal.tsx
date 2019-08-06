@@ -4,9 +4,9 @@ import Modal from '@material-ui/core/Modal';
 
 import './confirmCodeModal.css';
 
-import ConfirCodeForm from '../../forms/ConfirmCodeForm/ConfirCodeForm';
+import ResetPasswordForm from '../../forms/ResetPasswordForm/ResetPasswordForm';
 
-const ConfirmCodeModal = () => {
+const ResetPasswordModal = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -31,7 +31,7 @@ const ConfirmCodeModal = () => {
           <div className='confirm-code'>
            <h2>Rewala</h2>
             {/* FORM */}
-            <ConfirCodeForm />
+            <ResetPasswordForm />
           {/*  */}
             <Button variant="outlined" color='primary' onClick={handleClose}>
               LOG IN
@@ -42,4 +42,4 @@ const ConfirmCodeModal = () => {
     );
 };
 
-export default ConfirmCodeModal;
+export default ResetPasswordModal;

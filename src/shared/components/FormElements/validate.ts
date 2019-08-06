@@ -6,6 +6,13 @@ export const loginValidator = (values: any) => {
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Invalid email address'
     }
+    if (!values.resetPasswordEmail) {
+        errors.resetPasswordEmail = 'Required'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.resetPasswordEmail)) {
+        errors.resetPasswordEmail = 'Invalid email address'
+    }
+
+
     // Password Validation
     if (!values.password) {
         errors.password = 'Required'
@@ -37,4 +44,3 @@ export const changePasswordValidation = (values: any) => {
 
     return errors;
 };
-
