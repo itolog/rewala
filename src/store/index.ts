@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 // IMPORT REDUCERS
 import { reducer as formReducer } from 'redux-form';
 import { reducer as authReducer } from './auth/reducer';
-// EPICS
+
 import {
   reducer as profileReducer,
   epics as profileEpic,
@@ -15,8 +15,9 @@ import {
   reducer as passwordReducer,
   epics as passwordEpic,
   ActionTypeUnion as PasswordActionTypesUnion
-} from './password'
+} from './password';
 
+// EPICS
 import { logInEpic, logOutEpic } from './auth/epics';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';

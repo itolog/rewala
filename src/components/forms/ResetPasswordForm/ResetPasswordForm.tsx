@@ -1,14 +1,19 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 // UI
 import Button from '@material-ui/core/Button';
 
 import { loginValidator } from '../../../shared/components/FormElements/validate';
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 
-const ConfirmCodeForm = () => {
+
+interface Props extends InjectedFormProps{
+}
+
+const ConfirmCodeForm = (props: Props) => {
+  const { handleSubmit } = props;
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           name="resetPasswordEmail"
