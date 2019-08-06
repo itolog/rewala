@@ -6,12 +6,15 @@ import { CustomInput } from '../../../../../shared/components/FormElements/custo
 import { changePasswordValidation } from '../../../../../shared/components/FormElements/validate';
 import Button from "@material-ui/core/Button";
 
+interface Props {
+  loading: boolean,
+  onSubmit: () => void
+}
 
-
-const ChangePasswordForm = React.memo((props: any) => {
-  const { handleSubmit } = props;
+const ChangePasswordForm = React.memo((props: Props) => {
+  const { loading, onSubmit } = props;
   return (
-    <form onSubmit={handleSubmit} className='login-form'>
+    <form onSubmit={onSubmit} className='login-form'>
       <div>
         <Field
           name="oldPassword"
@@ -36,7 +39,7 @@ const ChangePasswordForm = React.memo((props: any) => {
           type="password"
         />
       </div>
-      <Button variant='outlined' type='submit'>
+      <Button variant='outlined' type='submit' disabled={loading}>
         Save
       </Button>
     </form>
@@ -48,4 +51,4 @@ export default compose(
     form: 'changePasswordForm',
     validate: changePasswordValidation,
   })
-)(ChangePasswordForm) as any;
+)(ChangePasswordForm as any) as any;

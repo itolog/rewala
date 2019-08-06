@@ -73,7 +73,8 @@ const ChangePasswordModal = (props: Props) => {
     setOpen(false);
   };
 
-  const changeSubmit = () => {
+  const changeSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     changePassword();
   };
 
@@ -90,8 +91,8 @@ const ChangePasswordModal = (props: Props) => {
       >
         <section style={modalStyle} className={classes.paper}>
           <h2 id="modal-title">Change Password</h2>
-          <ChangePasswordForm onSubmit={changeSubmit}/>
-        {/*  Errors  */}
+          <ChangePasswordForm onSubmit={changeSubmit} loading={getPasswordState.loading}/>
+          {/*  Errors  */}
           {getPasswordState && getPasswordState.data && getPasswordState.data.result && getPasswordState.data.result.errors.map((item: any, index: number) => {
             return (
               <p key={index}>{item.message}</p>

@@ -1,15 +1,13 @@
 import { Epic, StateObservable } from 'redux-observable';
 import { Action } from 'typesafe-actions';
 
-import { EMPTY, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
 // TYPES
 import { ChangePasswordInput, User } from '../../../shared/generated/graphql';
 import PasswordService from '../service';
-import AuthTokenService from '../../../shared/services/authToken.service';
 import { AppState } from '../../index';
-import { tap, map } from 'rxjs/operators';
 
 const {
   effect,
@@ -25,9 +23,7 @@ const epic: Epic = (actions$: Observable<Action>, state$: StateObservable<AppSta
     return PasswordService.changePassword({
       "oldPassword": value!.oldPassword,
       "newPassword": value!.confirmPassword
-    }).pipe(
-      tap((val) => console.log(val))
-    )
+    })
   }
 );
 
