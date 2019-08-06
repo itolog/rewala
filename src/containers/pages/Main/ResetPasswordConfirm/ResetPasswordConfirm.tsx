@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import ResetPasswordConfirmCodeForm from '../../forms/ResetPasswordConfirmCodeForm/ResetPasswordConfirmCodeForm';
+import ResetPasswordConfirmCodeForm from '../../../forms/ResetPasswordConfirmCodeForm/ResetPasswordConfirmCodeForm';
 
-import { Actions} from '../../../store/password';
+import { Actions} from '../../../../store/password';
 
 // const mapStateToProps = (state: AppState) => {
 //   return {

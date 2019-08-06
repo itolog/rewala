@@ -1,7 +1,7 @@
 import React, { useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import AuthTokenService from '../../shared/services/authToken.service';
 import { AppState } from '../../store';
@@ -12,6 +12,7 @@ import { Actions } from '../../store/auth/actions';
 
 // import MainRouter from './Main/MainRouter';
 import { Dispatch } from 'redux';
+import Home from './Main/Home/Home';
 
 const MainRouter = React.lazy(() => import('./Main/MainRouter'));
 const Auth = React.lazy(() => import('./Auth/Auth'));
@@ -50,12 +51,14 @@ function AppRouter(props: Props) {
   return (
     <Router>
       <Suspense fallback={<div className='loader'>Загрузка...</div>}>
+
+        <Route path="/auth" exact component={Auth} />
         <Route
           exact path='/' render={() => (
-          !getAuthState.isAuth ? (
-            <Auth/>
-          ) : (
+          getAuthState.isAuth ? (
             <MainRouter/>
+          ) : (
+            <Auth/>
           )
         )}
         />

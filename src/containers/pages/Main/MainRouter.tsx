@@ -1,100 +1,28 @@
 import React from 'react';
-import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import Header from '../../../shared/components/Header/Header';
+
+import ResetPasswordConfirm from './ResetPasswordConfirm/ResetPasswordConfirm';
 
 import Search from './Search/Search';
-import Home from  './Home/Home';
+import Home from './Home/Home';
 import Profile from './Profile/Profile';
-
-interface TabPanelProps {
-    children?: React.ReactNode;
-    dir?: string;
-    index: any;
-    value: any;
-}
-
-function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <Typography
-            component="div"
-            role="tabpanel"
-            hidden={value !== index}
-            id={`full-width-tabpanel-${index}`}
-            aria-labelledby={`full-width-tab-${index}`}
-            {...other}
-        >
-            <Box p={3}>{children}</Box>
-        </Typography>
-    );
-}
-
-function a11yProps(index: any) {
-    return {
-        id: `full-width-tab-${index}`,
-        'aria-controls': `full-width-tabpanel-${index}`,
-    };
-}
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            backgroundColor: theme.palette.background.paper
-        },
-    }),
-);
+import NoMatch from './NoMatch/NoMatch';
 
 export default function MainRouter() {
-    const classes = useStyles();
-    const theme = useTheme();
-    const [value, setValue] = React.useState(0);
+  return (
+    <Router>
+        <Header />
+        <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/search/"  component={Search} />
+        <Route path="/profile/"  component={Profile} />
 
-    function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
-        setValue(newValue);
-    }
+        <Route path="/reset/" component={ResetPasswordConfirm} />
 
-    function handleChangeIndex(index: number) {
-        setValue(index);
-    }
-
-    return (
-        <div className={classes.root}>
-            <AppBar position="static" color="default">
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    variant="fullWidth"
-                    aria-label="full width tabs example"
-                >
-                    <Tab label="Home" {...a11yProps(0)} />
-                    <Tab label="Search" {...a11yProps(1)} />
-                    <Tab label="Profile" {...a11yProps(2)} />
-                </Tabs>
-            </AppBar>
-            <SwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={value}
-                onChangeIndex={handleChangeIndex}
-            >
-                <TabPanel value={value} index={0} dir={theme.direction}>
-                    <Home />
-                </TabPanel>
-                <TabPanel value={value} index={1} dir={theme.direction}>
-                    <Search />
-                </TabPanel>
-                <TabPanel value={value} index={2} dir={theme.direction}>
-                    <Profile />
-                </TabPanel>
-            </SwipeableViews>
-        </div>
-    );
+            <Route component={NoMatch}/>
+        </Switch>
+    </Router>
+  );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import ApolloClient from "apollo-boost";
-import {ApolloProvider} from "react-apollo";
 
 import AuthTokenService from '../shared/services/authToken.service';
 import './App.css';
@@ -17,9 +16,9 @@ const client = new ApolloClient({
 
 const App: React.FC = () => {
     return (
-        <ApolloProvider client={client}>
+
             <AppRouter/>
-        </ApolloProvider>
+
     );
 };
 

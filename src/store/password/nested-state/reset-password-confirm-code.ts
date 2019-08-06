@@ -18,8 +18,10 @@ const {
 const epic: Epic = (actions$: Observable<Action>, state$: StateObservable<AppState>) => effect(
   actions$,
   () => {
-    // const value = state$.value.form.resetPasswordForm.values && state$.value.form.resetPasswordForm.values.resetPasswordEmail;
-    console.log(state$.value)
+    const value = state$.value.form.resetPasswordConfirmCodeForm && state$.value.form.resetPasswordConfirmCodeForm.values && state$.value.form.resetPasswordConfirmCodeForm.values;
+    console.log(value)
+    // return PasswordService.resetPasswordConfirmForm()
+
     return EMPTY;
   }
 );

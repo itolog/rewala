@@ -10,7 +10,7 @@ import './confirmCodeModal.css';
 import { Actions } from '../../../store/password';
 import { getResetPasswordState } from '../../../store/password/selectors';
 
-import ResetPasswordConfirm from '../../components/ResetPasswordConfirm/ResetPasswordConfirm';
+import ResetPasswordConfirm from '../../pages/Main/ResetPasswordConfirm/ResetPasswordConfirm';
 import ResetPasswordForm from '../../forms/ResetPasswordForm/ResetPasswordForm';
 
 import { AppState } from '../../../store';
@@ -47,7 +47,8 @@ const ResetPasswordModal = (props: Props) => {
     setOpen(false);
   };
 
-  const handleOnSubmit = (e: React.SyntheticEvent) => {
+  const handleOnSubmitReset = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     resetPassword();
   };
 
@@ -64,6 +65,8 @@ const ResetPasswordModal = (props: Props) => {
       >
         <div className='confirm-code'>
           <h2>Rewala</h2>
+          {/*  INFO BLOCK */}
+          {getResetPasswordState && getResetPasswordState.loading && <span>sending code to email</span> }
           {/*  ERRORS  */}
           {getResetPasswordState && getResetPasswordState.data && getResetPasswordState.data.errors && getResetPasswordState.data.errors.map((item: any, index: number) => {
             return (
@@ -71,9 +74,9 @@ const ResetPasswordModal = (props: Props) => {
             )
           })}
           {/* FORM Reset */}
-          {!isSendEmail && <ResetPasswordForm onSubmit={handleOnSubmit}/>}
+         <ResetPasswordForm onSubmit={handleOnSubmitReset}/>
           {/*  Reset Confirm Component */}
-          {isSendEmail && <ResetPasswordConfirm /> }
+          {/*{isSendEmail && <ResetPasswordConfirm /> }*/}
           {/*  */}
           <Button variant="outlined" color='primary' onClick={handleClose}>
             LOG IN

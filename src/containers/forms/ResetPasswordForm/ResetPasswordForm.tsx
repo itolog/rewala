@@ -7,14 +7,14 @@ import { loginValidator } from '../../../shared/components/FormElements/validate
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 
 
-interface Props extends InjectedFormProps{
+interface Props{
+  onSubmit: () => void
 }
 
 const ConfirmCodeForm = (props: Props) => {
-  const { handleSubmit } = props;
+  const { onSubmit } = props;
   return (
-    <form onSubmit={handleSubmit}  className='login-form'>
-
+    <form onSubmit={onSubmit}  className='login-form'>
         <Field
           name="resetPasswordEmail"
           component={CustomInput}
@@ -36,4 +36,4 @@ const ConfirmCodeForm = (props: Props) => {
 export default reduxForm({
   form: 'resetPasswordForm',
   validate: loginValidator,
-})(ConfirmCodeForm);
+})(ConfirmCodeForm as any);

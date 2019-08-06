@@ -3,17 +3,18 @@ import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 // UI
 import Button from '@material-ui/core/Button';
 
-import { loginValidator } from '../../../shared/components/FormElements/validate';
+// import { loginValidator } from '../../../shared/components/FormElements/validate';
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 
 
-interface Props extends InjectedFormProps {
+interface Props {
+  onSubmit: () => void
 }
 
 const ResetPasswordConfirmCodeForm = (props: Props) => {
-  const { handleSubmit } = props;
+  const { onSubmit } = props;
   return (
-    <form onSubmit={handleSubmit} className='login-form'>
+    <form onSubmit={onSubmit} className='login-form'>
 
       <Field
         name="confirmPasswordCode"
@@ -38,6 +39,5 @@ const ResetPasswordConfirmCodeForm = (props: Props) => {
 };
 
 export default reduxForm({
-  form: 'resetPasswordConfirmCodeForm',
-  validate: loginValidator,
-})(ResetPasswordConfirmCodeForm);
+  form: 'resetPasswordConfirmCodeForm'
+})(ResetPasswordConfirmCodeForm as any) as any;
