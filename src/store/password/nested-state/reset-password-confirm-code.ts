@@ -1,7 +1,7 @@
 import { Epic, StateObservable } from 'redux-observable';
 import { Action } from 'typesafe-actions';
 
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
 
@@ -18,9 +18,9 @@ const {
 const epic: Epic = (actions$: Observable<Action>, state$: StateObservable<AppState>) => effect(
   actions$,
   () => {
-    const value = state$.value.form.resetPasswordForm.values && state$.value.form.resetPasswordForm.values.resetPasswordEmail;
-
-    return PasswordService.resetPassword(value);
+    // const value = state$.value.form.resetPasswordForm.values && state$.value.form.resetPasswordForm.values.resetPasswordEmail;
+    console.log(state$.value)
+    return EMPTY;
   }
 );
 

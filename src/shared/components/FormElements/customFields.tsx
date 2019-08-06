@@ -14,7 +14,7 @@ export const CustomInput = ({
             {...input}
             label={label}
             type={type}
-            style={{marginBottom: '10px'}}
+            style={{marginBottom: '10px', width: '100%'}}
         />
             <br/>
             {touched &&

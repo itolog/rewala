@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 // UI
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -62,8 +62,8 @@ const ChangePasswordModal = (props: Props) => {
     getPasswordState
   } = props;
   const classes = useStyles();
-  const [ modalStyle ] = React.useState(getModalStyle);
-  const [ open, setOpen ] = React.useState(false);
+  const [ modalStyle ] = useState(getModalStyle);
+  const [ open, setOpen ] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);

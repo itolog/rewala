@@ -38,6 +38,19 @@ class PasswordService {
 
     return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ email: string }>>)
   }
+
+  static resetPasswordConfirmForm(input: string) {
+      const operation = {
+          query: gql`
+              mutation resetPasswordConfirmCode($input: String) {
+                  resetPasswordConfirmCode(resetPasswordCode: $input)
+              }
+          `,
+        variables: { input },
+      };
+
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{resetPasswordCode: string}>>)
+  }
 }
 
 export default PasswordService;

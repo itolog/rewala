@@ -13,15 +13,15 @@ interface Props extends InjectedFormProps{
 const ConfirmCodeForm = (props: Props) => {
   const { handleSubmit } = props;
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit}  className='login-form'>
+
         <Field
           name="resetPasswordEmail"
           component={CustomInput}
           label='email'
           type="email"
         />
-      </div>
+
       <br/>
       <Button
         type="submit"
