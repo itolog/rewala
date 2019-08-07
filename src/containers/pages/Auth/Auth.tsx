@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import './auth.css';
+import Centred from '../../../shared/components/Centred/Centred';
 
 // STORE
 import { AppState } from '../../../store';
@@ -39,7 +39,7 @@ export const Auth = (props: Props) => {
   };
 
   return (
-    <div className='auth'>
+    <Centred>
       <h1>Rewala YoYo</h1>
       <br/>
       {getAuthState.error && <h2>{getAuthState.error}</h2>}
@@ -49,8 +49,7 @@ export const Auth = (props: Props) => {
       <Button size="medium" >
          <Link to="/reset-password/">reset password</Link>
       </Button>
-
-    </div>
+    </Centred>
   )
 };
 

@@ -8,7 +8,7 @@ import ResetPasswordConfirm from '../Auth/ResetPasswordConfirm/ResetPasswordConf
 import Search from './Search/Search';
 import Home from './Home/Home';
 import Profile from './Profile/Profile';
-import NoMatch from './NoMatch/NoMatch';
+import NoMatch from '../../../shared/components/NoMatch/NoMatch';
 
 export default function MainRouter() {
   return (

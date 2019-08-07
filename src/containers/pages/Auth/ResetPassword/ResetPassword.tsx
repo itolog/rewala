@@ -12,6 +12,7 @@ import './resetPassword.css';
 import { Actions } from '../../../../store/password';
 import { getResetPasswordState } from '../../../../store/password/selectors';
 
+import Centred from '../../../../shared/components/Centred/Centred';
 import ResetPasswordForm from '../../../forms/ResetPasswordForm/ResetPasswordForm';
 
 import { AppState } from '../../../../store';
@@ -44,7 +45,7 @@ const ResetPassword = (props: Props) => {
   };
 
   return (
-    <section>
+    <Centred>
       <div className='confirm-code'>
         <h2>Rewala</h2>
         {/*  INFO BLOCK */}
@@ -57,15 +58,15 @@ const ResetPassword = (props: Props) => {
         })}
         {/* FORM Reset */}
         <ResetPasswordForm onSubmit={handleOnSubmitReset}/>
-
+        <br/>
         <Button variant="outlined" color='primary'>
           <Link to="/"> LOG IN</Link>
         </Button>
 
-      {/*  REdirect to Confirm PAssword PAge*/}
-        {isSendEmail && <Redirect to='/reset-password-confirm/' />}
+        {/*  REdirect to Confirm PAssword PAge*/}
+        {isSendEmail && <Redirect to='/reset-password-confirm/'/>}
       </div>
-    </section>
+    </Centred>
   );
 };
 

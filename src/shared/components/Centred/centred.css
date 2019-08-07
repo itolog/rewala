@@ -1,0 +1,11 @@
+.centred {
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    outline: none;
+    justify-content: center;
+}
