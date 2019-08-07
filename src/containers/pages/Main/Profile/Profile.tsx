@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import './profile.css';
 
+import Loader from '../../../../shared/components/Loader/Loader';
 import ProfileSettingsModal from '../../../modals/ProfileSettingsModal/ProfileSettingsModal';
 import { Dispatch } from "redux";
 import { getMe, getMeError } from '../../../../store/profile/selectors';
@@ -48,12 +49,12 @@ const Profile = (props: Props) => {
   } else {
     return (
       <main className='profile-page'>
-        {getMeState.loading && <span>loading ...</span>}
-
+        {getMeState.loading && <Loader />}
         <h1>{getMeState.data && getMeState.data.profile.fullName}</h1>
         <div className='profile-header'>
           <div className='profile-info'>
             <h2>Profile info</h2>
+
           </div>
           <ProfileSettingsModal/>
         </div>

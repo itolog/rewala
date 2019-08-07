@@ -8,7 +8,6 @@ import NoMatch from '../../../shared/components/NoMatch/NoMatch';
 
 import Auth from './Auth';
 
-
 export default function AuthRouter() {
   return (
     <Router>

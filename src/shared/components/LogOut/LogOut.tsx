@@ -36,4 +36,4 @@ const LogOut = (props: Props) => {
 export default compose(
   withRouter,
   connect(null, mapDispatchToProps)
-)(LogOut) as React.FunctionComponent
+)(LogOut) as React.FunctionComponent;

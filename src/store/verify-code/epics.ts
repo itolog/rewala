@@ -6,7 +6,7 @@ import { switchMap } from 'rxjs/operators';
 
 export const verifyEpic: Epic = (action$: Observable<ActionTypeUnion>) => action$.pipe(
   ofType(ActionTypes.VERIFY_CODE_REQUEST),
-  switchMap(({payload}: any): any => {
+  switchMap(({payload}: any ) => {
     return of(Actions.requestVerifySuccesse(payload));
   })
 );

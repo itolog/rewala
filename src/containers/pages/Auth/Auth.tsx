@@ -46,8 +46,8 @@ export const Auth = (props: Props) => {
       <LoginForm
         onSubmit={loginSubmit}
       />
-      <Button size="medium" >
-         <Link to="/reset-password/">reset password</Link>
+      <Button variant="outlined" size="small" color="primary" >
+         <Link to="/reset-password/" style={{color: '#578824'}}>reset password</Link>
       </Button>
     </Centred>
   )

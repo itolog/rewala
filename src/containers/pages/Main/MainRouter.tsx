@@ -13,16 +13,16 @@ import NoMatch from '../../../shared/components/NoMatch/NoMatch';
 export default function MainRouter() {
   return (
     <Router>
-        <Header />
-        <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/search/"  component={Search} />
-        <Route path="/profile/"  component={Profile} />
+      <Header/>
+      <Switch>
+        <Route path="/" exact component={Home}/>
+        <Route path="/search/" component={Search}/>
+        <Route path="/profile/" component={Profile}/>
 
-        <Route path="/reset/" component={ResetPasswordConfirm} />
+        <Route path="/reset/" component={ResetPasswordConfirm}/>
 
-            <Route component={NoMatch}/>
-        </Switch>
+        <Route component={NoMatch}/>
+      </Switch>
     </Router>
   );
 }

@@ -10,6 +10,7 @@ import { Actions } from '../../store/auth/actions';
 
 import { Dispatch } from 'redux';
 
+import Loader from '../../shared/components/Loader/Loader';
 const MainRouter = React.lazy(() => import('./Main/MainRouter'));
 const AuthRouter = React.lazy(() => import('./Auth/AuthRouter'));
 
@@ -46,7 +47,7 @@ function AppRouter(props: Props) {
   }, []);
 
   return (
-    <Suspense fallback={<div className='loader'>Загрузка...</div>}>
+    <Suspense fallback={<Loader />}>
       <Route
         render={() => (
           getAuthState.isAuth ? (

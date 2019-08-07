@@ -17,7 +17,7 @@ const WrappForm = (props: Props) => {
         {props.children}
       </div>
       <Button variant="outlined" color='primary'>
-        <Link to="/"> LOG IN</Link>
+        <Link to="/" style={{color: 'blue'}}> LOG IN</Link>
       </Button>
     </section>
   );
