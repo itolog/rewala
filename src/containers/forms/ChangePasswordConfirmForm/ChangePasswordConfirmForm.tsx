@@ -1,13 +1,23 @@
 import React from 'react';
 import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 import { changePasswordValidation } from '../../../shared/components/FormElements/validate';
 import Button from '@material-ui/core/Button';
 
-const ChangePasswordConfirmForm = (props: any) => {
-  const { handleSubmit } = props;
+interface FormData {
+  newPassword: string,
+  confirmPassword: string
+}
+
+interface FormProps {
+  loading: boolean | undefined
+};
+
+
+const ChangePasswordConfirmForm = (props: InjectedFormProps<FormData, FormProps, string> & FormProps) => {
+  const { handleSubmit, loading } = props;
   return (
      <form onSubmit={handleSubmit} className='login-form'>
        <Field
@@ -27,15 +37,15 @@ const ChangePasswordConfirmForm = (props: any) => {
                type='submit'
          // disabled={loading}
        >
-         Save password
+         Save password {loading}
        </Button>
      </form>
   )
 };
 
 export default compose(
-  reduxForm({
+  reduxForm<FormData, FormProps>({
     form: 'changePasswordConfirmForm',
     validate: changePasswordValidation
   })
-)(ChangePasswordConfirmForm as any) as any;
+)(ChangePasswordConfirmForm);

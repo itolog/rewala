@@ -8,12 +8,15 @@ import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import ChangePasswordConfirmForm from '../../../forms/ChangePasswordConfirmForm/ChangePasswordConfirmForm';
 
 import {getVerifyCode} from '../../../../store/verify-code/selectors';
+
+import { getChangeConfirmPasswordState } from '../../../../store/password/selectors';
 import { Actions } from '../../../../store/password';
 import { AppState } from '../../../../store';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getVerifyCode: getVerifyCode(state)
+    getVerifyCode: getVerifyCode(state),
+    getChangeConfirmPasswordState: getChangeConfirmPasswordState(state)
   };
 };
 
@@ -27,7 +30,14 @@ type Props =
   ;
 
 const ChangePasswordConfirm = (props: Props) => {
-  const { changePasswordConfirm, getVerifyCode } = props;
+  const { changePasswordConfirm, getVerifyCode, getChangeConfirmPasswordState } = props;
+
+  const isSaved = getChangeConfirmPasswordState
+    && getChangeConfirmPasswordState.data
+    &&  getChangeConfirmPasswordState.data.data
+    && getChangeConfirmPasswordState.data.data.resetPasswordConfirm;
+
+  const isLoading = getChangeConfirmPasswordState.loading;
 
   const handleOnSubmitConfirm =() => {
     changePasswordConfirm();
@@ -35,8 +45,11 @@ const ChangePasswordConfirm = (props: Props) => {
 
   return (
     <Centred>
+      {/* INFO BLOCK  */}
+      {isSaved && <h3>password saved</h3>}
+      {isLoading && <h3>password is saved</h3>}
       <WrappForm>
-        <ChangePasswordConfirmForm onSubmit={handleOnSubmitConfirm} />
+        <ChangePasswordConfirmForm onSubmit={handleOnSubmitConfirm} loading={isLoading} />
       </WrappForm>
       {!getVerifyCode && <Redirect to='/' />}
     </Centred>

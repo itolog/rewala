@@ -40,7 +40,7 @@ export const Auth = (props: Props) => {
 
   return (
     <Centred>
-      <h1>Rewala YoYo</h1>
+      <h1>Rewala</h1>
       <br/>
       {getAuthState.error && <h2>{getAuthState.error}</h2>}
       <LoginForm

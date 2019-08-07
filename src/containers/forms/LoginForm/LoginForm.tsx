@@ -1,12 +1,17 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import Button from '@material-ui/core/Button';
 
 import './loginForm.css'
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 import { loginValidator } from '../../../shared/components/FormElements/validate';
 
-const LoginForm = React.memo((props: any) => {
+interface FormData {
+  email: string,
+  password: string
+}
+
+const LoginForm = React.memo((props: InjectedFormProps<FormData>) => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit} className='login-form'>
