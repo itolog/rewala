@@ -9,10 +9,13 @@ import ResetPasswordConfirmCodeForm from '../../../forms/ResetPasswordConfirmCod
 
 import { Actions as VerifyCodeActions } from '../../../../store/verify-code/actions';
 
-
 import { Actions } from '../../../../store/password';
 import { getResetPasswordConfirmState } from '../../../../store/password/selectors';
 import { AppState } from '../../../../store';
+
+interface Values {
+  confirmPasswordCode: string
+}
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -29,7 +32,6 @@ type Props =
   & ReturnType<typeof mapDispatchToProps>
   ;
 
-
 const ResetPasswordConfirm = (props: Props) => {
   const {
     resetPasswordConfirmCode,
@@ -42,7 +44,7 @@ const ResetPasswordConfirm = (props: Props) => {
     && getResetPasswordConfirmState.data.data
     && getResetPasswordConfirmState.data.data.resetPasswordConfirmCode;
 
-  const handelOnsubmitResetConfirmCode = (values: any) => {
+  const handelOnsubmitResetConfirmCode = (values: Values) => {
     const code = values && values.confirmPasswordCode;
     setVerifyCode(code);
     resetPasswordConfirmCode();
@@ -62,7 +64,7 @@ const ResetPasswordConfirm = (props: Props) => {
       <WrappForm>
         <ResetPasswordConfirmCodeForm onSubmit={handelOnsubmitResetConfirmCode}/>
       </WrappForm>
-      {isVerifyCodeValid && <Redirect to='/change-password-confirm/' />}
+      {isVerifyCodeValid && <Redirect to='/change-password-confirm/'/>}
     </Centred>
   )
 };

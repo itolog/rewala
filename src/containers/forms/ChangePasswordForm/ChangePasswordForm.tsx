@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 import { changePasswordValidation } from '../../../shared/components/FormElements/validate';
@@ -8,13 +8,16 @@ import Button from "@material-ui/core/Button";
 
 interface Props {
   loading: boolean,
-  onSubmit: () => void
+}
+interface FormData {
+  oldPassword: string,
+  newPassword: string
 }
 
-const ChangePasswordForm = React.memo((props: Props) => {
-  const { loading, onSubmit } = props;
+const ChangePasswordForm = React.memo((props: InjectedFormProps<FormData, Props> & Props) => {
+  const { loading, handleSubmit } = props;
   return (
-    <form onSubmit={onSubmit} className='login-form'>
+    <form onSubmit={handleSubmit} className='login-form'>
       <div>
         <Field
           name="oldPassword"
@@ -47,8 +50,8 @@ const ChangePasswordForm = React.memo((props: Props) => {
 });
 
 export default compose(
-  reduxForm({
+  reduxForm<FormData, Props>({
     form: 'changePasswordForm',
     validate: changePasswordValidation,
   })
-)(ChangePasswordForm as any) as any;
+)(ChangePasswordForm);

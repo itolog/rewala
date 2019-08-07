@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 // UI
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -73,8 +73,7 @@ const ChangePasswordModal = (props: Props) => {
     setOpen(false);
   };
 
-  const changeSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const changeSubmit = () => {
     changePassword();
   };
 
@@ -91,6 +90,15 @@ const ChangePasswordModal = (props: Props) => {
       >
         <section style={modalStyle} className={classes.paper}>
           <h2 id="modal-title">Change Password</h2>
+          {/* Info block */}
+          {getPasswordState
+          && getPasswordState.loaded
+          && getPasswordState.data
+          && getPasswordState.data.data
+          && getPasswordState.data.data.changePassword
+          && getPasswordState.data.data.changePassword.authToken
+          && <p>password saved</p>
+          }
           <ChangePasswordForm onSubmit={changeSubmit} loading={getPasswordState.loading}/>
           {/*  Errors  */}
           {getPasswordState && getPasswordState.data && getPasswordState.data.result && getPasswordState.data.result.errors.map((item: any, index: number) => {

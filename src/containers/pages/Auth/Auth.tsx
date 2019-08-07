@@ -44,7 +44,7 @@ export const Auth = (props: Props) => {
       <br/>
       {getAuthState.error && <h2>{getAuthState.error}</h2>}
       <LoginForm
-        onSubmit={(values) => loginSubmit(values)}
+        onSubmit={loginSubmit}
       />
       <Button size="medium" >
          <Link to="/reset-password/">reset password</Link>
