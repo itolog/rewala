@@ -13,16 +13,16 @@ const {
   reducer,
   ActionTypes,
   Actions,
-} = asyncActionHandlerFactory<string, boolean, Error>('RESET_PASSWORD_REQUEST');
+} = asyncActionHandlerFactory<string, boolean, Error>('RESET_PASSWORD_CONFIRM_REQUEST');
 
 const epic: Epic = (actions$: Observable<Action>, state$: StateObservable<AppState>) => effect(
   actions$,
   () => {
-    const value = state$.value.form.resetPasswordConfirmCodeForm && state$.value.form.resetPasswordConfirmCodeForm.values && state$.value.form.resetPasswordConfirmCodeForm.values;
-    console.log(value)
-    // return PasswordService.resetPasswordConfirmForm()
-
-    return EMPTY;
+    const value = state$.value.form.resetPasswordConfirmCodeForm
+      && state$.value.form.resetPasswordConfirmCodeForm.values
+      && state$.value.form.resetPasswordConfirmCodeForm.values
+      && state$.value.form.resetPasswordConfirmCodeForm.values.confirmPasswordCode;
+    return PasswordService.resetPasswordConfirmForm(value);
   }
 );
 
