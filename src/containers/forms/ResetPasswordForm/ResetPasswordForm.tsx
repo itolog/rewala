@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 // UI
 import Button from '@material-ui/core/Button';
 

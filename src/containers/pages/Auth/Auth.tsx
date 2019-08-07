@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import './auth.css';
-
-import ResetPasswordModal from '../../modals/ResetPasswordModal/ResetPasswordModal';
 
 // STORE
 import { AppState } from '../../../store';
@@ -45,8 +46,10 @@ export const Auth = (props: Props) => {
       <LoginForm
         onSubmit={(values) => loginSubmit(values)}
       />
+      <Button size="medium" >
+         <Link to="/reset-password/">reset password</Link>
+      </Button>
 
-      <ResetPasswordModal/>
     </div>
   )
 };

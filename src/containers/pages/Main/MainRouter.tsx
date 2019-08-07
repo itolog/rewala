@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from '../../../shared/components/Header/Header';
 
-import ResetPasswordConfirm from './ResetPasswordConfirm/ResetPasswordConfirm';
+import ResetPasswordConfirm from '../Auth/ResetPasswordConfirm/ResetPasswordConfirm';
 
 import Search from './Search/Search';
 import Home from './Home/Home';
