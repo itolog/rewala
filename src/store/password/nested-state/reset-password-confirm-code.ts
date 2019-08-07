@@ -1,7 +1,7 @@
 import { Epic, StateObservable } from 'redux-observable';
 import { Action } from 'typesafe-actions';
 
-import { EMPTY, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
 

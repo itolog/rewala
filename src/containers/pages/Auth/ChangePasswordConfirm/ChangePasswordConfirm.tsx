@@ -49,8 +49,9 @@ const ChangePasswordConfirm = (props: Props) => {
       {isSaved && <h3>password saved</h3>}
       {isLoading && <h3>password is saved</h3>}
       <WrappForm>
-        <ChangePasswordConfirmForm onSubmit={handleOnSubmitConfirm} loading={isLoading} />
+        <ChangePasswordConfirmForm onSubmit={handleOnSubmitConfirm} />
       </WrappForm>
+      {isSaved && <Redirect to='/' />}
       {!getVerifyCode && <Redirect to='/' />}
     </Centred>
   )

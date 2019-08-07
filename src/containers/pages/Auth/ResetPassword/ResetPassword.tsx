@@ -37,8 +37,7 @@ const ResetPassword = (props: Props) => {
     && getResetPasswordState.data.data
     && getResetPasswordState.data.data.resetPassword;
 
-  const handleOnSubmitReset = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const handleOnSubmitReset = () => {
     resetPassword();
   };
 

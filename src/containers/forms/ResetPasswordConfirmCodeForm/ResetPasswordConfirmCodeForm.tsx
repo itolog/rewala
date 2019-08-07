@@ -1,12 +1,16 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 // UI
 import Button from '@material-ui/core/Button';
 
 import { confirmCodeValidation } from '../../../shared/components/FormElements/validate';
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 
-const ResetPasswordConfirmCodeForm = (props: any) => {
+interface FormData {
+  confirmPasswordCode: string
+}
+
+const ResetPasswordConfirmCodeForm = (props: InjectedFormProps<FormData>) => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit} className='login-form'>
@@ -17,7 +21,6 @@ const ResetPasswordConfirmCodeForm = (props: any) => {
         label='Enter Code From Email'
         type="text"
       />
-
       <br/>
       <p>
         The verification code was send to your email.Check your email.
@@ -36,4 +39,4 @@ const ResetPasswordConfirmCodeForm = (props: any) => {
 export default reduxForm({
   form: 'resetPasswordConfirmCodeForm',
   validate: confirmCodeValidation
-})(ResetPasswordConfirmCodeForm as any) as any;
+})(ResetPasswordConfirmCodeForm);
