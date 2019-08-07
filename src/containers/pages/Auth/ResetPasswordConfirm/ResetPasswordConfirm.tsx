@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
+import './resetPasswordConfirm.css';
+
 import ResetPasswordConfirmCodeForm from '../../../forms/ResetPasswordConfirmCodeForm/ResetPasswordConfirmCodeForm';
 
 import { Actions} from '../../../../store/password';
@@ -31,7 +33,7 @@ const ResetPasswordConfirm = (props: Props) => {
   };
 
   return (
-    <section>
+    <section className='confirm-code'>
       <ResetPasswordConfirmCodeForm onSubmit={handelOnsubmitResetConfirmCode}/>
     </section>
   )

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router'
 
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -62,7 +63,7 @@ const ResetPassword = (props: Props) => {
         </Button>
 
       {/*  REdirect to Confirm PAssword PAge*/}
-
+        {isSendEmail && <Redirect to='/reset-password-confirm/' />}
       </div>
     </section>
   );
