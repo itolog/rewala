@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 // IMPORT REDUCERS
 import { reducer as formReducer } from 'redux-form';
 import { reducer as authReducer } from './auth/reducer';
+import { reducer as verifyCodeReducer } from './verify-code/reducer';
 
 import {
   reducer as profileReducer,
@@ -19,6 +20,7 @@ import {
 
 // EPICS
 import { logInEpic, logOutEpic } from './auth/epics';
+import { verifyEpic} from './verify-code/epics';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
@@ -26,7 +28,8 @@ const rootEpic = combineEpics(
   ...profileEpic,
   ...passwordEpic,
   logInEpic,
-  logOutEpic
+  logOutEpic,
+  verifyEpic
 );
 const epicMiddleware = createEpicMiddleware();
 // Reducers
@@ -34,7 +37,8 @@ const reducer = combineReducers({
   form: formReducer,
   profile: profileReducer,
   auth: authReducer,
-  password: passwordReducer
+  password: passwordReducer,
+  verifyCode: verifyCodeReducer
 });
 
 export type RootActions = ActionType<| ProfileActionTypesUnion | PasswordActionTypesUnion>;

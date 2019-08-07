@@ -44,3 +44,11 @@ export const changePasswordValidation = (values: any) => {
 
     return errors;
 };
+export const confirmCodeValidation = (values: any) => {
+    const errors: any = {};
+    if (!values.confirmPasswordCode) {
+        errors.confirmPasswordCode = 'Required';
+    }
+
+    return errors;
+};

@@ -23,29 +23,40 @@ import {
   epic as resetPasswordConfirmCodeEpic
 } from './nested-state/reset-password-confirm-code';
 
+import {
+  Actions as changePasswordConfirmAction,
+  ActionTypes as changePasswordConfirmActionTypes,
+  reducer as changePasswordConfirmReducer,
+  epic as changePasswordConfirmEpic
+} from './nested-state/change-password-confirm';
+
 export const Actions = {
   changePasswordAction,
   resetPasswordAction,
-  resetPasswordConfirmCodeAction
+  resetPasswordConfirmCodeAction,
+  changePasswordConfirmAction
 };
 
 export const ActionTypes = {
   changePasswordActionTypes,
   resetPasswordActionTypes,
-  resetPasswordConfirmCodeActionTypes
+  resetPasswordConfirmCodeActionTypes,
+  changePasswordConfirmActionTypes
 };
 
 export const reducer = combineReducers({
   changePassword: changePasswordReducer,
   resetPassword: resetPasswordReducer,
-  resetPasswordConfirmCode: resetPasswordConfirmCodeReducer
+  resetPasswordConfirmCode: resetPasswordConfirmCodeReducer,
+  changePasswordConfirm: changePasswordConfirmReducer
 });
 export type ActionTypeUnion = ActionType<typeof reducer>;
 
 export const epics = [
   changePasswordEpic,
   resetPasswordEpic,
-  resetPasswordConfirmCodeEpic
+  resetPasswordConfirmCodeEpic,
+  changePasswordConfirmEpic
 ];
 
 export type State = StateType<typeof reducer>;

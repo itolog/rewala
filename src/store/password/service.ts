@@ -4,7 +4,7 @@ import { from, Subscribable } from 'rxjs';
 
 import { GraphQLResponse } from '../../shared/types/garphql';
 
-import { ChangePasswordInput } from '../../shared/generated/graphql';
+import { ChangePasswordInput, ResetPasswordConfirmInput, User } from '../../shared/generated/graphql';
 import link from '../../shared/Link/Link';
 
 // import { pluck } from 'rxjs/operators';
@@ -23,7 +23,7 @@ class PasswordService {
         variables: { input },
       };
 
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ changePassword: ChangePasswordInput }>>)
+    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ changePassword: User }>>)
   }
 
   static resetPassword(input: string) {
@@ -36,7 +36,7 @@ class PasswordService {
         variables: { input },
       };
 
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ email: string }>>)
+    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ resetPassword: boolean }>>)
   }
 
   static resetPasswordConfirmForm(input: string) {
@@ -49,7 +49,20 @@ class PasswordService {
         variables: { input },
       };
 
-      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{resetPasswordCode: string}>>)
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{resetPasswordConfirmCode: boolean}>>)
+  }
+
+  static changePasswordConfirm(input: ResetPasswordConfirmInput) {
+      const operation = {
+          query: gql`
+              mutation ResetPasswordConfirm($input: ResetPasswordConfirmInput) {
+                  resetPasswordConfirm(input: $input)
+              }
+          `,
+        variables: { input },
+      };
+
+    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{resetPasswordConfirm: boolean}>>)
   }
 }
 

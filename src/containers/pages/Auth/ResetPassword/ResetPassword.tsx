@@ -1,17 +1,15 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { Redirect } from 'react-router'
 
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-
-import Button from '@material-ui/core/Button';
 
 import './resetPassword.css';
 
 import { Actions } from '../../../../store/password';
 import { getResetPasswordState } from '../../../../store/password/selectors';
 
+import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import Centred from '../../../../shared/components/Centred/Centred';
 import ResetPasswordForm from '../../../forms/ResetPasswordForm/ResetPasswordForm';
 
@@ -46,8 +44,7 @@ const ResetPassword = (props: Props) => {
 
   return (
     <Centred>
-      <div className='confirm-code'>
-        <h2>Rewala</h2>
+      {/*<div className='confirm-code'>*/}
         {/*  INFO BLOCK */}
         {getResetPasswordState && getResetPasswordState.loading && <span>sending code to email</span>}
         {/*  ERRORS  */}
@@ -57,15 +54,12 @@ const ResetPassword = (props: Props) => {
           )
         })}
         {/* FORM Reset */}
-        <ResetPasswordForm onSubmit={handleOnSubmitReset}/>
-        <br/>
-        <Button variant="outlined" color='primary'>
-          <Link to="/"> LOG IN</Link>
-        </Button>
-
+        <WrappForm>
+          <ResetPasswordForm onSubmit={handleOnSubmitReset}/>
+        </WrappForm>
         {/*  REdirect to Confirm PAssword PAge*/}
         {isSendEmail && <Redirect to='/reset-password-confirm/'/>}
-      </div>
+      {/*</div>*/}
     </Centred>
   );
 };

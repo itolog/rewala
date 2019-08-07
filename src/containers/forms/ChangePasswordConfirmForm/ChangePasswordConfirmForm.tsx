@@ -7,17 +7,17 @@ import { changePasswordValidation } from '../../../shared/components/FormElement
 import Button from '@material-ui/core/Button';
 
 const ChangePasswordConfirmForm = (props: any) => {
-  const { handleSubmit } = props
+  const { handleSubmit } = props;
   return (
      <form onSubmit={handleSubmit} className='login-form'>
        <Field
-         name="password"
+         name="newPassword"
          component={CustomInput}
          label='Password'
          type="password"
        />
        <Field
-         name="newPassword"
+         name="confirmPassword"
          component={CustomInput}
          label='Confirm Password'
          type="password"
@@ -36,5 +36,6 @@ const ChangePasswordConfirmForm = (props: any) => {
 export default compose(
   reduxForm({
     form: 'changePasswordConfirmForm',
+    validate: changePasswordValidation
   })
 )(ChangePasswordConfirmForm as any) as any;

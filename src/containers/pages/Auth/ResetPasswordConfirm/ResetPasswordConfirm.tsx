@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 
 import Centred from '../../../../shared/components/Centred/Centred';
 import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import ResetPasswordConfirmCodeForm from '../../../forms/ResetPasswordConfirmCodeForm/ResetPasswordConfirmCodeForm';
 
+import { Actions as VerifyCodeActions } from '../../../../store/verify-code/actions';
+
+
 import { Actions } from '../../../../store/password';
 import { getResetPasswordConfirmState } from '../../../../store/password/selectors';
 import { AppState } from '../../../../store';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -19,7 +20,8 @@ const mapStateToProps = (state: AppState) => {
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  resetPasswordConfirmCode: () => dispatch(Actions.resetPasswordConfirmCodeAction.action())
+  resetPasswordConfirmCode: () => dispatch(Actions.resetPasswordConfirmCodeAction.action()),
+  setVerifyCode: (payload: string) => dispatch(VerifyCodeActions.requestVerifyCode(payload))
 });
 
 type Props =
@@ -29,15 +31,20 @@ type Props =
 
 
 const ResetPasswordConfirm = (props: Props) => {
-  const { resetPasswordConfirmCode, getResetPasswordConfirmState } = props;
+  const {
+    resetPasswordConfirmCode,
+    getResetPasswordConfirmState,
+    setVerifyCode
+  } = props;
 
   const isVerifyCodeValid = getResetPasswordConfirmState
     && getResetPasswordConfirmState.data
     && getResetPasswordConfirmState.data.data
     && getResetPasswordConfirmState.data.data.resetPasswordConfirmCode;
 
-  const handelOnsubmitResetConfirmCode = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const handelOnsubmitResetConfirmCode = (values: any) => {
+    const code = values && values.confirmPasswordCode;
+    setVerifyCode(code);
     resetPasswordConfirmCode();
   };
 
@@ -55,12 +62,6 @@ const ResetPasswordConfirm = (props: Props) => {
       <WrappForm>
         <ResetPasswordConfirmCodeForm onSubmit={handelOnsubmitResetConfirmCode}/>
       </WrappForm>
-
-      {/*<br/>*/}
-      {/*<Button variant="outlined" color='primary'>*/}
-      {/*  <Link to="/"> LOG IN</Link>*/}
-      {/*</Button>*/}
-      {/* REdirect to CHANGE PASSWORD */}
       {isVerifyCodeValid && <Redirect to='/change-password-confirm/' />}
     </Centred>
   )
