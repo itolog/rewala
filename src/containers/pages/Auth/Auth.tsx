@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
-
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+
+import './auth.css';
+import Button from '@material-ui/core/Button';
 
 import Centred from '../../../shared/components/Centred/Centred';
 
@@ -39,17 +40,22 @@ export const Auth = (props: Props) => {
   };
 
   return (
-    <Centred>
-      <h1>Rewala</h1>
-      <br/>
-      {getAuthState.error && <h2>{getAuthState.error}</h2>}
-      <LoginForm
-        onSubmit={loginSubmit}
-      />
-      <Button variant="outlined" size="small" color="primary">
-        <Link to="/reset-password/" style={{ color: '#578824' }}>reset password</Link>
-      </Button>
-    </Centred>
+      <Centred>
+        <h1>Rewala</h1>
+        <br/>
+        {getAuthState.error && <h2>{getAuthState.error}</h2>}
+        <LoginForm
+          onSubmit={loginSubmit}
+        />
+
+        <Button variant="outlined" size="small" color="primary">
+          <Link to="/reset-password/" style={{ color: '#578824' }}>reset password</Link>
+        </Button>
+
+        <Button variant="outlined" size="small" color="default">
+          <Link to="/registration/" style={{ color: 'orange' }}>sign up</Link>
+        </Button>
+      </Centred>
   )
 };
 

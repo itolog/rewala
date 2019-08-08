@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from "redux";
 
 import './profile.css';
 
 import Loader from '../../../../shared/components/Loader/Loader';
 import ProfileSettingsModal from '../../../modals/ProfileSettingsModal/ProfileSettingsModal';
-import { Dispatch } from "redux";
+import FetchError from '../../../../shared/components/FetchError/FetchError';
+
 import { getMe, getMeError } from '../../../../store/profile/selectors';
 import { Actions } from '../../../../store/profile';
 import { AppState } from '../../../../store';
@@ -39,11 +41,7 @@ const Profile = (props: Props) => {
   if (getMeError && getMeError.errors) {
     return (
       <div>
-        <h2>
-          {getMeError && getMeError.errors.map((item: any, index: number) => {
-            return <p key={index}>{item.message}</p>
-          })}
-        </h2>
+        <FetchError data={getMeError}></FetchError>
       </div>
     )
   } else {

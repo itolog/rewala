@@ -18,15 +18,21 @@ import {
   ActionTypeUnion as PasswordActionTypesUnion
 } from './password';
 
+import {
+  reducer as configReducer,
+  epics as configEpic,
+  ActionTypeUnion as ConfigActionTypesUnion
+} from './config-request';
 // EPICS
 import { logInEpic, logOutEpic } from './auth/epics';
-import { verifyEpic} from './verify-code/epics';
+import { verifyEpic } from './verify-code/epics';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 const rootEpic = combineEpics(
   ...profileEpic,
   ...passwordEpic,
+  ...configEpic,
   logInEpic,
   logOutEpic,
   verifyEpic
@@ -38,10 +44,11 @@ const reducer = combineReducers({
   profile: profileReducer,
   auth: authReducer,
   password: passwordReducer,
-  verifyCode: verifyCodeReducer
+  verifyCode: verifyCodeReducer,
+  config: configReducer
 });
 
-export type RootActions = ActionType<| ProfileActionTypesUnion | PasswordActionTypesUnion>;
+export type RootActions = ActionType<| ProfileActionTypesUnion | PasswordActionTypesUnion | ConfigActionTypesUnion>;
 export type AppState = StateType<typeof reducer>;
 
 function configureStore(preloadedState: any) {

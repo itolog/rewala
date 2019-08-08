@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ResetPasswordConfirm from './ResetPasswordConfirm/ResetPasswordConfirm';
 import ResetPassword from './ResetPassword/ResetPassword';
 import ChangePasswordConfirm from './ChangePasswordConfirm/ChangePasswordConfirm';
+import Registration from './Registration/Registration';
 import NoMatch from '../../../shared/components/NoMatch/NoMatch';
 
 import Auth from './Auth';
@@ -16,6 +17,7 @@ export default function AuthRouter() {
         <Route path="/reset-password/" component={ResetPassword}/>
         <Route path="/reset-password-confirm/" component={ResetPasswordConfirm}/>
         <Route path="/change-password-confirm/" component={ChangePasswordConfirm}/>
+        <Route path="/registration/" component={Registration}/>
 
         <Route component={NoMatch}/>
       </Switch>

@@ -10,10 +10,10 @@ export const getMe = createSelector(
 );
 
 export const getMeError = createSelector(
-    getProfileState,
-    (state) => {
-        if (state.getMe && state.getMe.data && state.getMe.data.result && state.getMe.data.result.errors) {
-            return state.getMe.data.result
-        }
+  getProfileState,
+  (state) => {
+    if (state.getMe && state.getMe.data && state.getMe.data.result && state.getMe.data.result.errors) {
+      return state.getMe.data.result
     }
+  }
 );

@@ -7,5 +7,5 @@
     width: 100vw;
     height: 100vh;
     outline: none;
-    justify-content: center;
+    justify-content: space-around;
 }
