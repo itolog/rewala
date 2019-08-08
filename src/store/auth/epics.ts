@@ -15,7 +15,6 @@ export const logInEpic: Epic = (action$: Observable<ActionTypeUnion>) => action$
       map(({ data }: any) => {
         AuthTokenService.setAuthToken(data.login.authToken);
         return Actions.logInSuccess(data.login.authToken);
-
       }),
       catchError((errors) => {
         console.log(errors);

@@ -16,6 +16,7 @@ const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
     );
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
+
 const authMiddleware = setContext(() => {
   return AuthTokenService.getAuthToken()
     .pipe(

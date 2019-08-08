@@ -1,0 +1,25 @@
+.css-2b097c-container {
+    width: 150px;
+    padding: 1%;
+}
+.phone-wrapp {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.phone-number {
+    flex: 1;
+}
+.phone-code {
+    flex-basis: 80px;
+}
+
+.policy {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: row-reverse;
+    margin-bottom: 20px;
+}

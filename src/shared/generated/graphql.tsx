@@ -24,7 +24,6 @@ export type ChangePasswordInput = {
 
 export type Config = {
   __typename?: 'Config',
-  countries?: Maybe<Array<Maybe<Country>>>,
 };
 
 export type Contact = {
