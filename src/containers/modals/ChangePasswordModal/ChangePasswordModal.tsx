@@ -99,7 +99,7 @@ const ChangePasswordModal = (props: Props) => {
         onClose={handleClose}
       >
         <section style={modalStyle} className={classes.paper}>
-          <Fab size="small" color="secondary" aria-label="add" className='close-btn' onClick={handleClose}>
+          <Fab size="small" color="secondary" aria-label="add" className='close-btn' onClick={handleClose} style={{position: 'absolute'}}>
             <Icon>close</Icon>
           </Fab>
           <h2 id="modal-title">Change Password</h2>

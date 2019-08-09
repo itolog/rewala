@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, FormSection, InjectedFormProps } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import Button from '@material-ui/core/Button';
 
 import './registrationForm.css';

@@ -5,7 +5,6 @@ import { from, Observable, Subscribable } from 'rxjs';
 import { GraphQLResponse } from '../../shared/types/garphql';
 import { UserInput, User } from '../../shared/generated/graphql';
 import link from '../../shared/Link/Link';
-import { pluck } from 'rxjs/operators';
 
 class Registration {
   static registration(input: UserInput): Observable<User> {

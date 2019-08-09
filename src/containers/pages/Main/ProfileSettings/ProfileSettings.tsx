@@ -7,7 +7,6 @@ import Icon from '@material-ui/core/Icon';
 import ChangePasswordModal from '../../../modals/ChangePasswordModal/ChangePasswordModal';
 import LogOut from '../../../../shared/components/LogOut/LogOut';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
 const ProfileSettings = () => {
   const handleClose = () => {
