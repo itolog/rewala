@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
 
@@ -36,24 +36,16 @@ const Profile = (props: Props) => {
 
   useEffect(() => {
     getMe();
-
   }, []);
-
-
-  useLayoutEffect(() => {
-    console.log(getMeState)
-  }, [ props ])
-
 
   return (
     <main className='profile-page'>
-      {getMeError &&  <FetchError data={getMeError}/>}
+      {getMeError && <FetchError data={getMeError}/>}
       {getMeState.loading && <Loader/>}
       <h1>{getMeState.data && getMeState.data.me && getMeState.data.me.profile && getMeState.data.me.profile.fullName}</h1>
       <div className='profile-header'>
         <div className='profile-info'>
           <h2>Profile info</h2>
-
         </div>
         <ProfileSettingsModal/>
       </div>

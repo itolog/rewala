@@ -1,6 +1,8 @@
 import { AppState } from '../index';
 
-export const getRegistrationFetchErrors = (state: AppState) => state
+export const getRegistrationState = (state: AppState) => state.registration.registration;
+
+export const registrationFetchErrors = (state: AppState) => state
   && state.registration
   && state.registration.registration
-  && state.registration.registration.data
+  && state.registration.registration.data;

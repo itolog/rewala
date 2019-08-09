@@ -4,8 +4,13 @@ import { connect } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import Icon from '@material-ui/core/Icon';
 
-import { getPasswordState } from '../../../store/password/selectors';
+import './changePasswordModal.css';
+import FetchError from '../../../shared/components/FetchError/FetchError';
+
+import { getPasswordState, changePasswordError } from '../../../store/password/selectors';
 
 import ChangePasswordForm from '../../forms/ChangePasswordForm/ChangePasswordForm';
 import { Dispatch } from 'redux';
@@ -30,8 +35,11 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       display: 'flex',
       justifyContent: 'center',
+      alignItems: 'center',
       flexFlow: 'column',
-      width: 400,
+      width: '80%',
+      height:' 60%',
+      textAlign: 'center',
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[ 5 ],
@@ -44,7 +52,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getPasswordState: getPasswordState(state)
+    getPasswordState: getPasswordState(state),
+    changePasswordError: changePasswordError(state)
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -59,7 +68,8 @@ type Props =
 const ChangePasswordModal = (props: Props) => {
   const {
     changePassword,
-    getPasswordState
+    getPasswordState,
+    changePasswordError
   } = props;
   const classes = useStyles();
   const [ modalStyle ] = useState(getModalStyle);
@@ -89,7 +99,11 @@ const ChangePasswordModal = (props: Props) => {
         onClose={handleClose}
       >
         <section style={modalStyle} className={classes.paper}>
+          <Fab size="small" color="secondary" aria-label="add" className='close-btn' onClick={handleClose}>
+            <Icon>close</Icon>
+          </Fab>
           <h2 id="modal-title">Change Password</h2>
+          {changePasswordError && <FetchError data={changePasswordError} />}
           {/* Info block */}
           {getPasswordState
           && getPasswordState.loaded
@@ -97,20 +111,9 @@ const ChangePasswordModal = (props: Props) => {
           && getPasswordState.data.data
           && getPasswordState.data.data.changePassword
           && getPasswordState.data.data.changePassword.authToken
-          && <p>password saved</p>
+          && <p className='success-block'>password saved</p>
           }
           <ChangePasswordForm onSubmit={changeSubmit} loading={getPasswordState.loading}/>
-          {/*  Errors  */}
-          {getPasswordState && getPasswordState.data && getPasswordState.data.result && getPasswordState.data.result.errors.map((item: any, index: number) => {
-            return (
-              <p key={index}>{item.message}</p>
-            )
-          })}
-          {getPasswordState && getPasswordState.data && getPasswordState.data && getPasswordState.data.errors && getPasswordState.data.errors.map((item: any, index: number) => {
-            return (
-              <p key={index}>{item.message}</p>
-            )
-          })}
         </section>
       </Modal>
     </div>

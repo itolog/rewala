@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './fetchError.css';
+
 interface Props {
   data: any
 }
@@ -13,21 +15,26 @@ const FetchError = (props: Props) => {
     return (
       <>
         {fetchErrors.map((item: any, index: number) => {
-
           return (
-            <p key={index}>{item.message}</p>
+            <p key={index} className='error-block'>{item.message}</p>
           )
         })}
       </>
     )
-  } else if (validateErrors) {
+  }
+  if (validateErrors) {
     return (
       <>
         {validateErrors.map((item: any, index: number) => {
           return (
-            <div key={index}>
-              <p>{item.fields && item.fields.email && item.fields.email.unique}</p>
-              <p>{item.fields && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse.isAgree}</p>
+            <div key={index} className='error-block'>
+              <div className='error-items'>{item.fields && item.fields.email && item.fields.email.unique}</div>
+
+              <div className='error-items'>{item.fields && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse.isAgree}</div>
+
+              <div className='error-items'>{item.fields && item.fields.phone && item.fields.phone.matches}</div>
+
+              <div className='error-items'>{item.message}</div>
             </div>
           )
         })}

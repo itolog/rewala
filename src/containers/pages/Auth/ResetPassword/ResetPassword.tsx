@@ -7,8 +7,9 @@ import { Dispatch } from 'redux';
 import './resetPassword.css';
 
 import { Actions } from '../../../../store/password';
-import { getResetPasswordState } from '../../../../store/password/selectors';
+import { getResetPasswordState, resetPasswordErrors } from '../../../../store/password/selectors';
 
+import FetchError from '../../../../shared/components/FetchError/FetchError';
 import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import Centred from '../../../../shared/components/Centred/Centred';
 import ResetPasswordForm from '../../../forms/ResetPasswordForm/ResetPasswordForm';
@@ -17,7 +18,8 @@ import { AppState } from '../../../../store';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getResetPasswordState: getResetPasswordState(state)
+    getResetPasswordState: getResetPasswordState(state),
+    resetPasswordErrors: resetPasswordErrors(state)
   };
 };
 
@@ -32,7 +34,7 @@ type Props =
 
 
 const ResetPassword = (props: Props) => {
-  const { resetPassword, getResetPasswordState } = props;
+  const { resetPassword, getResetPasswordState, resetPasswordErrors } = props;
   const isSendEmail = getResetPasswordState.data
     && getResetPasswordState.data.data
     && getResetPasswordState.data.data.resetPassword;
@@ -42,24 +44,22 @@ const ResetPassword = (props: Props) => {
   };
 
   return (
-    <Centred>
-      {/*<div className='confirm-code'>*/}
-        {/*  INFO BLOCK */}
-        {getResetPasswordState && getResetPasswordState.loading && <span>sending code to email</span>}
-        {/*  ERRORS  */}
-        {getResetPasswordState && getResetPasswordState.data && getResetPasswordState.data.errors && getResetPasswordState.data.errors.map((item: any, index: number) => {
-          return (
-            <p key={index}>{item.message}</p>
-          )
-        })}
-        {/* FORM Reset */}
-        <WrappForm>
-          <ResetPasswordForm onSubmit={handleOnSubmitReset}/>
-        </WrappForm>
-        {/*  REdirect to Confirm PAssword PAge*/}
-        {isSendEmail && <Redirect to='/reset-password-confirm/'/>}
-      {/*</div>*/}
-    </Centred>
+    <div className='reset-container'>
+        <Centred>
+          {/*  INFO BLOCK */}
+          {getResetPasswordState && getResetPasswordState.loading &&
+          <div className='info-block'>sending code to email</div>}
+          {/*  ERRORS  */}
+            <FetchError data={resetPasswordErrors}/>
+          {/* FORM Reset */}
+            <WrappForm>
+                <ResetPasswordForm onSubmit={handleOnSubmitReset}/>
+            </WrappForm>
+          {/*  REdirect to Confirm PAssword PAge*/}
+          {isSendEmail && <Redirect to='/reset-password-confirm/'/>}
+
+        </Centred>
+    </div>
   );
 };
 
