@@ -54,7 +54,7 @@ const ChangePasswordConfirm = (props: Props) => {
   };
 
   return (
-    <div className='change-password-confirm-container'>
+    <main className='change-password-confirm-container'>
         <Centred>
           {/* INFO BLOCK  */}
           {isSaved && <h3 className='info-block'>password saved</h3>}
@@ -67,7 +67,7 @@ const ChangePasswordConfirm = (props: Props) => {
           {isSaved && <Redirect to='/'/>}
           {!getVerifyCode && <Redirect to='/'/>}
         </Centred>
-    </div>
+    </main>
 
   )
 };

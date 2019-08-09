@@ -56,7 +56,7 @@ const ResetPasswordConfirm = (props: Props) => {
   };
 
   return (
-    <div className='reset-confirm-container'>
+    <main className='reset-confirm-container'>
       <Centred>
         {/*  ERRORS*/}
         {resetPasswordConfirmCodeErrors && <FetchError data={resetPasswordConfirmCodeErrors}/>}
@@ -66,7 +66,7 @@ const ResetPasswordConfirm = (props: Props) => {
         </WrappForm>
         {isVerifyCodeValid && <Redirect to='/change-password-confirm/'/>}
       </Centred>
-    </div>
+    </main>
   )
 };
 

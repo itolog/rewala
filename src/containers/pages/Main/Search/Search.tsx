@@ -1,8 +1,17 @@
 import React from 'react';
 
+import './search.css';
+import Centred from '../../../../shared/components/Centred/Centred';
+
 function Search() {
     return (
-        <h2>Search</h2>
+      <main className='search-container'>
+          <Centred>
+              <h1>Search</h1>
+          </Centred>
+
+      </main>
+
     )
 }
 

@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
+import { Link } from "react-router-dom";
 
 import './profile.css';
 
 import Loader from '../../../../shared/components/Loader/Loader';
-import ProfileSettingsModal from '../../../modals/ProfileSettingsModal/ProfileSettingsModal';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
 
 import { getMe, getMeError } from '../../../../store/profile/selectors';
 import { Actions } from '../../../../store/profile';
 import { AppState } from '../../../../store';
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -47,7 +48,9 @@ const Profile = (props: Props) => {
         <div className='profile-info'>
           <h2>Profile info</h2>
         </div>
-        <ProfileSettingsModal/>
+        <Button variant="outlined" color="primary">
+          <Link to='/settings/' style={{ color: 'blue' }}>Profile Settings</Link>
+        </Button>
       </div>
     </main>
   )

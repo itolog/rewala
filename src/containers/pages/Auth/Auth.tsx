@@ -40,7 +40,6 @@ export const Auth = (props: Props) => {
   };
 
   return (
-
         <main className='auth-main'>
           <Centred>
           <h1>Rewala</h1>
@@ -55,11 +54,10 @@ export const Auth = (props: Props) => {
           </Button>
 
           <Button variant="outlined" size="small" color="default">
-            <Link to="/registration/" style={{ color: 'orange' }}>sign up</Link>
+            <Link to="/registration/" style={{ color: 'blue' }}>sign up</Link>
           </Button>
           </Centred>
         </main>
-
   )
 };
 

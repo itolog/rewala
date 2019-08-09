@@ -44,7 +44,7 @@ const ResetPassword = (props: Props) => {
   };
 
   return (
-    <div className='reset-container'>
+    <main className='reset-container'>
         <Centred>
           {/*  INFO BLOCK */}
           {getResetPasswordState && getResetPasswordState.loading &&
@@ -59,7 +59,7 @@ const ResetPassword = (props: Props) => {
           {isSendEmail && <Redirect to='/reset-password-confirm/'/>}
 
         </Centred>
-    </div>
+    </main>
   );
 };
 

@@ -72,7 +72,7 @@ function Registration(props: Props) {
 
 
   return (
-    <div className='registration-container'>
+    <main className='registration-container'>
       <Centred>
         {/* INFO  BLOCK*/}
         {getRegistrationState && getRegistrationState.loading &&  <div className='info-block'>sending registration query</div>}
@@ -83,7 +83,7 @@ function Registration(props: Props) {
           <RegistrationForm onSubmit={handleOnRegister} countries={countries}/>
         </WrappForm>
       </Centred>
-    </div>
+    </main>
   )
 }
 
