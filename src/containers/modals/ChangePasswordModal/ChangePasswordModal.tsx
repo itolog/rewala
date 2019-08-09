@@ -106,7 +106,7 @@ const ChangePasswordModal = (props: Props) => {
           {changePasswordError && <FetchError data={changePasswordError} />}
           {/* Info block */}
           {getPasswordState
-          && getPasswordState.loading && <p className='success-block'>loding ...</p>}
+          && getPasswordState.loading && <p className='info-block'>loding ...</p>}
           {getPasswordState
           && getPasswordState.loaded
           && getPasswordState.data
