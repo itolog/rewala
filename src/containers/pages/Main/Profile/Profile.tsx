@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
 
@@ -36,29 +36,29 @@ const Profile = (props: Props) => {
 
   useEffect(() => {
     getMe();
+
   }, []);
 
-  if (getMeError && getMeError.errors) {
-    return (
-      <div>
-        <FetchError data={getMeError}></FetchError>
-      </div>
-    )
-  } else {
-    return (
-      <main className='profile-page'>
-        {getMeState.loading && <Loader />}
-        <h1>{getMeState.data && getMeState.data.profile.fullName}</h1>
-        <div className='profile-header'>
-          <div className='profile-info'>
-            <h2>Profile info</h2>
 
-          </div>
-          <ProfileSettingsModal/>
+  useLayoutEffect(() => {
+    console.log(getMeState)
+  }, [ props ])
+
+
+  return (
+    <main className='profile-page'>
+      {getMeError &&  <FetchError data={getMeError}/>}
+      {getMeState.loading && <Loader/>}
+      <h1>{getMeState.data && getMeState.data.me && getMeState.data.me.profile && getMeState.data.me.profile.fullName}</h1>
+      <div className='profile-header'>
+        <div className='profile-info'>
+          <h2>Profile info</h2>
+
         </div>
-      </main>
-    )
-  }
+        <ProfileSettingsModal/>
+      </div>
+    </main>
+  )
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

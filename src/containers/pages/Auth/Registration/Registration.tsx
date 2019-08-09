@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
@@ -6,7 +6,11 @@ import Centred from '../../../../shared/components/Centred/Centred';
 import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
 import RegistrationForm from '../../../forms/RegistrationForm/RegistrationForm';
+import { UserInput } from '../../../../shared/generated/graphql';
 
+import { Actions as RegistrationAction } from '../../../../store/registration';
+
+import { getRegistrationFetchErrors } from '../../../../store/registration/selectors';
 import { getConfigState, getConfigErrors } from '../../../../store/config-request/selectors';
 import { Actions } from '../../../../store/config-request';
 import { AppState } from '../../../../store';
@@ -15,11 +19,13 @@ const mapStateToProps = (state: AppState) => {
   return {
     getConfigState: getConfigState(state),
     getConfigErrors: getConfigErrors(state),
+    getRegistrationFetchErrors: getRegistrationFetchErrors(state)
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchConfig: () => dispatch(Actions.getConfig.action())
+  fetchConfig: () => dispatch(Actions.getConfig.action()),
+  registration: (payload: UserInput) => dispatch(RegistrationAction.registration.action(payload))
 });
 
 type Props =
@@ -28,7 +34,7 @@ type Props =
   ;
 
 function Registration(props: Props) {
-  const { getConfigState, fetchConfig, getConfigErrors } = props;
+  const { getConfigState, fetchConfig, getConfigErrors, registration, getRegistrationFetchErrors } = props;
 
   const countries = getConfigState && getConfigState.data && getConfigState.data.config && getConfigState.data.config.countries;
 
@@ -42,13 +48,13 @@ function Registration(props: Props) {
     const payload = {
       'email': values.email,
       'password': values.confirmPassword,
-      'isAgreeWithPrivacyPolicyAndTermOfUse': values.police,
+      'isAgreeWithPrivacyPolicyAndTermOfUse': values.police || false,
       'profileInput': {
-        'fullName': values.fullname,
-        'phone': `${values.code.value} ${values.phone_number}`
+        'fullName': values.fullname || null,
+        'phone': values.phone_number && values.code && `${values.code.value} ${values.phone_number}`
       }
     };
-    console.log(payload)
+    registration(payload);
   };
 
 
@@ -56,7 +62,8 @@ function Registration(props: Props) {
     <Centred>
       <WrappForm>
         <FetchError data={getConfigErrors}/>
-        <RegistrationForm onSubmit={handleOnRegister} countries={countries} />
+        <FetchError data={getRegistrationFetchErrors} />
+        <RegistrationForm onSubmit={handleOnRegister} countries={countries}/>
       </WrappForm>
     </Centred>
 

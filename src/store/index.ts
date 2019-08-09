@@ -23,6 +23,13 @@ import {
   epics as configEpic,
   ActionTypeUnion as ConfigActionTypesUnion
 } from './config-request';
+
+import {
+  reducer as registrationReducer,
+  epics as registrationEpic,
+  ActionTypeUnion as registrationActionTypesUnion
+} from './registration'
+
 // EPICS
 import { logInEpic, logOutEpic } from './auth/epics';
 import { verifyEpic } from './verify-code/epics';
@@ -33,6 +40,7 @@ const rootEpic = combineEpics(
   ...profileEpic,
   ...passwordEpic,
   ...configEpic,
+  ...registrationEpic,
   logInEpic,
   logOutEpic,
   verifyEpic
@@ -45,10 +53,11 @@ const reducer = combineReducers({
   auth: authReducer,
   password: passwordReducer,
   verifyCode: verifyCodeReducer,
-  config: configReducer
+  config: configReducer,
+  registration: registrationReducer
 });
 
-export type RootActions = ActionType<| ProfileActionTypesUnion | PasswordActionTypesUnion | ConfigActionTypesUnion>;
+export type RootActions = ActionType<| ProfileActionTypesUnion | PasswordActionTypesUnion | ConfigActionTypesUnion | registrationActionTypesUnion>;
 export type AppState = StateType<typeof reducer>;
 
 function configureStore(preloadedState: any) {

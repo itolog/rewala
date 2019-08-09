@@ -25,7 +25,7 @@ class ProfileService {
           `,
       };
     return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ me: User }>>)
-      .pipe(pluck('data', 'me'));
+      .pipe(pluck('data'));
   }
 }
 

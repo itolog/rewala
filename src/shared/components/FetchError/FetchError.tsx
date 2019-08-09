@@ -1,19 +1,34 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface Props {
   data: any
 }
 
-const FetchError = ({data}: Props) => {
-  const res = data && data.errors;
-  useEffect(() => {
-  }, [data])
-  if (res) {
+const FetchError = (props: Props) => {
+
+  const fetchErrors = props.data && props.data.result && props.data.result.errors;
+  const validateErrors = props.data && props.data.errors;
+
+  if (fetchErrors) {
     return (
       <>
-        {res.map((item: any, index: number) => {
+        {fetchErrors.map((item: any, index: number) => {
+
           return (
             <p key={index}>{item.message}</p>
+          )
+        })}
+      </>
+    )
+  } else if (validateErrors) {
+    return (
+      <>
+        {validateErrors.map((item: any, index: number) => {
+          return (
+            <div key={index}>
+              <p>{item.fields && item.fields.email && item.fields.email.unique}</p>
+              <p>{item.fields && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse.isAgree}</p>
+            </div>
           )
         })}
       </>
@@ -21,6 +36,7 @@ const FetchError = ({data}: Props) => {
   } else {
     return null
   }
+
 };
 
 export default FetchError;
