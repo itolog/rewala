@@ -9,7 +9,11 @@ import App from './containers/App';
 
 ReactDOM.render(
   <Provider store={store}>
+<<<<<<< HEAD
     <App/>
+=======
+      <App/>
+>>>>>>> origin/link
   </Provider>
   , document.getElementById('root')
 );
