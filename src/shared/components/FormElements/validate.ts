@@ -12,7 +12,6 @@ export const loginValidator = (values: any) => {
         errors.resetPasswordEmail = 'Invalid email address'
     }
 
-
     // Password Validation
     if (!values.password) {
         errors.password = 'Required'
@@ -81,5 +80,16 @@ export const registration = (values: any) => {
     } else if (values.password !== values.confirmPassword) {
         errors.confirmPassword = 'confirm password not correct';
     }
+    return errors;
+};
+
+export const updateMe = (values: any) => {
+    const errors: any = {};
+    // Email Validation
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+    }
+
+
     return errors;
 };

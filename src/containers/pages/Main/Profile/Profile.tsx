@@ -41,6 +41,8 @@ const Profile = (props: Props) => {
 
   return (
     <main className='profile-page'>
+      {/* Info block  */}
+      {!getMeState.loaded && <span>no data</span>}
       {getMeError && <FetchError data={getMeError}/>}
       {getMeState.loading && <Loader/>}
       <h1>{getMeState.data && getMeState.data.me && getMeState.data.me.profile && getMeState.data.me.profile.fullName}</h1>

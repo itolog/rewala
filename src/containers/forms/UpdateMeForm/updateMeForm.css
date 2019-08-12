@@ -3,10 +3,17 @@
     background: #e4d1ae;
     min-width: 300px;
     min-height: 100px;
-    padding: 1%;
-    margin-bottom: 2%;
+    padding: 2%;
+    margin-botom: 2%;
     display: flex;
     flex-flow: column;
     align-items: center;
+}
+
+.update-form--notification {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 25px;
 }
 

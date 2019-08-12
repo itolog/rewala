@@ -86,5 +86,4 @@ const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, 
 export default reduxForm<FormData, IProps>({
   form: 'registrationForm',
   validate: registration,
-  enableReinitialize: true
 })(RegistrationForm)
