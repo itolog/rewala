@@ -19,6 +19,9 @@ class ProfileService {
                       profile {
                           fullName
                           notifications
+                          avatar{
+                              filename
+                          }
                       }
                   }
               }

@@ -51,7 +51,6 @@ const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, 
         name="email"
         component={CustomInput}
         label='email'
-        type="email"
       />
       <Field
         name="password"

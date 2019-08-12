@@ -43,25 +43,15 @@ const ProfileSettings = (props: Props) => {
     getMe();
   }, []);
 
-  const getBase64 = (file: any) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
-     reader.onload = function () {
-      return reader.result;
-    };
-  }
   const updateMeHandler = (values: any) => {
-   console.log(typeof values.ava)
     const payload = {
       email: values.email,
       profileInput: {
         fullName: values.fullName,
         notifications: values.notification,
-        avatar: values.ava,
+        phone: '8098908',
+        countryCode: '+380',
+        avatar: null,
       }
     };
     updateMe(payload)

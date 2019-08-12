@@ -10,19 +10,8 @@ function Previews(props: any) {
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     onDrop: acceptedFiles => {
-      const reader = new FileReader();
-      reader.readAsDataURL(acceptedFiles[0]);
-
-      reader.onerror = function (error) {
-        console.log('Error: ', error);
-      };
-      reader.onload = function () {
-        const ava = reader.result;
-
-        props.input.onChange(ava);
-
-      };
-      setFiles(acceptedFiles.map(file => {
+      props.input.onChange(acceptedFiles[0]);
+      setFiles(acceptedFiles.map((file) => {
           return Object.assign(file, {
             preview: URL.createObjectURL(file)
           })

@@ -8,7 +8,7 @@ import ChangePasswordConfirm from './ChangePasswordConfirm/ChangePasswordConfirm
 import Registration from './Registration/Registration';
 import NoMatch from '../../../shared/components/NoMatch/NoMatch';
 
-import Auth from './Auth';
+import Auth from './Auth/Auth';
 
 export default function AuthRouter() {
   return (

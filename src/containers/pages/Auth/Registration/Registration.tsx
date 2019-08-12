@@ -49,7 +49,7 @@ function Registration(props: Props) {
   const countries = getConfigState && getConfigState.data && getConfigState.data.config && getConfigState.data.config.countries;
   const isRegistration = getRegistrationState.data
     && getRegistrationState.data.data
-  && getRegistrationState.data.data.registration
+    && getRegistrationState.data.data.registration
 
   useEffect(() => {
     fetchConfig();
@@ -64,7 +64,7 @@ function Registration(props: Props) {
       'profileInput': {
         'fullName': values.fullname || null,
         'phone': values.phone_number || null,
-        'countryCode': values.code && values.code.value || null
+        'countryCode': (values.code && values.code.value) || null
       }
     };
     registration(payload);
@@ -75,8 +75,9 @@ function Registration(props: Props) {
     <main className='registration-container'>
       <Centred>
         {/* INFO  BLOCK*/}
-        {getRegistrationState && getRegistrationState.loading &&  <div className='info-block'>sending registration query</div>}
-        {isRegistration && getRegistrationState.loaded &&  <div className='success-block'>your profile registred</div>}
+        {getRegistrationState && getRegistrationState.loading &&
+        <div className='info-block'>sending registration query</div>}
+        {isRegistration && getRegistrationState.loaded && <div className='success-block'>your profile registred</div>}
         <WrappForm>
           <FetchError data={getConfigErrors}/>
           <FetchError data={getRegistrationFetchErrors}/>

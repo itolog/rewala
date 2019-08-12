@@ -31,9 +31,9 @@ const FetchError = (props: Props) => {
               <div className='error-items'>{item.fields && item.fields.email && item.fields.email.unique}</div>
 
               <div className='error-items'>{item.fields && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse.isAgree}</div>
-
+              codeAndPhone
               <div className='error-items'>{item.fields && item.fields.phone && item.fields.phone.matches}</div>
-
+              <div className='error-items'>{item.fields && item.fields.phone && item.fields.phone.codeAndPhone}</div>
               <div className='error-items'>{item.message}</div>
             </div>
           )
