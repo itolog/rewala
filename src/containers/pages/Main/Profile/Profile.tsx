@@ -37,7 +37,7 @@ const Profile = (props: Props) => {
 
   useEffect(() => {
     getMe();
-  }, []);
+  }, [getMe]);
 
   return (
     <main className='profile-page'>

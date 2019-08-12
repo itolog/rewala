@@ -41,7 +41,7 @@ const ProfileSettings = (props: Props) => {
 
   useEffect(() => {
     getMe();
-  }, []);
+  }, [getMe]);
 
   const updateMeHandler = (values: any) => {
     const payload = {

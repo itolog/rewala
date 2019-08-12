@@ -53,7 +53,7 @@ function Registration(props: Props) {
 
   useEffect(() => {
     fetchConfig();
-  }, []);
+  }, [fetchConfig]);
 
 
   const handleOnRegister = (values: any) => {

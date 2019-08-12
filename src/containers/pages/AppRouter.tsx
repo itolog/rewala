@@ -44,7 +44,7 @@ function AppRouter(props: Props) {
     return () => {
       auth.unsubscribe()
     }
-  }, []);
+  }, [logInSuccess]);
 
   return (
     <Suspense fallback={<Loader />}>

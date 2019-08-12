@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Select from 'react-select';
-// import Dropzone, { DropzoneProps, DropzoneRef, useDropzone } from 'react-dropzone';
 
 export const CustomInput = ({
                               input,
