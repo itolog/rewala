@@ -1,12 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './profileSettings.css';
 
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
+
+import UpdateMeForm from '../../../forms/UpdateMeForm/UpdateMeForm';
 import ChangePasswordModal from '../../../modals/ChangePasswordModal/ChangePasswordModal';
 import LogOut from '../../../../shared/components/LogOut/LogOut';
-import { Link } from 'react-router-dom';
+
 
 const ProfileSettings = () => {
   const handleClose = () => {
@@ -24,6 +27,7 @@ const ProfileSettings = () => {
         <h2>Profile settings</h2>
       </div>
       <div className='paper-actions'>
+        <UpdateMeForm />
         <ChangePasswordModal/>
         <br/>
         <LogOut/>

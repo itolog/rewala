@@ -1,0 +1,12 @@
+.update-form {
+    box-shadow: 2px 7px 5px 0px rgba(0, 0, 0, 0.75);
+    background: #e4d1ae;
+    min-width: 300px;
+    min-height: 100px;
+    padding: 1%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+

@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Select from 'react-select';
+// import Dropzone, { DropzoneProps, DropzoneRef, useDropzone } from 'react-dropzone';
 
 export const CustomInput = ({
                               input,
@@ -58,3 +59,50 @@ export const CustomSelectCode = ({
     </>
   )
 };
+//
+// interface State {
+//   files: any
+// }
+// interface Props {
+//   input:any
+// }
+// export class Basic extends Component<Props, State> {
+//   public onDrop: any;
+//   constructor({props}: any) {
+//     super(props);
+//     this.onDrop = (files: any) => {
+//       this.setState({files})
+//     };
+//     this.state = {
+//       files: []
+//     };
+//   }
+// componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
+//   console.log(this.props)
+// }
+//
+//   render() {
+//     const files = this.state.files.map((file: any) => (
+//       <li key={file.name}>
+//         {file.name} - {file.size} bytes
+//       </li>
+//     ));
+//
+//     return (
+//       <Dropzone onDrop={this.onDrop}  >
+//         {({getRootProps, getInputProps}) => (
+//           <section className="container">
+//             <div {...getRootProps(this.props.input)}>
+//               <input {...getInputProps(this.props.input)}  filename='sd'/>
+//               <p>Drag 'n' drop some files here, or click to select files</p>
+//             </div>
+//             <aside>
+//               <h4>Files</h4>
+//               <ul>{files}</ul>
+//             </aside>
+//           </section>
+//         )}
+//       </Dropzone>
+//     );
+//   }
+// }

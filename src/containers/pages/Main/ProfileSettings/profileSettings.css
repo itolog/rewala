@@ -1,4 +1,6 @@
-.paper{
+.paper {
+    display: flex;
+    flex-flow: column;
     position: relative;
     width: 100%;
     min-height: 95%;
@@ -10,13 +12,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 80px;
+    flex-basis: 80px;
     background: whitesmoke;
 }
-.paper-actions{
+
+.paper-actions {
     display: flex;
+    flex: 1 1;
     flex-flow: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    min-height: 300px;
 }
