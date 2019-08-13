@@ -1,14 +1,12 @@
-import React from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-// UI
 import Button from '@material-ui/core/Button';
+import React from 'react';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
-import { loginValidator } from '../../../shared/components/FormElements/validate';
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
-
+import { loginValidator } from '../../../shared/components/FormElements/validate';
 
 interface FormData {
-  resetPasswordEmail: string
+  resetPasswordEmail: string;
 }
 
 const ConfirmCodeForm = (props: InjectedFormProps<FormData>) => {
@@ -16,20 +14,20 @@ const ConfirmCodeForm = (props: InjectedFormProps<FormData>) => {
   return (
     <form onSubmit={handleSubmit} className='login-form'>
       <Field
-        name="resetPasswordEmail"
+        name='resetPasswordEmail'
         component={CustomInput}
         label='email'
-        type="email"
+        type='email'
       />
       <br/>
       <Button
-        type="submit"
-        variant="contained"
+        type='submit'
+        variant='contained'
       >
         reset password
       </Button>
     </form>
-  )
+  );
 };
 
 export default reduxForm({

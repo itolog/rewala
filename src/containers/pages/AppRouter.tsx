@@ -1,29 +1,29 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { Route, withRouter, RouteComponentProps } from 'react-router-dom';
+import { Route, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import AuthTokenService from '../../shared/services/authToken.service';
 import { AppState } from '../../store';
-import { getAuthState } from '../../store/auth/selectors';
 import { Actions } from '../../store/auth/actions';
+import { getAuthState } from '../../store/auth/selectors';
 
 import { Dispatch } from 'redux';
 
 import Loader from '../../shared/components/Loader/Loader';
+
 const MainRouter = React.lazy(() => import('./Main/MainRouter'));
 const AuthRouter = React.lazy(() => import('./Auth/AuthRouter'));
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getAuthState: getAuthState(state)
+    getAuth: getAuthState(state),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  logInSuccess: (payload: string) => dispatch(Actions.logInSuccess(payload))
+  logInSuccess: (payload: string) => dispatch(Actions.logInSuccess(payload)),
 });
-
 
 type Props =
   & ReturnType<typeof mapStateToProps>
@@ -32,25 +32,25 @@ type Props =
   ;
 
 function AppRouter(props: Props) {
-  const { getAuthState, logInSuccess } = props;
+  const { getAuth, logInSuccess } = props;
   useEffect(() => {
     const auth = AuthTokenService.getAuthToken().subscribe(
       (val) => {
         if (val) {
-          logInSuccess(val)
+          logInSuccess(val);
         }
-      }
+      },
     );
     return () => {
-      auth.unsubscribe()
-    }
-  }, [logInSuccess]);
+      auth.unsubscribe();
+    };
+  }, [ logInSuccess ]);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader/>}>
       <Route
         render={() => (
-          getAuthState.isAuth ? (
+          getAuth.isAuth ? (
             <MainRouter/>
           ) : (
             <AuthRouter/>

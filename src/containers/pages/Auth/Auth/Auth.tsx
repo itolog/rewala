@@ -1,10 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
 
-import './auth.css';
 import Button from '@material-ui/core/Button';
+import './auth.css';
 
 import Centred from '../../../../shared/components/Centred/Centred';
 
@@ -19,12 +19,12 @@ import LoginForm from '../../../forms/LoginForm/LoginForm';
 // STORE PROPS
 const mapStateToProps = (state: AppState) => {
   return {
-    getAuthState: getAuthState(state)
+    getAuth: getAuthState(state),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  login: (payload: LoginInput) => dispatch(Actions.logIn(payload))
+  login: (payload: LoginInput) => dispatch(Actions.logIn(payload)),
 });
 
 type Props =
@@ -33,7 +33,7 @@ type Props =
   ;
 
 export const Auth = (props: Props) => {
-  const { login, getAuthState } = props;
+  const { login, getAuth } = props;
 
   const loginSubmit = (values: LoginInput) => {
     login(values);
@@ -44,7 +44,7 @@ export const Auth = (props: Props) => {
       <Centred>
         <h1>Rewala</h1>
         <br/>
-        {getAuthState.error && <h2>{getAuthState.error}</h2>}
+        {getAuth.error && <h2>{getAuth.error}</h2>}
         <LoginForm
           onSubmit={loginSubmit}
         />
@@ -58,7 +58,7 @@ export const Auth = (props: Props) => {
         </Button>
       </Centred>
     </main>
-  )
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

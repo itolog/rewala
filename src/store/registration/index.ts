@@ -24,8 +24,7 @@ export const reducer = combineReducers({
 export type ActionTypeUnion = ActionType<typeof reducer>;
 
 export const epics = [
-  registrationEpic
+  registrationEpic,
 ];
-
 
 export type State = StateType<typeof reducer>;

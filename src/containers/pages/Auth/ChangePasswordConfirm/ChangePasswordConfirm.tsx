@@ -1,32 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { Redirect } from 'react-router';
+import { Dispatch } from 'redux';
 
 import './changePasswordConfirm.css';
 
 import Centred from '../../../../shared/components/Centred/Centred';
-import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
+import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 
 import ChangePasswordConfirmForm from '../../../forms/ChangePasswordConfirmForm/ChangePasswordConfirmForm';
 
 import { getVerifyCode } from '../../../../store/verify-code/selectors';
 
-import { getChangeConfirmPasswordState, changeConfirmPassworErrors } from '../../../../store/password/selectors';
-import { Actions } from '../../../../store/password';
 import { AppState } from '../../../../store';
+import { Actions } from '../../../../store/password';
+import { changeConfirmPassworErrors, getChangeConfirmPasswordState } from '../../../../store/password/selectors';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getVerifyCode: getVerifyCode(state),
-    getChangeConfirmPasswordState: getChangeConfirmPasswordState(state),
-    changeConfirmPassworErrors: changeConfirmPassworErrors(state)
+    getVerify: getVerifyCode(state),
+    getChangeConfirmPassword: getChangeConfirmPasswordState(state),
+    changeConfirmPassworError: changeConfirmPassworErrors(state),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changePasswordConfirm: () => dispatch(Actions.changePasswordConfirmAction.action())
+  changePasswordConfirm: () => dispatch(Actions.changePasswordConfirmAction.action()),
 });
 
 type Props =
@@ -37,17 +37,17 @@ type Props =
 const ChangePasswordConfirm = (props: Props) => {
   const {
     changePasswordConfirm,
-    getVerifyCode,
-    getChangeConfirmPasswordState,
-    changeConfirmPassworErrors
+    getVerify,
+    getChangeConfirmPassword,
+    changeConfirmPassworError,
   } = props;
 
   const isSaved = getChangeConfirmPasswordState
-    && getChangeConfirmPasswordState.data
-    && getChangeConfirmPasswordState.data.data
-    && getChangeConfirmPasswordState.data.data.resetPasswordConfirm;
+    && getChangeConfirmPassword.data
+    && getChangeConfirmPassword.data.data
+    && getChangeConfirmPassword.data.data.resetPasswordConfirm;
 
-  const isLoading = getChangeConfirmPasswordState.loading;
+  const isLoading = getChangeConfirmPassword.loading;
 
   const handleOnSubmitConfirm = () => {
     changePasswordConfirm();
@@ -55,21 +55,21 @@ const ChangePasswordConfirm = (props: Props) => {
 
   return (
     <main className='change-password-confirm-container'>
-        <Centred>
-          {/* INFO BLOCK  */}
-          {isSaved && <h3 className='info-block'>password saved</h3>}
-          {isLoading && <h3 className='success-block'>password is saved</h3>}
-          {/* Error Block  */}
-          {changeConfirmPassworErrors && <FetchError data={changeConfirmPassworErrors} />}
-            <WrappForm>
-                <ChangePasswordConfirmForm onSubmit={handleOnSubmitConfirm}/>
-            </WrappForm>
-          {isSaved && <Redirect to='/'/>}
-          {!getVerifyCode && <Redirect to='/'/>}
-        </Centred>
+      <Centred>
+        {/* INFO BLOCK  */}
+        {isSaved && <h3 className='info-block'>password saved</h3>}
+        {isLoading && <h3 className='success-block'>password is saved</h3>}
+        {/* Error Block  */}
+        {changeConfirmPassworError && <FetchError data={changeConfirmPassworError}/>}
+        <WrappForm>
+          <ChangePasswordConfirmForm onSubmit={handleOnSubmitConfirm}/>
+        </WrappForm>
+        {isSaved && <Redirect to='/'/>}
+        {!getVerify && <Redirect to='/'/>}
+      </Centred>
     </main>
 
-  )
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswordConfirm);

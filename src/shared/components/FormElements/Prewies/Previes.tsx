@@ -10,14 +10,14 @@ function Previews(props: any) {
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     onDrop: acceptedFiles => {
-      props.input.onChange(acceptedFiles[0]);
+      props.input.onChange(acceptedFiles[ 0 ]);
       setFiles(acceptedFiles.map((file) => {
           return Object.assign(file, {
-            preview: URL.createObjectURL(file)
-          })
-        }
+            preview: URL.createObjectURL(file),
+          });
+        },
       ));
-    }
+    },
   });
 
   const thumbs = files.map((file: any) => (
@@ -35,11 +35,11 @@ function Previews(props: any) {
   }, [ files ]);
 
   return (
-    <section className="container">
+    <section className='container'>
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         {thumbs.length === 0 && <div className='ava-container'>
-            <img src={Ava} alt="ava" className='ava'/>
+            <img src={Ava} alt='ava' className='ava'/>
         </div>}
 
         {thumbs.length !== 0 && <>

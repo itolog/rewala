@@ -2,12 +2,12 @@ import { execute } from 'apollo-link';
 import gql from 'graphql-tag';
 import { from, Observable, Subscribable } from 'rxjs';
 
-import { GraphQLResponse } from '../../shared/types/garphql';
-import { UserInput, User } from '../../shared/generated/graphql';
+import { User, UserInput } from '../../shared/generated/graphql';
 import link from '../../shared/Link/Link';
+import { GraphQLResponse } from '../../shared/types/garphql';
 
 class Registration {
-  static registration(input: UserInput): Observable<User> {
+  static registration(input: UserInput): Observable<any> {
       const operation = {
           query: gql`
               mutation Registration($input: UserInput) {
@@ -25,7 +25,7 @@ class Registration {
         variables: { input },
       };
 
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ registration: User }>>)
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ registration: User }>>);
   }
 }
 

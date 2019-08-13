@@ -1,21 +1,10 @@
-import { createHttpLink } from "apollo-link-http";
 import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
-import { onError } from "apollo-link-error";
+import { createHttpLink } from 'apollo-link-http';
 
 import { map } from 'rxjs/operators';
 
-import AuthTokenService from "../services/authToken.service";
-
-const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.map(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
-  if (networkError) console.log(`[Network error]: ${networkError}`);
-});
+import AuthTokenService from '../services/authToken.service';
 
 const authMiddleware = setContext(() => {
   return AuthTokenService.getAuthToken()
@@ -23,20 +12,19 @@ const authMiddleware = setContext(() => {
       map(userToken => {
         return {
           headers: {
-            authorization: `Bearer ${userToken}` ,
+            authorization: `Bearer ${userToken}`,
           },
         };
       }),
     ).toPromise();
 });
 const httpLink = createHttpLink({
-  uri: "https://rewala-api.2mc.team/graphql"
+  uri: 'https://rewala-api.2mc.team/graphql',
 });
 
 const link = ApolloLink.from([
   authMiddleware,
-  errorMiddleware,
-  httpLink
+  httpLink,
 ]);
 
 export default link;

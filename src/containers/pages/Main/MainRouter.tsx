@@ -1,4 +1,4 @@
-import React, { Suspense} from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from '../../../shared/components/Header/Header';
@@ -16,14 +16,14 @@ function MainRouter() {
     <Router>
       <Header/>
       <Suspense fallback={<Loader/>}>
-            <Switch>
-              <Route path="/" exact component={Home}/>
-              <Route path="/search/" exact component={Search}/>
-              <Route path="/profile/" exact component={Profile}/>
-              <Route path="/settings/" exact component={ProfileSettings}/>
+        <Switch>
+          <Route path='/' exact={true} component={Home}/>
+          <Route path='/search/' exact={true} component={Search}/>
+          <Route path='/profile/' exact={true} component={Profile}/>
+          <Route path='/settings/' exact={true} component={ProfileSettings}/>
 
-              <Route component={NoMatch}/>
-            </Switch>
+          <Route component={NoMatch}/>
+        </Switch>
       </Suspense>
     </Router>
   );

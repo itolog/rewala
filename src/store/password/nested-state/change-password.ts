@@ -3,11 +3,10 @@ import { Action } from 'typesafe-actions';
 
 import { Observable } from 'rxjs';
 
-import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
-// TYPES
 import { ChangePasswordInput, User } from '../../../shared/generated/graphql';
-import PasswordService from '../service';
 import { AppState } from '../../index';
+import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
+import PasswordService from '../service';
 
 const {
   effect,
@@ -21,10 +20,10 @@ const epic: Epic = (actions$: Observable<Action>, state$: StateObservable<AppSta
   () => {
     const value = state$.value.form.changePasswordForm.values;
     return PasswordService.changePassword({
-      "oldPassword": value!.oldPassword,
-      "newPassword": value!.confirmPassword
-    })
-  }
+      oldPassword: value!.oldPassword,
+      newPassword: value!.confirmPassword,
+    });
+  },
 );
 
 export { epic, reducer, Actions, ActionTypes };

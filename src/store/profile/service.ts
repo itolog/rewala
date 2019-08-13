@@ -2,14 +2,14 @@ import { execute } from 'apollo-link';
 import gql from 'graphql-tag';
 import { from, Observable, Subscribable } from 'rxjs';
 
-import { User, UpdateUserInput } from '../../shared/generated/graphql';
+import { UpdateUserInput, User } from '../../shared/generated/graphql';
 import { GraphQLResponse } from '../../shared/types/garphql';
 
+import { pluck } from 'rxjs/operators';
 import link from '../../shared/Link/Link';
-import { pluck } from "rxjs/operators";
 
 class ProfileService {
-  static getMe(): Observable<User> {
+  static getMe(): Observable<any> {
       const operation = {
           query: gql`
               query getMe {
@@ -27,11 +27,11 @@ class ProfileService {
               }
           `,
       };
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ me: User }>>)
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ me: User }>>)
       .pipe(pluck('data'));
   }
 
-  static upDateMe(input: UpdateUserInput): Observable<User> {
+  static upDateMe(input: UpdateUserInput): Observable<any> {
       const operation = {
           query: gql`
               mutation UpdateMe($input: UpdateUserInput) {
@@ -53,7 +53,7 @@ class ProfileService {
         variables: { input },
       };
 
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ updateMe: User }>>)
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ updateMe: User }>>);
   }
 }
 

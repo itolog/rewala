@@ -1,6 +1,6 @@
-import React from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import Button from '@material-ui/core/Button';
+import React from 'react';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 import './registrationForm.css';
 
@@ -8,12 +8,12 @@ import { CustomInput, CustomSelectCode } from '../../../shared/components/FormEl
 import { registration } from '../../../shared/components/FormElements/validate';
 
 interface IProps {
-  countries: any
+  countries: any;
 }
 
 interface FormData {
-  fullname: string,
-  code: string
+  fullname: string;
+  code: string;
 }
 
 const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, string> & IProps) => {
@@ -22,14 +22,14 @@ const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, 
     <form onSubmit={handleSubmit} className='login-form'>
 
       <Field
-        name="fullname"
+        name='fullname'
         component={CustomInput}
         label='full name'
-        type="text"
+        type='text'
       />
       <div className='phone-wrapp'>
         <Field
-          name="code"
+          name='code'
           component={CustomSelectCode}
           label='code'
           className='phone-code'
@@ -38,51 +38,52 @@ const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, 
         />
         <div>
           <Field
-            name="phone_number"
+            name='phone_number'
             className='phone-number'
             component={CustomInput}
             label='phone'
-            type="tel"
+            type='tel'
           />
         </div>
       </div>
 
       <Field
-        name="email"
+        name='email'
         component={CustomInput}
         label='email'
       />
       <Field
-        name="password"
+        name='password'
         component={CustomInput}
         label='password'
-        type="password"
+        type='password'
       />
       <Field
-        name="confirmPassword"
+        name='confirmPassword'
         component={CustomInput}
         label='confirm password'
-        type="password"
+        type='password'
       />
       <div className='policy'>
-        <label htmlFor="police">agree whith Privacy Policy</label>
+        <label htmlFor='police'>agree whith Privacy Policy</label>
         <div>
-          <Field name="police" id="police" component="input" type="checkbox"/>
+          <Field name='police' id='police' component='input' type='checkbox'/>
         </div>
       </div>
 
       <Button
-        type="submit"
-        variant="contained" color="primary"
+        type='submit'
+        variant='contained'
+        color='primary'
       >
         Sign up
       </Button>
       <br/>
     </form>
-  )
+  );
 });
 
 export default reduxForm<FormData, IProps>({
   form: 'registrationForm',
   validate: registration,
-})(RegistrationForm)
+})(RegistrationForm);

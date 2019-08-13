@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from "redux";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Dispatch } from 'redux';
 
 import './profile.css';
 
-import Loader from '../../../../shared/components/Loader/Loader';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
+import Loader from '../../../../shared/components/Loader/Loader';
 
-import { getMe, getMeError } from '../../../../store/profile/selectors';
-import { Actions } from '../../../../store/profile';
-import { AppState } from '../../../../store';
 import Button from '@material-ui/core/Button';
+import { AppState } from '../../../../store';
+import { Actions } from '../../../../store/profile';
+import { getMe, getMeError } from '../../../../store/profile/selectors';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getMeState: getMe(state),
-    getMeError: getMeError(state)
+    getMeData: getMe(state),
+    getMeErrors: getMeError(state),
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getMe: () => dispatch(Actions.getMe.action())
+  getMeAction: () => dispatch(Actions.getMe.action()),
 });
 
 type Props =
@@ -30,32 +30,32 @@ type Props =
 
 const Profile = (props: Props) => {
   const {
-    getMeState,
-    getMe,
-    getMeError
+    getMeData,
+    getMeAction,
+    getMeErrors,
   } = props;
 
   useEffect(() => {
-    getMe();
-  }, [getMe]);
+    getMeAction();
+  }, [ getMeAction ]);
 
   return (
     <main className='profile-page'>
       {/* Info block  */}
-      {!getMeState.loaded && <span>no data</span>}
-      {getMeError && <FetchError data={getMeError}/>}
-      {getMeState.loading && <Loader/>}
-      <h1>{getMeState.data && getMeState.data.me && getMeState.data.me.profile && getMeState.data.me.profile.fullName}</h1>
+      {!getMeData.loaded && <span>no data</span>}
+      {getMeErrors && <FetchError data={getMeErrors}/>}
+      {getMeData.loading && <Loader/>}
+      <h1>{getMeData.data && getMeData.data.me && getMeData.data.me.profile && getMeData.data.me.profile.fullName}</h1>
       <div className='profile-header'>
         <div className='profile-info'>
           <h2>Profile info</h2>
         </div>
-        <Button variant="outlined" color="primary">
+        <Button variant='outlined' color='primary'>
           <Link to='/settings/' style={{ color: 'blue' }}>Profile Settings</Link>
         </Button>
       </div>
     </main>
-  )
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

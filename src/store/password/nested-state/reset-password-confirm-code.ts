@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
 
-import PasswordService from '../service';
 import { AppState } from '../../index';
+import PasswordService from '../service';
 
 const {
   effect,
@@ -23,7 +23,7 @@ const epic: Epic = (actions$: Observable<Action>, state$: StateObservable<AppSta
       && state$.value.form.resetPasswordConfirmCodeForm.values
       && state$.value.form.resetPasswordConfirmCodeForm.values.confirmPasswordCode;
     return PasswordService.resetPasswordConfirmForm(value);
-  }
+  },
 );
 
 export { epic, reducer, Actions, ActionTypes };

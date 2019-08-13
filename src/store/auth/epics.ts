@@ -1,12 +1,12 @@
 import { Epic, ofType, StateObservable } from 'redux-observable';
 import { Observable, of } from 'rxjs';
 
-import { ActionTypeUnion, ActionTypes, Actions } from './actions';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { Actions, ActionTypes, ActionTypeUnion } from './actions';
 
-import AuthService from './service';
 import AuthTokenService from '../../shared/services/authToken.service';
 import { AppState } from '../index';
+import AuthService from './service';
 
 export const logInEpic: Epic = (action$: Observable<ActionTypeUnion>) => action$.pipe(
   ofType(ActionTypes.LOGIN),
@@ -16,12 +16,11 @@ export const logInEpic: Epic = (action$: Observable<ActionTypeUnion>) => action$
         AuthTokenService.setAuthToken(data.login.authToken);
         return Actions.logInSuccess(data.login.authToken);
       }),
-      catchError((errors) => {
-        console.log(errors);
-        return of(Actions.logInFailed('Wrong email or password'))
-      })
+      catchError(() => {
+        return of(Actions.logInFailed('Wrong email or password'));
+      }),
     );
-  })
+  }),
 );
 
 export const logOutEpic: Epic = (action$: Observable<ActionTypeUnion>, state$: StateObservable<AppState>) => action$.pipe(
@@ -29,13 +28,13 @@ export const logOutEpic: Epic = (action$: Observable<ActionTypeUnion>, state$: S
   switchMap(() => {
     const token = state$.value.auth.token;
     return AuthService.logOut({
-      "FCMToken": token
+      FCMToken: token,
     }).pipe(
       map(() => {
         AuthTokenService.removeAuthToken();
-        return Actions.logOutSuccess()
+        return Actions.logOutSuccess();
       }),
-      catchError((error) => of(Actions.logOutFailed(error.message)))
+      catchError((error) => of(Actions.logOutFailed(error.message))),
     );
-  })
+  }),
 );

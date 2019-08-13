@@ -1,34 +1,34 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { StateType, ActionType } from 'typesafe-actions';
-import { composeWithDevTools } from "redux-devtools-extension";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 // IMPORT REDUCERS
 import { reducer as formReducer } from 'redux-form';
+import { ActionType, StateType } from 'typesafe-actions';
 import { reducer as authReducer } from './auth/reducer';
 import { reducer as verifyCodeReducer } from './verify-code/reducer';
 
 import {
-  reducer as profileReducer,
+  ActionTypeUnion as ProfileActionTypesUnion,
   epics as profileEpic,
-  ActionTypeUnion as ProfileActionTypesUnion
+  reducer as profileReducer,
 } from './profile';
 
 import {
-  reducer as passwordReducer,
+  ActionTypeUnion as PasswordActionTypesUnion,
   epics as passwordEpic,
-  ActionTypeUnion as PasswordActionTypesUnion
+  reducer as passwordReducer,
 } from './password';
 
 import {
-  reducer as configReducer,
+  ActionTypeUnion as ConfigActionTypesUnion,
   epics as configEpic,
-  ActionTypeUnion as ConfigActionTypesUnion
+  reducer as configReducer,
 } from './config-request';
 
 import {
-  reducer as registrationReducer,
+  ActionTypeUnion as registrationActionTypesUnion,
   epics as registrationEpic,
-  ActionTypeUnion as registrationActionTypesUnion
-} from './registration'
+  reducer as registrationReducer,
+} from './registration';
 
 // EPICS
 import { logInEpic, logOutEpic } from './auth/epics';
@@ -43,7 +43,7 @@ const rootEpic = combineEpics(
   ...registrationEpic,
   logInEpic,
   logOutEpic,
-  verifyEpic
+  verifyEpic,
 );
 const epicMiddleware = createEpicMiddleware();
 // Reducers
@@ -54,7 +54,7 @@ const reducer = combineReducers({
   password: passwordReducer,
   verifyCode: verifyCodeReducer,
   config: configReducer,
-  registration: registrationReducer
+  registration: registrationReducer,
 });
 
 export type RootActions = ActionType<| ProfileActionTypesUnion | PasswordActionTypesUnion | ConfigActionTypesUnion | registrationActionTypesUnion>;

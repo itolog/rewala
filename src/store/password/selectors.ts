@@ -4,7 +4,7 @@ export const getPasswordState = (state: AppState) => state.password.changePasswo
 export const changePasswordError = (state: AppState) => state.password.changePassword.data;
 
 export const getResetPasswordState = (state: AppState) => state.password.resetPassword;
-export const resetPasswordErrors = (state:AppState) => state.password.resetPassword.data;
+export const resetPasswordErrors = (state: AppState) => state.password.resetPassword.data;
 
 export const getResetPasswordConfirmState = (state: AppState) => state.password.resetPasswordConfirmCode;
 export const resetPasswordConfirmCodeErrors = (state: AppState) => state.password.resetPasswordConfirmCode.data;

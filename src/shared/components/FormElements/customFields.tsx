@@ -1,5 +1,5 @@
-import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import React from 'react';
 import Select from 'react-select';
 
 export const CustomInput = ({
@@ -7,7 +7,7 @@ export const CustomInput = ({
                               label,
                               type,
                               className,
-                              meta: { touched, error }
+                              meta: { touched, error },
                             }: any) => {
   return (
     <>
@@ -22,21 +22,20 @@ export const CustomInput = ({
       {touched &&
       ((error && <div style={{ marginBottom: '10px', marginTop: '5' }}>{error}</div>))}
     </>
-  )
+  );
 };
-
 
 export const CustomSelectCode = ({
                                    input,
                                    label,
                                    type,
                                    data,
-                                   meta: { touched, error }
+                                   meta: { touched, error },
                                  }: any) => {
   const option: any = () => {
-    let res: any = [];
-    for (let item in data) {
-      res.push({ value: data[ item ].code, label: `${data[ item ].shortName} ${data[ item ].code}` })
+    const res: any = [];
+    for (const item in data) {
+      res.push({ value: data[ item ].code, label: `${data[ item ].shortName} ${data[ item ].code}` });
     }
     return res;
   };
@@ -56,5 +55,5 @@ export const CustomSelectCode = ({
       {touched &&
       ((error && <div style={{ marginBottom: '10px', marginTop: '5' }}>{error}</div>))}
     </>
-  )
+  );
 };

@@ -1,17 +1,18 @@
 import React from 'react';
 import { compose } from 'redux';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
+import Button from '@material-ui/core/Button';
 import { CustomInput } from '../../../shared/components/FormElements/customFields';
 import { changePasswordValidation } from '../../../shared/components/FormElements/validate';
-import Button from "@material-ui/core/Button";
 
 interface Props {
-  loading: boolean,
+  loading: boolean;
 }
+
 interface FormData {
-  oldPassword: string,
-  newPassword: string
+  oldPassword: string;
+  newPassword: string;
 }
 
 const ChangePasswordForm = React.memo((props: InjectedFormProps<FormData, Props> & Props) => {
@@ -20,38 +21,38 @@ const ChangePasswordForm = React.memo((props: InjectedFormProps<FormData, Props>
     <form onSubmit={handleSubmit} className='login-form'>
       <div>
         <Field
-          name="oldPassword"
+          name='oldPassword'
           component={CustomInput}
           label='Old password'
-          type="password"
+          type='password'
         />
       </div>
       <div>
         <Field
-          name="newPassword"
+          name='newPassword'
           component={CustomInput}
           label='New password'
-          type="password"
+          type='password'
         />
       </div>
       <div>
         <Field
-          name="confirmPassword"
+          name='confirmPassword'
           component={CustomInput}
           label='confirm password'
-          type="password"
+          type='password'
         />
       </div>
       <Button variant='outlined' type='submit' disabled={loading}>
         Save
       </Button>
     </form>
-  )
+  );
 });
 
 export default compose(
   reduxForm<FormData, Props>({
     form: 'changePasswordForm',
     validate: changePasswordValidation,
-  })
+  }),
 )(ChangePasswordForm);

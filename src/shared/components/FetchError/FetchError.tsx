@@ -3,7 +3,7 @@ import React from 'react';
 import './fetchError.css';
 
 interface Props {
-  data: any
+  data: any;
 }
 
 const FetchError = (props: Props) => {
@@ -17,10 +17,10 @@ const FetchError = (props: Props) => {
         {fetchErrors.map((item: any, index: number) => {
           return (
             <p key={index} className='error-block'>{item.message}</p>
-          )
+          );
         })}
       </>
-    )
+    );
   }
   if (validateErrors) {
     return (
@@ -30,18 +30,22 @@ const FetchError = (props: Props) => {
             <div key={index} className='error-block'>
               <div className='error-items'>{item.fields && item.fields.email && item.fields.email.unique}</div>
 
-              <div className='error-items'>{item.fields && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse.isAgree}</div>
-              codeAndPhone
+              <div
+                className='error-items'
+              >{item.fields
+              && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse
+              && item.fields.isAgreeWithPrivacyPolicyAndTermOfUse.isAgree
+              }
+              </div>
               <div className='error-items'>{item.fields && item.fields.phone && item.fields.phone.matches}</div>
-              <div className='error-items'>{item.fields && item.fields.phone && item.fields.phone.codeAndPhone}</div>
               <div className='error-items'>{item.message}</div>
             </div>
-          )
+          );
         })}
       </>
-    )
+    );
   } else {
-    return null
+    return null;
   }
 
 };

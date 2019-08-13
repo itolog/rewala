@@ -1,43 +1,43 @@
-import { AuthState } from './types';
 import { ActionTypes, ActionTypeUnion } from './actions';
+import { AuthState } from './types';
 
 const initialState: AuthState = {
   isAuth: null,
   token: null,
-  error: null
+  error: null,
 };
 
 export function reducer(state = initialState, action: ActionTypeUnion): AuthState {
   switch (action.type) {
     case ActionTypes.LOGIN_SUCCEDED: {
-      return  {
+      return {
         ...state,
         isAuth: true,
-        token: action.payload
-      }
+        token: action.payload,
+      };
     }
     case ActionTypes.LOGIN_FAILED: {
       return {
         ...state,
         isAuth: false,
-        error: action.payload
-      }
+        error: action.payload,
+      };
     }
     case ActionTypes.LOG_OUT_SUCCEDED: {
       return {
         error: null,
         isAuth: null,
-        token: null
-      }
+        token: null,
+      };
     }
     case ActionTypes.LOG_OUT_FAILED: {
       return {
         ...state,
-        error: action.payload
-      }
+        error: action.payload,
+      };
     }
     default : {
-      return state
+      return state;
     }
   }
 }

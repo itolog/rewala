@@ -1,6 +1,6 @@
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
+export interface Scalars {
   ID: string,
   String: string,
   Boolean: boolean,
@@ -9,37 +9,36 @@ export type Scalars = {
   /** MongoId custom scalar type */
   MongoId: any,
   Upload: any,
-};
+}
 
-
-export type AddVoteInput = {
+export interface AddVoteInput {
   questionOptionId?: Maybe<Scalars['MongoId']>,
-};
+}
 
-export type ChangePasswordInput = {
+export interface ChangePasswordInput {
   oldPassword: Scalars['String'],
   newPassword: Scalars['String'],
-};
+}
 
-export type Config = {
+export interface Config {
   __typename?: 'Config',
-};
+}
 
-export type Contact = {
+export interface Contact {
   __typename?: 'Contact',
   _id?: Maybe<Scalars['MongoId']>,
   friendTo?: Maybe<Scalars['String']>,
   status?: Maybe<Scalars['String']>,
   emails?: Maybe<Array<Maybe<Scalars['String']>>>,
   phones?: Maybe<Array<Maybe<Scalars['String']>>>,
-};
+}
 
-export type ContactInput = {
+export interface ContactInput {
   emails?: Maybe<Array<Maybe<Scalars['String']>>>,
   phones?: Maybe<Array<Maybe<Scalars['String']>>>,
-};
+}
 
-export type Country = {
+export interface Country {
   __typename?: 'Country',
   _id?: Maybe<Scalars['MongoId']>,
   name?: Maybe<Scalars['String']>,
@@ -47,13 +46,13 @@ export type Country = {
   currency?: Maybe<Scalars['String']>,
   code?: Maybe<Scalars['String']>,
   flag?: Maybe<Scalars['String']>,
-};
+}
 
-export type CreateFollowRequestInput = {
+export interface CreateFollowRequestInput {
   toUserId?: Maybe<Scalars['String']>,
-};
+}
 
-export type CreateQuestionInput = {
+export interface CreateQuestionInput {
   title?: Maybe<Scalars['String']>,
   titleColor?: Maybe<Scalars['String']>,
   expiredTime?: Maybe<Scalars['String']>,
@@ -61,17 +60,17 @@ export type CreateQuestionInput = {
   type?: Maybe<QuestionType>,
   memberIds?: Maybe<Array<Maybe<Scalars['MongoId']>>>,
   questionOptions?: Maybe<Array<Maybe<CreateQuestionOptionInput>>>,
-};
+}
 
-export type CreateQuestionOptionInput = {
+export interface CreateQuestionOptionInput {
   text: Scalars['String'],
-};
+}
 
-export type FcmTokenInput = {
+export interface FcmTokenInput {
   token?: Maybe<Scalars['String']>,
-};
+}
 
-export type FollowRequest = {
+export interface FollowRequest {
   __typename?: 'FollowRequest',
   _id?: Maybe<Scalars['MongoId']>,
   fromUserId?: Maybe<Scalars['MongoId']>,
@@ -79,49 +78,48 @@ export type FollowRequest = {
   status?: Maybe<FollowRequestStatus>,
   fromUser?: Maybe<User>,
   toUser?: Maybe<User>,
-};
+}
 
-export type FollowRequestNotification = {
+export interface FollowRequestNotification {
   __typename?: 'FollowRequestNotification',
   _id?: Maybe<Scalars['MongoId']>,
   followRequestId?: Maybe<Scalars['MongoId']>,
   followRequest?: Maybe<FollowRequest>,
   forUserId?: Maybe<Scalars['MongoId']>,
   createdAt?: Maybe<Scalars['String']>,
-};
+}
 
 export enum FollowRequestStatus {
   Pending = 'PENDING',
   Declined = 'DECLINED',
-  Accepted = 'ACCEPTED'
+  Accepted = 'ACCEPTED',
 }
 
 export enum FriendStatus {
   Active = 'ACTIVE',
   Inactive = 'INACTIVE',
   Invited = 'INVITED',
-  Registered = 'REGISTERED'
+  Registered = 'REGISTERED',
 }
 
-export type LoginInput = {
+export interface LoginInput {
   email?: Maybe<Scalars['String']>,
   password?: Maybe<Scalars['String']>,
-};
+}
 
-export type LogOutInput = {
+export interface LogOutInput {
   FCMToken?: Maybe<Scalars['String']>,
-};
+}
 
-export type Media = {
+export interface Media {
   __typename?: 'Media',
   _id?: Maybe<Scalars['MongoId']>,
   dir?: Maybe<Scalars['String']>,
   filename?: Maybe<Scalars['String']>,
   mimetype?: Maybe<Scalars['String']>,
-};
+}
 
-
-export type Mutation = {
+export interface Mutation {
   __typename?: 'Mutation',
   login?: Maybe<User>,
   logout?: Maybe<Scalars['Boolean']>,
@@ -140,119 +138,102 @@ export type Mutation = {
   reportUser?: Maybe<Scalars['Boolean']>,
   updateMe?: Maybe<User>,
   addVote?: Maybe<Question>,
-};
+}
 
-
-export type MutationLoginArgs = {
+export interface MutationLoginArgs {
   input?: Maybe<LoginInput>
-};
+}
 
-
-export type MutationLogoutArgs = {
+export interface MutationLogoutArgs {
   input?: Maybe<LogOutInput>
-};
+}
 
-
-export type MutationRegistrationArgs = {
+export interface MutationRegistrationArgs {
   input?: Maybe<UserInput>
-};
+}
 
-
-export type MutationChangePasswordArgs = {
+export interface MutationChangePasswordArgs {
   input?: Maybe<ChangePasswordInput>
-};
+}
 
-
-export type MutationResetPasswordArgs = {
+export interface MutationResetPasswordArgs {
   email?: Maybe<Scalars['String']>
-};
+}
 
-
-export type MutationResetPasswordConfirmCodeArgs = {
+export interface MutationResetPasswordConfirmCodeArgs {
   resetPasswordCode?: Maybe<Scalars['String']>
-};
+}
 
-
-export type MutationResetPasswordConfirmArgs = {
+export interface MutationResetPasswordConfirmArgs {
   input?: Maybe<ResetPasswordConfirmInput>
-};
+}
 
-
-export type MutationImportContactsArgs = {
+export interface MutationImportContactsArgs {
   input?: Maybe<Array<Maybe<ContactInput>>>
-};
+}
 
-
-export type MutationSendFcmTokenArgs = {
+export interface MutationSendFcmTokenArgs {
   input?: Maybe<FcmTokenInput>
-};
+}
 
-
-export type MutationCreateFollowRequestArgs = {
+export interface MutationCreateFollowRequestArgs {
   input?: Maybe<CreateFollowRequestInput>
-};
+}
 
-
-export type MutationUpdateFollowRequestArgs = {
+export interface MutationUpdateFollowRequestArgs {
   input?: Maybe<UpdateFollowRequestInput>
-};
+}
 
-
-export type MutationCreateQuestionArgs = {
+export interface MutationCreateQuestionArgs {
   input?: Maybe<CreateQuestionInput>
-};
+}
 
-
-export type MutationDeleteQuestionArgs = {
+export interface MutationDeleteQuestionArgs {
   input?: Maybe<Scalars['String']>
-};
+}
 
-
-export type MutationReportContentArgs = {
+export interface MutationReportContentArgs {
   input?: Maybe<ReportContentInput>
-};
+}
 
-
-export type MutationReportUserArgs = {
+export interface MutationReportUserArgs {
   input?: Maybe<ReportUserInput>
-};
+}
 
-
-export type MutationUpdateMeArgs = {
+export interface MutationUpdateMeArgs {
   input?: Maybe<UpdateUserInput>
-};
+}
 
-
-export type MutationAddVoteArgs = {
+export interface MutationAddVoteArgs {
   input?: Maybe<AddVoteInput>
-};
+}
 
-export type Notification = {
+export interface Notification {
   __typename?: 'Notification',
   followRequest?: Maybe<Array<Maybe<FollowRequestNotification>>>,
   userFromContacts?: Maybe<Array<Maybe<UserFromContactsNotification>>>,
   question?: Maybe<Array<Maybe<QuestionNotification>>>,
-};
+}
 
-export type PagedQuestion = {
+export interface PagedQuestion {
   __typename?: 'PagedQuestion',
   results?: Maybe<Array<Maybe<Question>>>,
   next?: Maybe<Scalars['String']>,
   hasNext?: Maybe<Scalars['Boolean']>,
   previous?: Maybe<Scalars['String']>,
   hasPrevious?: Maybe<Scalars['Boolean']>,
-};
+}
 
-export type PagedUsers = {
+export interface PagedUsers {
   __typename?: 'PagedUsers',
   results?: Maybe<Array<Maybe<User>>>,
   next?: Maybe<Scalars['String']>,
   hasNext?: Maybe<Scalars['Boolean']>,
   previous?: Maybe<Scalars['String']>,
   hasPrevious?: Maybe<Scalars['Boolean']>,
-};
+}
 
-export type PersonProfile = {
+export interface PersonProfile {
   __typename?: 'PersonProfile',
   _id: Scalars['MongoId'],
   fullName?: Maybe<Scalars['String']>,
@@ -262,9 +243,9 @@ export type PersonProfile = {
   avatarThumb?: Maybe<Media>,
   friendsCount?: Maybe<Scalars['Int']>,
   rewalsCount?: Maybe<Scalars['Int']>,
-};
+}
 
-export type Profile = {
+export interface Profile {
   __typename?: 'Profile',
   _id: Scalars['MongoId'],
   fullName?: Maybe<Scalars['String']>,
@@ -277,17 +258,17 @@ export type Profile = {
   avatarThumb?: Maybe<Media>,
   friendsCount?: Maybe<Scalars['Int']>,
   rewalsCount?: Maybe<Scalars['Int']>,
-};
+}
 
-export type ProfileInput = {
+export interface ProfileInput {
   fullName?: Maybe<Scalars['String']>,
   phone?: Maybe<Scalars['String']>,
   countryCode?: Maybe<Scalars['String']>,
   notifications?: Maybe<Scalars['Boolean']>,
   avatar?: Maybe<Scalars['Upload']>,
-};
+}
 
-export type Query = {
+export interface Query {
   __typename?: 'Query',
   config?: Maybe<Config>,
   myFollowRequests?: Maybe<Array<Maybe<FollowRequest>>>,
@@ -310,80 +291,69 @@ export type Query = {
   allUserFriends?: Maybe<Array<Maybe<User>>>,
   me?: Maybe<User>,
   temp__?: Maybe<Scalars['Boolean']>,
-};
+}
 
-
-export type QueryPersonProfileArgs = {
+export interface QueryPersonProfileArgs {
   id: Scalars['String']
-};
+}
 
-
-export type QueryQuestionArgs = {
+export interface QueryQuestionArgs {
   id?: Maybe<Scalars['String']>
-};
+}
 
-
-export type QueryFriendsQuestionsArgs = {
+export interface QueryFriendsQuestionsArgs {
   next?: Maybe<Scalars['String']>,
   previous?: Maybe<Scalars['String']>,
   limit?: Maybe<Scalars['Int']>
-};
+}
 
-
-export type QueryMyQuestionsArgs = {
+export interface QueryMyQuestionsArgs {
   next?: Maybe<Scalars['String']>,
   previous?: Maybe<Scalars['String']>,
   limit?: Maybe<Scalars['Int']>
-};
+}
 
-
-export type QueryFeedQuestionsArgs = {
+export interface QueryFeedQuestionsArgs {
   next?: Maybe<Scalars['String']>,
   previous?: Maybe<Scalars['String']>,
   limit?: Maybe<Scalars['Int']>
-};
+}
 
-
-export type QueryPersonQuestionsArgs = {
+export interface QueryPersonQuestionsArgs {
   id?: Maybe<Scalars['String']>,
   next?: Maybe<Scalars['String']>,
   previous?: Maybe<Scalars['String']>,
   limit?: Maybe<Scalars['Int']>
-};
+}
 
-
-export type QueryQuestionOptionArgs = {
+export interface QueryQuestionOptionArgs {
   id?: Maybe<Scalars['String']>
-};
+}
 
-
-export type QuerySearchArgs = {
+export interface QuerySearchArgs {
   fullName?: Maybe<Scalars['String']>,
   next?: Maybe<Scalars['String']>,
   previous?: Maybe<Scalars['String']>,
   limit?: Maybe<Scalars['Int']>
-};
+}
 
-
-export type QueryUserArgs = {
+export interface QueryUserArgs {
   id: Scalars['String']
-};
+}
 
-
-export type QueryUserFriendsArgs = {
+export interface QueryUserFriendsArgs {
   userId?: Maybe<Scalars['String']>,
   fullName?: Maybe<Scalars['String']>,
   next?: Maybe<Scalars['String']>,
   previous?: Maybe<Scalars['String']>,
   limit?: Maybe<Scalars['Int']>
-};
+}
 
-
-export type QueryAllUserFriendsArgs = {
+export interface QueryAllUserFriendsArgs {
   userId?: Maybe<Scalars['String']>
-};
+}
 
-export type Question = {
+export interface Question {
   __typename?: 'Question',
   _id: Scalars['MongoId'],
   title?: Maybe<Scalars['String']>,
@@ -401,9 +371,9 @@ export type Question = {
   isFinished?: Maybe<Scalars['Boolean']>,
   userVote?: Maybe<Vote>,
   totalVotes?: Maybe<Scalars['Int']>,
-};
+}
 
-export type QuestionNotification = {
+export interface QuestionNotification {
   __typename?: 'QuestionNotification',
   _id?: Maybe<Scalars['MongoId']>,
   questionId?: Maybe<Scalars['MongoId']>,
@@ -411,97 +381,91 @@ export type QuestionNotification = {
   type?: Maybe<QuestionNotificationType>,
   forUsersIds?: Maybe<Array<Maybe<Scalars['MongoId']>>>,
   createdAt?: Maybe<Scalars['String']>,
-};
+}
 
 export enum QuestionNotificationType {
   New = 'NEW',
   SoonExpired = 'SOON_EXPIRED',
-  Expired = 'EXPIRED'
+  Expired = 'EXPIRED',
 }
 
-export type QuestionOption = {
+export interface QuestionOption {
   __typename?: 'QuestionOption',
   _id?: Maybe<Scalars['MongoId']>,
   text?: Maybe<Scalars['String']>,
   questionId?: Maybe<Scalars['MongoId']>,
   votes?: Maybe<Scalars['Int']>,
-};
-
-export enum QuestionType {
-  Text = 'TEXT'
 }
 
-export type ReportContentInput = {
+export enum QuestionType {
+  Text = 'TEXT',
+}
+
+export interface ReportContentInput {
   complaint?: Maybe<Scalars['String']>,
   toQuestionId?: Maybe<Scalars['MongoId']>,
-};
+}
 
-export type ReportUserInput = {
+export interface ReportUserInput {
   complaint?: Maybe<Scalars['String']>,
   toUserId?: Maybe<Scalars['MongoId']>,
-};
+}
 
-export type ResetPasswordConfirmCodeInput = {
+export interface ResetPasswordConfirmCodeInput {
   resetPasswordCode: Scalars['String'],
-};
+}
 
-export type ResetPasswordConfirmInput = {
+export interface ResetPasswordConfirmInput {
   resetPasswordCode: Scalars['String'],
   password: Scalars['String'],
-};
+}
 
-export type Roles = {
+export interface Roles {
   __typename?: 'Roles',
   admin?: Maybe<Scalars['Boolean']>,
   regular?: Maybe<Scalars['Boolean']>,
-};
+}
 
-export type Subscription = {
+export interface Subscription {
   __typename?: 'Subscription',
   invitedToFriends?: Maybe<FollowRequestNotification>,
   userFromContactsJoinedRewala?: Maybe<UserFromContactsNotification>,
   addedQuestion?: Maybe<QuestionNotification>,
   expiredQuestion?: Maybe<QuestionNotification>,
   soonExpiredQuestion?: Maybe<QuestionNotification>,
-};
+}
 
-
-export type SubscriptionInvitedToFriendsArgs = {
+export interface SubscriptionInvitedToFriendsArgs {
   repoFullName: Scalars['String']
-};
+}
 
-
-export type SubscriptionUserFromContactsJoinedRewalaArgs = {
+export interface SubscriptionUserFromContactsJoinedRewalaArgs {
   repoFullName: Scalars['String']
-};
+}
 
-
-export type SubscriptionAddedQuestionArgs = {
+export interface SubscriptionAddedQuestionArgs {
   repoFullName: Scalars['String']
-};
+}
 
-
-export type SubscriptionExpiredQuestionArgs = {
+export interface SubscriptionExpiredQuestionArgs {
   repoFullName: Scalars['String']
-};
+}
 
-
-export type SubscriptionSoonExpiredQuestionArgs = {
+export interface SubscriptionSoonExpiredQuestionArgs {
   repoFullName: Scalars['String']
-};
+}
 
-export type UpdateFollowRequestInput = {
+export interface UpdateFollowRequestInput {
   _id?: Maybe<Scalars['String']>,
   status?: Maybe<FollowRequestStatus>,
-};
+}
 
-export type UpdateUserInput = {
+export interface UpdateUserInput {
   email?: Maybe<Scalars['String']>,
   profileInput?: Maybe<ProfileInput>,
-};
+}
 
-
-export type User = {
+export interface User {
   __typename?: 'User',
   _id?: Maybe<Scalars['MongoId']>,
   email?: Maybe<Scalars['String']>,
@@ -512,33 +476,33 @@ export type User = {
   statusIn?: Maybe<Array<Maybe<UserStatus>>>,
   followRequestWithMe?: Maybe<FollowRequest>,
   rewalsCount?: Maybe<Scalars['Int']>,
-};
+}
 
-export type UserFromContactsNotification = {
+export interface UserFromContactsNotification {
   __typename?: 'UserFromContactsNotification',
   _id?: Maybe<Scalars['MongoId']>,
   userId?: Maybe<Scalars['MongoId']>,
   user?: Maybe<User>,
   forUsersIds?: Maybe<Array<Maybe<Scalars['MongoId']>>>,
   createdAt?: Maybe<Scalars['String']>,
-};
+}
 
-export type UserInput = {
+export interface UserInput {
   email?: Maybe<Scalars['String']>,
   password?: Maybe<Scalars['String']>,
   isAgreeWithPrivacyPolicyAndTermOfUse?: Maybe<Scalars['Boolean']>,
   profileInput: ProfileInput,
-};
+}
 
 export enum UserStatus {
   Deleted = 'DELETED',
   Inactive = 'INACTIVE',
-  Active = 'ACTIVE'
+  Active = 'ACTIVE',
 }
 
-export type Vote = {
+export interface Vote {
   __typename?: 'Vote',
   _id: Scalars['MongoId'],
   user?: Maybe<User>,
   questionOption?: Maybe<QuestionOption>,
-};
+}

@@ -24,7 +24,7 @@ export const reducer = combineReducers({
 export type ActionTypeUnion = ActionType<typeof reducer>;
 
 export const epics = [
-  getConfigEpic
+  getConfigEpic,
 ];
 
 export type State = StateType<typeof reducer>;

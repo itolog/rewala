@@ -1,34 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { Redirect } from 'react-router';
+import { Dispatch } from 'redux';
 
 import './resetPasswordConfirm.css';
 
 import Centred from '../../../../shared/components/Centred/Centred';
+import FetchError from '../../../../shared/components/FetchError/FetchError';
 import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import ResetPasswordConfirmCodeForm from '../../../forms/ResetPasswordConfirmCodeForm/ResetPasswordConfirmCodeForm';
-import FetchError from '../../../../shared/components/FetchError/FetchError';
 
 import { Actions as VerifyCodeActions } from '../../../../store/verify-code/actions';
 
+import { AppState } from '../../../../store';
 import { Actions } from '../../../../store/password';
 import { getResetPasswordConfirmState, resetPasswordConfirmCodeErrors } from '../../../../store/password/selectors';
-import { AppState } from '../../../../store';
 
 interface Values {
-  confirmPasswordCode: string
+  confirmPasswordCode: string;
 }
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getResetPasswordConfirmState: getResetPasswordConfirmState(state),
-    resetPasswordConfirmCodeErrors: resetPasswordConfirmCodeErrors(state)
+    getResetPasswordConfirm: getResetPasswordConfirmState(state),
+    resetPasswordConfirmCodeError: resetPasswordConfirmCodeErrors(state),
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   resetPasswordConfirmCode: () => dispatch(Actions.resetPasswordConfirmCodeAction.action()),
-  setVerifyCode: (payload: string) => dispatch(VerifyCodeActions.requestVerifyCode(payload))
+  setVerifyCode: (payload: string) => dispatch(VerifyCodeActions.requestVerifyCode(payload)),
 });
 
 type Props =
@@ -39,15 +39,15 @@ type Props =
 const ResetPasswordConfirm = (props: Props) => {
   const {
     resetPasswordConfirmCode,
-    getResetPasswordConfirmState,
+    getResetPasswordConfirm,
     setVerifyCode,
-    resetPasswordConfirmCodeErrors
+    resetPasswordConfirmCodeError,
   } = props;
 
   const isVerifyCodeValid = getResetPasswordConfirmState
-    && getResetPasswordConfirmState.data
-    && getResetPasswordConfirmState.data.data
-    && getResetPasswordConfirmState.data.data.resetPasswordConfirmCode;
+    && getResetPasswordConfirm.data
+    && getResetPasswordConfirm.data.data
+    && getResetPasswordConfirm.data.data.resetPasswordConfirmCode;
 
   const handelOnsubmitResetConfirmCode = (values: Values) => {
     const code = values && values.confirmPasswordCode;
@@ -59,7 +59,7 @@ const ResetPasswordConfirm = (props: Props) => {
     <main className='reset-confirm-container'>
       <Centred>
         {/*  ERRORS*/}
-        {resetPasswordConfirmCodeErrors && <FetchError data={resetPasswordConfirmCodeErrors}/>}
+        {resetPasswordConfirmCodeError && <FetchError data={resetPasswordConfirmCodeError}/>}
 
         <WrappForm>
           <ResetPasswordConfirmCodeForm onSubmit={handelOnsubmitResetConfirmCode}/>
@@ -67,7 +67,7 @@ const ResetPasswordConfirm = (props: Props) => {
         {isVerifyCodeValid && <Redirect to='/change-password-confirm/'/>}
       </Centred>
     </main>
-  )
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordConfirm);

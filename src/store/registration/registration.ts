@@ -4,8 +4,8 @@ import { Action } from 'typesafe-actions';
 import { Observable } from 'rxjs';
 import { asyncActionHandlerFactory } from '../utils/async-action-helper';
 
+import { User, UserInput } from '../../shared/generated/graphql';
 import Registration from './service';
-import { UserInput, User } from '../../shared/generated/graphql';
 
 const {
   effect,

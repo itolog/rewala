@@ -18,25 +18,24 @@ import {
 
 export const Actions = {
     getMe,
-    updateMe
+    updateMe,
 };
 
 export const ActionTypes = {
     getMeActionTypes,
-    updateMeActionTypes
+    updateMeActionTypes,
 };
 
 export const reducer = combineReducers({
     getMe: getMeReducer,
-    updateMe: updateMeReducer
+    updateMe: updateMeReducer,
 });
 
 export type ActionTypeUnion = ActionType<typeof reducer>;
 
 export const epics = [
     getMeEpic,
-    updateMeEpic
+    updateMeEpic,
 ];
-
 
 export type State = StateType<typeof reducer>;

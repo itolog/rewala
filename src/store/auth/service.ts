@@ -4,12 +4,12 @@ import { from, Observable, Subscribable } from 'rxjs';
 
 import { GraphQLResponse } from '../../shared/types/garphql';
 
-import { LogOutInput, LoginInput, User } from '../../shared/generated/graphql';
+import { LoginInput, LogOutInput, User } from '../../shared/generated/graphql';
 
 import link from '../../shared/Link/Link';
 
 class AuthService {
-  static logIn(input: LoginInput): Observable<User> {
+  static logIn(input: LoginInput): Observable<any> {
       const operation = {
           query: gql`
               mutation LoginUser($input: LoginInput) {
@@ -26,13 +26,13 @@ class AuthService {
                   }
               }
           `,
-        variables: {  input },
+        variables: { input },
       };
 
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{login: LoginInput}>>)
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ login: User }>>);
   }
 
-  static logOut(input: LogOutInput): Observable<string> {
+  static logOut(input: LogOutInput): Observable<any> {
       const operation = {
           query: gql`
               mutation LogOut($input: LogOutInput!) {
@@ -41,7 +41,7 @@ class AuthService {
           `,
         variables: { input },
       };
-    return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ logout: LogOutInput }>>)
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ logout: boolean }>>);
   }
 }
 

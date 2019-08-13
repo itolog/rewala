@@ -1,13 +1,13 @@
 export interface ProfileState {
-    me: Me
+  me: Me;
 }
 
 export interface Profile {
-        fullName: string,
-        notifications: boolean
+  fullName: string;
+  notifications: boolean;
 }
 
 export interface Me {
-        email: string,
-        profile: Profile
+  email: string;
+  profile: Profile;
 }

@@ -19,7 +19,7 @@ export const Actions = {
 
   logOut: () => action(ActionTypes.LOG_OUT),
   logOutSuccess: () => action(ActionTypes.LOG_OUT_SUCCEDED),
-  logOutFailed: (payload: any) => action(ActionTypes.LOG_OUT_FAILED, payload)
+  logOutFailed: (payload: any) => action(ActionTypes.LOG_OUT_FAILED, payload),
 };
 
 export type ActionTypeUnion = ActionType<typeof Actions>;

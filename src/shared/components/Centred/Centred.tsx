@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
 import './centred.css';
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const Centred = (props: Props) => {
   return (
-    <div className="centred">
+    <div className='centred'>
       {props.children}
     </div>
   );
