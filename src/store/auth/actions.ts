@@ -14,7 +14,7 @@ export enum ActionTypes {
 
 export const Actions = {
   logIn: (payload: LoginInput) => action(ActionTypes.LOGIN, payload),
-  logInSuccess: (token: string) => action(ActionTypes.LOGIN_SUCCEDED, token),
+  logInSuccess: (data: any) => action(ActionTypes.LOGIN_SUCCEDED, data),
   logInFailed: (paylod: any) => action(ActionTypes.LOGIN_FAILED, paylod),
 
   logOut: () => action(ActionTypes.LOG_OUT),

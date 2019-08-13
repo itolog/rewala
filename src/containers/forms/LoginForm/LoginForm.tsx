@@ -20,7 +20,6 @@ const LoginForm = React.memo((props: InjectedFormProps<FormData>) => {
         name='email'
         component={CustomInput}
         label='email'
-        type='email'
       />
 
       <Field

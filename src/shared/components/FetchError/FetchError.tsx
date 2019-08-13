@@ -38,6 +38,7 @@ const FetchError = (props: Props) => {
               }
               </div>
               <div className='error-items'>{item.fields && item.fields.phone && item.fields.phone.matches}</div>
+              <div className='error-items'>{item.fields && item.fields.password && item.fields.password.matches}</div>
               <div className='error-items'>{item.message}</div>
             </div>
           );

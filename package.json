@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gen": "graphql-codegen --config codegen.yml"
+    "gen": "graphql-codegen --config codegen.yml",
+    "lint": "tslint --fix -c tslint.json -p tsconfig.json"
   },
   "eslintConfig": {
     "extends": "react-app"

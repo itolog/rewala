@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // IMPORT REDUCERS
 import { reducer as formReducer } from 'redux-form';
 import { ActionType, StateType } from 'typesafe-actions';
+import { ActionTypeUnion as authActionTypes } from './auth/actions';
 import { reducer as authReducer } from './auth/reducer';
 import { reducer as verifyCodeReducer } from './verify-code/reducer';
 
@@ -30,8 +31,15 @@ import {
   reducer as registrationReducer,
 } from './registration';
 
+// REFACTORING STORE
+import {
+  ActionTypeUnion as authRequestActionTypesUnion,
+  epics as authRequestEpic,
+  reducer as authRequestReducer,
+} from './auth-request';
+
 // EPICS
-import { logInEpic, logOutEpic } from './auth/epics';
+import { epics as authEpics } from './auth/epics';
 import { verifyEpic } from './verify-code/epics';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
@@ -41,8 +49,8 @@ const rootEpic = combineEpics(
   ...passwordEpic,
   ...configEpic,
   ...registrationEpic,
-  logInEpic,
-  logOutEpic,
+  ...authRequestEpic,
+  ...authEpics,
   verifyEpic,
 );
 const epicMiddleware = createEpicMiddleware();
@@ -55,9 +63,17 @@ const reducer = combineReducers({
   verifyCode: verifyCodeReducer,
   config: configReducer,
   registration: registrationReducer,
+
+  authRequest: authRequestReducer,
 });
 
-export type RootActions = ActionType<| ProfileActionTypesUnion | PasswordActionTypesUnion | ConfigActionTypesUnion | registrationActionTypesUnion>;
+export type RootActions = ActionType<| ProfileActionTypesUnion
+  | PasswordActionTypesUnion
+  | ConfigActionTypesUnion
+  | registrationActionTypesUnion
+  | authActionTypes
+  | authRequestActionTypesUnion>;
+
 export type AppState = StateType<typeof reducer>;
 
 function configureStore(preloadedState: any) {

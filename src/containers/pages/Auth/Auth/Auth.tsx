@@ -7,11 +7,12 @@ import Button from '@material-ui/core/Button';
 import './auth.css';
 
 import Centred from '../../../../shared/components/Centred/Centred';
+import FetchError from '../../../../shared/components/FetchError/FetchError';
+import { loginRequestData, loginRequestState } from '../../../../store/auth-request/selectors';
 
 // STORE
 import { AppState } from '../../../../store';
 import { Actions } from '../../../../store/auth/actions';
-import { getAuthState } from '../../../../store/auth/selectors';
 
 import { LoginInput } from '../../../../shared/generated/graphql';
 import LoginForm from '../../../forms/LoginForm/LoginForm';
@@ -19,7 +20,8 @@ import LoginForm from '../../../forms/LoginForm/LoginForm';
 // STORE PROPS
 const mapStateToProps = (state: AppState) => {
   return {
-    getAuth: getAuthState(state),
+    authLoginRequestState: loginRequestState(state),
+    authLoginRequestData: loginRequestData(state),
   };
 };
 
@@ -32,8 +34,7 @@ type Props =
   & ReturnType<typeof mapStateToProps>
   ;
 
-export const Auth = (props: Props) => {
-  const { login, getAuth } = props;
+export const Auth: React.FC<Props> = ({ login, authLoginRequestData, authLoginRequestState }) => {
 
   const loginSubmit = (values: LoginInput) => {
     login(values);
@@ -44,7 +45,9 @@ export const Auth = (props: Props) => {
       <Centred>
         <h1>Rewala</h1>
         <br/>
-        {getAuth.error && <h2>{getAuth.error}</h2>}
+        {/* INFO BLOCK */}
+        {authLoginRequestState && authLoginRequestState.loading && <div>loading</div>}
+        <FetchError data={authLoginRequestData}/>
         <LoginForm
           onSubmit={loginSubmit}
         />

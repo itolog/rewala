@@ -23,7 +23,7 @@ class ConfigService {
           `,
       };
 
-      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ config: Config }>>).pipe(
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<Config>>).pipe(
       pluck('data'),
     );
   }

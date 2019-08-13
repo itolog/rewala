@@ -1,0 +1,341 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type Config {
+    countries: [Country]
+}
+
+type Contact {
+    _id: MongoId
+    emails: [String]
+    friendTo: String
+    phones: [String]
+    status: String
+}
+
+type Country {
+    _id: MongoId
+    code: String
+    currency: String
+    flag: String
+    name: String
+    shortName: String
+}
+
+type FollowRequest {
+    _id: MongoId
+    fromUser: User
+    fromUserId: MongoId
+    status: FollowRequestStatus
+    toUser: User
+    toUserId: MongoId
+}
+
+type FollowRequestNotification {
+    _id: MongoId
+    createdAt: String
+    followRequest: FollowRequest
+    followRequestId: MongoId
+    forUserId: MongoId
+}
+
+type Media {
+    _id: MongoId
+    dir: String
+    filename: String
+    mimetype: String
+}
+
+type Mutation {
+    addVote(input: AddVoteInput): Question
+    changePassword(input: ChangePasswordInput): User
+    createFollowRequest(input: CreateFollowRequestInput): FollowRequest
+    createQuestion(input: CreateQuestionInput): Question
+    deleteQuestion(input: String): Question
+    importContacts(input: [ContactInput]): [User]
+    login(input: LoginInput): User
+    logout(input: LogOutInput): Boolean
+    registration(input: UserInput): User
+    reportContent(input: ReportContentInput): Boolean
+    reportUser(input: ReportUserInput): Boolean
+    resetPassword(email: String): Boolean
+    resetPasswordConfirm(input: ResetPasswordConfirmInput): Boolean
+    resetPasswordConfirmCode(resetPasswordCode: String): Boolean
+    sendFCMToken(input: FCMTokenInput): Boolean
+    updateFollowRequest(input: UpdateFollowRequestInput): FollowRequest
+    updateMe(input: UpdateUserInput): User
+}
+
+type Notification {
+    followRequest: [FollowRequestNotification]
+    question: [QuestionNotification]
+    userFromContacts: [UserFromContactsNotification]
+}
+
+type PagedQuestion {
+    hasNext: Boolean
+    hasPrevious: Boolean
+    next: String
+    previous: String
+    results: [Question]
+}
+
+type PagedUsers {
+    hasNext: Boolean
+    hasPrevious: Boolean
+    next: String
+    previous: String
+    results: [User]
+}
+
+type PersonProfile {
+    _id: MongoId!
+    avatar: Media
+    avatarId: MongoId
+    avatarThumb: Media
+    avatarThumbId: MongoId
+    friendsCount: Int
+    fullName: String
+    rewalsCount: Int
+}
+
+type Profile {
+    _id: MongoId!
+    avatar: Media
+    avatarId: MongoId
+    avatarThumb: Media
+    avatarThumbId: MongoId
+    countryCode: String
+    friendsCount: Int
+    fullName: String
+    notifications: Boolean
+    phone: String
+    rewalsCount: Int
+}
+
+type Query {
+    allUserFriends(userId: String): [User]
+    config: Config
+    confirmViewingAllNotifications: Boolean
+    feedQuestions(limit: Int, next: String, previous: String): PagedQuestion
+    friendsQuestions(limit: Int, next: String, previous: String): PagedQuestion
+    me: User
+    myFollowRequests: [FollowRequest]
+    myQuestions(limit: Int, next: String, previous: String): PagedQuestion
+    myUnseenNotifications: Notification
+    personProfile(id: String!): PersonProfile
+    personQuestions(id: String, limit: Int, next: String, previous: String): PagedQuestion
+    profiles: [PersonProfile]
+    question(id: String): Question
+    questionCount: Int
+    questionOption(id: String): QuestionOption
+    search(fullName: String, limit: Int, next: String, previous: String): PagedUsers
+    temp__: Boolean
+    user(id: String!): User
+    userFriends(fullName: String, limit: Int, next: String, previous: String, userId: String): PagedUsers
+    userStatusIn: [UserStatus]
+    users: [User]
+}
+
+type Question {
+    _id: MongoId!
+    background: Media
+    backgroundId: MongoId
+    createdAt: String
+    expiredTime: String
+    img: String
+    isFinished: Boolean
+    memberIds: [MongoId]
+    owner: User
+    ownerId: MongoId
+    questionOptions: [QuestionOption]
+    title: String
+    titleColor: String
+    totalVotes: Int
+    type: QuestionType
+    userVote: Vote
+}
+
+type QuestionNotification {
+    _id: MongoId
+    createdAt: String
+    forUsersIds: [MongoId]
+    question: Question
+    questionId: MongoId
+    type: QuestionNotificationType
+}
+
+type QuestionOption {
+    _id: MongoId
+    questionId: MongoId
+    text: String
+    votes: Int
+}
+
+type Roles {
+    admin: Boolean
+    regular: Boolean
+}
+
+type Subscription {
+    addedQuestion(repoFullName: String!): QuestionNotification
+    expiredQuestion(repoFullName: String!): QuestionNotification
+    invitedToFriends(repoFullName: String!): FollowRequestNotification
+    soonExpiredQuestion(repoFullName: String!): QuestionNotification
+    userFromContactsJoinedRewala(repoFullName: String!): UserFromContactsNotification
+}
+
+type User {
+    _id: MongoId
+    authToken: String
+    email: String
+    followRequestWithMe: FollowRequest
+    profile: Profile
+    rewalsCount: Int
+    roles: Roles
+    status: UserStatus
+    statusIn: [UserStatus]
+}
+
+type UserFromContactsNotification {
+    _id: MongoId
+    createdAt: String
+    forUsersIds: [MongoId]
+    user: User
+    userId: MongoId
+}
+
+type Vote {
+    _id: MongoId!
+    questionOption: QuestionOption
+    user: User
+}
+
+enum FollowRequestStatus {
+    ACCEPTED
+    DECLINED
+    PENDING
+}
+
+enum FriendStatus {
+    ACTIVE
+    INACTIVE
+    INVITED
+    REGISTERED
+}
+
+enum QuestionNotificationType {
+    EXPIRED
+    NEW
+    SOON_EXPIRED
+}
+
+enum QuestionType {
+    TEXT
+}
+
+enum UserStatus {
+    ACTIVE
+    DELETED
+    INACTIVE
+}
+
+input AddVoteInput {
+    questionOptionId: MongoId
+}
+
+input ChangePasswordInput {
+    newPassword: String!
+    oldPassword: String!
+}
+
+input ContactInput {
+    emails: [String]
+    phones: [String]
+}
+
+input CreateFollowRequestInput {
+    toUserId: String
+}
+
+input CreateQuestionInput {
+    background: Upload
+    expiredTime: String
+    memberIds: [MongoId]
+    questionOptions: [CreateQuestionOptionInput]
+    title: String
+    titleColor: String
+    type: QuestionType
+}
+
+input CreateQuestionOptionInput {
+    text: String!
+}
+
+input FCMTokenInput {
+    token: String
+}
+
+input LogOutInput {
+    FCMToken: String
+}
+
+input LoginInput {
+    email: String
+    password: String
+}
+
+input ProfileInput {
+    avatar: Upload
+    countryCode: String
+    fullName: String
+    notifications: Boolean
+    phone: String
+}
+
+input ReportContentInput {
+    complaint: String
+    toQuestionId: MongoId
+}
+
+input ReportUserInput {
+    complaint: String
+    toUserId: MongoId
+}
+
+input ResetPasswordConfirmCodeInput {
+    resetPasswordCode: String!
+}
+
+input ResetPasswordConfirmInput {
+    password: String!
+    resetPasswordCode: String!
+}
+
+input UpdateFollowRequestInput {
+    _id: String
+    status: FollowRequestStatus
+}
+
+input UpdateUserInput {
+    email: String
+    profileInput: ProfileInput
+}
+
+input UserInput {
+    email: String
+    isAgreeWithPrivacyPolicyAndTermOfUse: Boolean
+    password: String
+    profileInput: ProfileInput!
+}
+
+
+"MongoId custom scalar type"
+scalar MongoId
+
+scalar Upload

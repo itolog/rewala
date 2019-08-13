@@ -17,9 +17,7 @@ type Props =
   & RouteComponentProps
   ;
 
-const LogOut = (props: Props) => {
-  const { logOut, history } = props;
-
+const LogOut: React.FC<Props> = ({ logOut, history }) => {
   const logOutHandler = () => {
     history.push('/');
     logOut();

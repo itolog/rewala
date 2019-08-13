@@ -21,7 +21,7 @@ class PasswordService {
         variables: { input },
       };
 
-      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ changePassword: User }>>);
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<User>>);
   }
 
   static resetPassword(input: string): Observable<any> {
@@ -34,7 +34,7 @@ class PasswordService {
         variables: { input },
       };
 
-      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ resetPassword: boolean }>>);
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<boolean>>);
   }
 
   static resetPasswordConfirmForm(input: string): Observable<any> {
@@ -47,7 +47,7 @@ class PasswordService {
         variables: { input },
       };
 
-      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{resetPasswordConfirmCode: boolean}>>);
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<boolean>>);
   }
 
   static changePasswordConfirm(input: ResetPasswordConfirmInput): Observable<any> {
@@ -60,7 +60,7 @@ class PasswordService {
         variables: { input },
       };
 
-      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{resetPasswordConfirm: boolean}>>);
+      return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<boolean>>);
   }
 }
 

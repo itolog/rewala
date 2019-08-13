@@ -37,7 +37,7 @@ function AppRouter(props: Props) {
     const auth = AuthTokenService.getAuthToken().subscribe(
       (val) => {
         if (val) {
-          logInSuccess(val);
+          return logInSuccess(val);
         }
       },
     );
@@ -46,16 +46,18 @@ function AppRouter(props: Props) {
     };
   }, [ logInSuccess ]);
 
+  const routing = () => (
+    getAuth.isAuth ? (
+      <MainRouter/>
+    ) : (
+      <AuthRouter/>
+    )
+  );
+
   return (
     <Suspense fallback={<Loader/>}>
       <Route
-        render={() => (
-          getAuth.isAuth ? (
-            <MainRouter/>
-          ) : (
-            <AuthRouter/>
-          )
-        )}
+        render={routing}
       />
     </Suspense>
   );

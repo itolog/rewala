@@ -1,40 +1,63 @@
 import { Epic, ofType, StateObservable } from 'redux-observable';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { Actions, ActionTypes, ActionTypeUnion } from './actions';
-
+import { switchMap } from 'rxjs/operators';
 import AuthTokenService from '../../shared/services/authToken.service';
-import { AppState } from '../index';
-import AuthService from './service';
+import { Actions as AuthRequestActions, ActionTypes as AuthRequestActionTypes } from '../auth-request';
+import { AppState, RootActions } from '../index';
+import { transferActionEpicFactory } from '../utils/transfer-action';
+import { Actions, ActionTypes } from './actions';
 
-export const logInEpic: Epic = (action$: Observable<ActionTypeUnion>) => action$.pipe(
+const logInEpic: Epic = (action$: Observable<RootActions>) => action$.pipe(
   ofType(ActionTypes.LOGIN),
-  switchMap(({ payload }: any) => {
-    return AuthService.logIn(payload).pipe(
-      map(({ data }: any) => {
-        AuthTokenService.setAuthToken(data.login.authToken);
-        return Actions.logInSuccess(data.login.authToken);
-      }),
-      catchError(() => {
-        return of(Actions.logInFailed('Wrong email or password'));
-      }),
-    );
+  switchMap(({ payload }) => of(AuthRequestActions.loginRequest.action(payload)),
+  ),
+);
+
+const loginSucceededEpic: Epic = (action$: Observable<RootActions>) => action$.pipe(
+  ofType(AuthRequestActionTypes.loginRequestActionTypes.ACTION_SUCCEEDED),
+  switchMap(({ payload: { data: { login } } }) => {
+    if (login && login.hasOwnProperty('authToken')) {
+      AuthTokenService.setAuthToken(login.authToken);
+      return of(Actions.logInSuccess(login.authToken));
+    }
+    return EMPTY;
   }),
 );
 
-export const logOutEpic: Epic = (action$: Observable<ActionTypeUnion>, state$: StateObservable<AppState>) => action$.pipe(
+const loginFailedEpic: Epic = transferActionEpicFactory(
+  AuthRequestActionTypes.loginRequestActionTypes.ACTION_FAILED,
+  Actions.logInFailed,
+);
+
+const logOutEpic: Epic = (action$: Observable<RootActions>, state$: StateObservable<AppState>) => action$.pipe(
   ofType(ActionTypes.LOG_OUT),
   switchMap(() => {
     const token = state$.value.auth.token;
-    return AuthService.logOut({
+    return of(AuthRequestActions.logoutRequest.action({
       FCMToken: token,
-    }).pipe(
-      map(() => {
-        AuthTokenService.removeAuthToken();
-        return Actions.logOutSuccess();
-      }),
-      catchError((error) => of(Actions.logOutFailed(error.message))),
-    );
+    }));
   }),
 );
+
+const logOutSucceededEpic: Epic = (action$: Observable<RootActions>) => action$.pipe(
+  ofType(AuthRequestActionTypes.logoutRequestActionTypes.ACTION_SUCCEEDED),
+  switchMap(() => {
+    AuthTokenService.removeAuthToken();
+    return of(Actions.logOutSuccess());
+  }),
+);
+
+const logOutFailedEpic: Epic = transferActionEpicFactory(
+  AuthRequestActionTypes.logoutRequestActionTypes.ACTION_FAILED,
+  Actions.logOutFailed,
+);
+
+export const epics = [
+  logInEpic,
+  loginSucceededEpic,
+  loginFailedEpic,
+  logOutEpic,
+  logOutSucceededEpic,
+  logOutFailedEpic,
+];

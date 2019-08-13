@@ -28,7 +28,7 @@ type Props =
   & ReturnType<typeof mapDispatchToProps>
   ;
 
-const Profile = (props: Props) => {
+const Profile: React.FC<Props> = (props) => {
   const {
     getMeData,
     getMeAction,
