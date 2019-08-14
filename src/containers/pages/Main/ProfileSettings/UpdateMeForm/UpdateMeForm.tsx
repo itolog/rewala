@@ -12,24 +12,15 @@ import Previes from '../../../../../shared/components/FormElements/Prewies/Previ
 import { updateMe } from '../../../../../shared/components/FormElements/validate';
 
 import { AppState } from '../../../../../store';
+import { getMe } from '../../../../../store/profile/selectors';
 
 const mapStateToProps = (state: AppState) => {
   return {
+    getMeData: getMe(state),
     initialValues: {
-      // email: state.profile.getMe
-      //   && state.profile.getMe.data
-      //   && state.profile.getMe.data.me
-      //   && state.profile.getMe.data.me.email,
-      // fullName: state.profile.getMe
-      //   && state.profile.getMe.data
-      //   && state.profile.getMe.data.me
-      //   && state.profile.getMe.data.me.profile
-      //   && state.profile.getMe.data.me.profile.fullName,
-      // notification: state.profile.getMe
-      //   && state.profile.getMe.data
-      //   && state.profile.getMe.data.me
-      //   && state.profile.getMe.data.me.profile
-      //   && state.profile.getMe.data.me.profile.notifications,
+      email: getMe(state) ? getMe(state)!.me.email : '',
+      fullName: getMe(state) ? getMe(state)!.me.profile.fullName : '',
+      notification: getMe(state) ? getMe(state)!.me.profile.notifications : '',
     },
   };
 };
