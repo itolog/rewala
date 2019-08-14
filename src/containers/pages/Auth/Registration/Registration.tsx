@@ -10,12 +10,13 @@ import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import { UserInput } from '../../../../shared/generated/graphql';
 import RegistrationForm from './RegistrationForm/RegistrationForm';
 
-import { Actions as RegistrationAction } from '../../../../store/registration';
+// import { Actions as RegistrationAction } from '../../../../store/registration';
+import { Actions as  RegistrationAction } from '../../../../store/profile/actions';
 
 import { AppState } from '../../../../store';
 import { Actions } from '../../../../store/config-request';
 import { getConfigErrors, getConfigState } from '../../../../store/config-request/selectors';
-import { getRegistrationState, registrationFetchErrors } from '../../../../store/registration/selectors';
+import { getRegistrationState, registrationFetchErrors } from '../../../../store/profile-requests/selectors';
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -28,7 +29,7 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchConfig: () => dispatch(Actions.getConfig.action()),
-  registration: (payload: UserInput) => dispatch(RegistrationAction.registration.action(payload)),
+  registration: (payload: UserInput) => dispatch(RegistrationAction.registration(payload)),
 });
 
 type Props =
@@ -75,10 +76,11 @@ function Registration(props: Props) {
         {/* INFO  BLOCK*/}
         {getRegistration && getRegistration.loading &&
         <div className='info-block'>sending registration query</div>}
+        {/* Errors */}
+        <FetchError data={getConfigError}/>
+        <FetchError data={getRegistrationFetchErrors}/>
         {isRegistration && getRegistration.loaded && <div className='success-block'>your profile registred</div>}
         <WrappForm>
-          <FetchError data={getConfigError}/>
-          <FetchError data={getRegistrationFetchErrors}/>
           <RegistrationForm onSubmit={handleOnRegister} countries={countries}/>
         </WrappForm>
       </Centred>

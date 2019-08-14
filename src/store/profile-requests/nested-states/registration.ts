@@ -2,10 +2,10 @@ import { Epic } from 'redux-observable';
 import { Action } from 'typesafe-actions';
 
 import { Observable } from 'rxjs';
-import { asyncActionHandlerFactory } from '../utils/async-action-helper';
+import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
 
-import { User, UserInput } from '../../shared/generated/graphql';
-import Registration from './service';
+import { User, UserInput } from '../../../shared/generated/graphql';
+import Registration from '../service';
 
 const {
   effect,

@@ -20,6 +20,18 @@ export function reducer(state = initialState, action: ActionTypeUnion): ProfileS
         errors: action.payload,
       };
     }
+    case ActionTypes.REGISTRATION_SUCCEDED: {
+      return {
+        ...state,
+        data: action.payload,
+      };
+    }
+    case ActionTypes.REGISTRATION_FAILED: {
+      return {
+        ...state,
+        errors: action.payload,
+      };
+    }
     default: {
       return state;
     }

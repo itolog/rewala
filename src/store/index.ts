@@ -26,12 +26,6 @@ import {
   reducer as configReducer,
 } from './config-request';
 
-import {
-  ActionTypeUnion as registrationActionTypesUnion,
-  epics as registrationEpic,
-  reducer as registrationReducer,
-} from './registration';
-
 // REFACTORING STORE
 import {
   ActionTypeUnion as authRequestActionTypesUnion,
@@ -51,7 +45,6 @@ const rootEpic = combineEpics(
   ...profileEpics,
   ...passwordEpic,
   ...configEpic,
-  ...registrationEpic,
   ...authRequestEpic,
   ...authEpics,
   verifyEpic,
@@ -66,15 +59,12 @@ const reducer = combineReducers({
   password: passwordReducer,
   verifyCode: verifyCodeReducer,
   config: configReducer,
-  registration: registrationReducer,
-
   authRequest: authRequestReducer,
 });
 
 export type RootActions = ActionType<| ProfileRequestActionTypesUnion
   | PasswordActionTypesUnion
   | ConfigActionTypesUnion
-  | registrationActionTypesUnion
   | authActionTypes
   | authRequestActionTypesUnion>;
 

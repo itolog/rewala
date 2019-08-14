@@ -8,7 +8,7 @@ import './profileSettings.css';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 
-import FetchError from '../../../../shared/components/FetchError/FetchError';
+// import FetchError from '../../../../shared/components/FetchError/FetchError';
 import LogOut from '../../../../shared/components/LogOut/LogOut';
 import ChangePasswordModal from './ChangePasswordModal/ChangePasswordModal';
 import UpdateMeForm from './UpdateMeForm/UpdateMeForm';
