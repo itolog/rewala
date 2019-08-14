@@ -4,7 +4,7 @@ import { compose } from 'redux';
 
 import Icon from '@material-ui/core/Icon';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import { CustomInput } from '../../../../../shared/components/FormElements/customFields';
+import { CustomInput } from '../../../../../shared/components/FormElements/CustomFields/customFields';
 import './updateMeForm.css';
 
 import Button from '@material-ui/core/Button';

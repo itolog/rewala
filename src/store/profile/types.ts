@@ -1,7 +1,6 @@
-// import { UserInput } from '../../shared/generated/graphql';
-// import { Me } from '../../shared/types/profile';
+import { Me } from '../../shared/types/profile';
 
 export interface ProfileState {
-  data: any;
+  data: Me | null;
   errors: any;
 }

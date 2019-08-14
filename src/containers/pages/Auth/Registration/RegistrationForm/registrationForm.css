@@ -2,6 +2,12 @@
     width: 150px;
     padding: 1%;
 }
+
+.registr-form {
+    display: flex;
+    flex-flow: column;
+}
+
 .phone-wrapp {
     display: flex;
     justify-content: space-around;

@@ -10,18 +10,19 @@ import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import { UserInput } from '../../../../shared/generated/graphql';
 import RegistrationForm from './RegistrationForm/RegistrationForm';
 
-import { Actions as RegistrationAction } from '../../../../store/profile/actions';
+import { Actions as RegistrationAction } from '../../../../store/auth/actions';
 
 import { AppState } from '../../../../store';
+import { registrationFetchData, registrationFetchErrors, registrationRequestState } from '../../../../store/auth-requests/selectors';
 import { Actions } from '../../../../store/config-request';
-import { getConfigErrors, getConfigState } from '../../../../store/config-request/selectors';
-import { getRegistrationState, registrationFetchErrors } from '../../../../store/profile-requests/selectors';
+import { getConfigData, getConfigErrors } from '../../../../store/config-request/selectors';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getConfig: getConfigState(state),
     getConfigError: getConfigErrors(state),
-    getRegistration: getRegistrationState(state),
+    configData: getConfigData(state),
+    registrationRequestData: registrationFetchData(state),
+    getRegistration: registrationRequestState(state),
     getRegistrationFetchErrors: registrationFetchErrors(state),
   };
 };
@@ -36,20 +37,18 @@ type Props =
   & ReturnType<typeof mapDispatchToProps>
   ;
 
-function Registration(props: Props) {
-  const {
-    getConfig,
-    fetchConfig,
-    getConfigError,
-    registration,
-    getRegistration,
-    getRegistrationFetchErrors,
-  } = props;
+const Registration: React.FC<Props> = ({
+                                         fetchConfig,
+                                         getConfigError,
+                                         registration,
+                                         getRegistration,
+                                         getRegistrationFetchErrors,
+                                         registrationRequestData,
+                                         configData,
+                                       }) => {
 
-  const countries = getConfig && getConfig.data && getConfig.data.config && getConfig.data.config.countries;
-  const isRegistration = getRegistration.data
-    && getRegistration.data.data
-    && getRegistration.data.data.registration;
+  const countries = configData && configData.config.countries;
+  const isRegistration = registrationRequestData && registrationRequestData.registration;
 
   useEffect(() => {
     fetchConfig();
@@ -85,6 +84,6 @@ function Registration(props: Props) {
       </Centred>
     </main>
   );
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

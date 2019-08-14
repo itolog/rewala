@@ -12,6 +12,3 @@ export const getMeError = createSelector(
   getProfileState,
   (state) => state.errors,
 );
-
-// export const getUpdateMeState = (state: AppState) => state.profile.updateMe;
-// export const getUpdateMeData = (state: AppState) => state.profile.updateMe.data;

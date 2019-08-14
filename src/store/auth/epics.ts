@@ -53,6 +53,23 @@ const logOutFailedEpic: Epic = transferActionEpicFactory(
   Actions.logOutFailed,
 );
 
+// REGISTRATION
+const registrationEpic: Epic = (action$: Observable<RootActions>) => action$.pipe(
+  ofType(ActionTypes.REGISTRATION),
+  switchMap(({ payload }) => of(AuthRequestActions.registration.action(payload)),
+  ),
+);
+
+const registrationSucceededEpic: Epic = transferActionEpicFactory(
+  AuthRequestActionTypes.registrationActionTypes.ACTION_SUCCEEDED,
+  Actions.registrationSuccess,
+);
+
+const registrationFailedEpic: Epic = transferActionEpicFactory(
+  AuthRequestActionTypes.registrationActionTypes.ACTION_FAILED,
+  Actions.registrationFailed,
+);
+
 export const epics = [
   logInEpic,
   loginSucceededEpic,
@@ -60,4 +77,8 @@ export const epics = [
   logOutEpic,
   logOutSucceededEpic,
   logOutFailedEpic,
+
+  registrationEpic,
+  registrationSucceededEpic,
+  registrationFailedEpic,
 ];

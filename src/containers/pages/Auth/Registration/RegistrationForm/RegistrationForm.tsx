@@ -4,7 +4,7 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 import './registrationForm.css';
 
-import { CustomInput } from '../../../../../shared/components/FormElements/customFields';
+import { CustomInput } from '../../../../../shared/components/FormElements/CustomFields/customFields';
 import CustomSelectCode from '../../../../../shared/components/FormElements/CustomSelectCode/CustomSelectCode';
 import { registration } from '../../../../../shared/components/FormElements/validate';
 
@@ -20,7 +20,7 @@ interface FormData {
 const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, string> & IProps) => {
   const { handleSubmit, countries } = props;
   return (
-    <form onSubmit={handleSubmit} className='login-form'>
+    <form onSubmit={handleSubmit} className='registr-form'>
 
       <Field
         name='fullname'

@@ -13,7 +13,6 @@ const CustomSelectCode: React.FC<IProps> = ({
                                               label,
                                               type,
                                               data,
-                                              meta: { touched, error },
                                             }) => {
   const option = () => {
     const res = [];
@@ -39,8 +38,6 @@ const CustomSelectCode: React.FC<IProps> = ({
         type={type}
       />
       <br/>
-      {touched &&
-      ((error && <div style={{ marginBottom: '10px', marginTop: '5' }}>{error}</div>))}
     </>
   );
 };

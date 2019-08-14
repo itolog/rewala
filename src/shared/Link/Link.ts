@@ -3,6 +3,7 @@ import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 
 import { map } from 'rxjs/operators';
+import { Config } from '../../environments/environment';
 
 import AuthTokenService from '../services/authToken.service';
 
@@ -19,7 +20,7 @@ const authMiddleware = setContext(() => {
     ).toPromise();
 });
 const httpLink = createHttpLink({
-  uri: 'https://rewala-api.2mc.team/graphql',
+  uri: Config.apiEndpoint,
 });
 
 const link = ApolloLink.from([

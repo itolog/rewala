@@ -5,6 +5,7 @@ const initialState: AuthState = {
   isAuth: null,
   token: null,
   error: null,
+  data: null,
 };
 
 export function reducer(state = initialState, action: ActionTypeUnion): AuthState {
@@ -25,12 +26,26 @@ export function reducer(state = initialState, action: ActionTypeUnion): AuthStat
     }
     case ActionTypes.LOG_OUT_SUCCEDED: {
       return {
+        data: null,
         error: null,
         isAuth: null,
         token: null,
       };
     }
     case ActionTypes.LOG_OUT_FAILED: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case ActionTypes.REGISTRATION_SUCCEDED: {
+      return {
+        ...state,
+        data: action.payload,
+        error: null,
+      };
+    }
+    case ActionTypes.REGISTRATION_FAILED: {
       return {
         ...state,
         error: action.payload,
