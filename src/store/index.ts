@@ -6,19 +6,12 @@ import { ActionType, StateType } from 'typesafe-actions';
 import { ActionTypeUnion as authActionTypes } from './auth/actions';
 import { reducer as authReducer } from './auth/reducer';
 import { reducer as profileReducer } from './profile/reducers';
-import { reducer as verifyCodeReducer } from './verify-code/reducer';
 
 import {
   ActionTypeUnion as ProfileRequestActionTypesUnion,
   epics as profileRequestEpic,
   reducer as profileRequestReducer,
 } from './profile-requests';
-
-import {
-  ActionTypeUnion as PasswordActionTypesUnion,
-  epics as passwordEpic,
-  reducer as passwordReducer,
-} from './password';
 
 import {
   ActionTypeUnion as ConfigActionTypesUnion,
@@ -36,18 +29,15 @@ import {
 // EPICS
 import { epics as authEpics } from './auth/epics';
 import { epics as profileEpics } from './profile/epics';
-import { verifyEpic } from './verify-code/epics';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 const rootEpic = combineEpics(
   ...profileRequestEpic,
   ...profileEpics,
-  ...passwordEpic,
   ...configEpic,
   ...authRequestEpic,
   ...authEpics,
-  verifyEpic,
 );
 const epicMiddleware = createEpicMiddleware();
 // Reducers
@@ -56,14 +46,11 @@ const reducer = combineReducers({
   profileRequest: profileRequestReducer,
   profile: profileReducer,
   auth: authReducer,
-  password: passwordReducer,
-  verifyCode: verifyCodeReducer,
   config: configReducer,
   authRequest: authRequestReducer,
 });
 
 export type RootActions = ActionType<| ProfileRequestActionTypesUnion
-  | PasswordActionTypesUnion
   | ConfigActionTypesUnion
   | authActionTypes
   | authRequestActionTypesUnion>;

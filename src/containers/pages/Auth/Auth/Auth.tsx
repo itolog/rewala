@@ -52,10 +52,6 @@ export const Auth: React.FC<Props> = ({ login, authLoginRequestData, authLoginRe
           onSubmit={loginSubmit}
         />
 
-        <Button variant='outlined' size='small' color='primary'>
-          <Link to='/reset-password/' style={{ color: '#578824' }}>reset password</Link>
-        </Button>
-
         <Button variant='outlined' size='small' color='default'>
           <Link to='/registration/' style={{ color: 'blue' }}>sign up</Link>
         </Button>
