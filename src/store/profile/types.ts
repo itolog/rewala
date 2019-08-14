@@ -1,13 +1,6 @@
+import { Me } from '../../shared/types/profile';
+
 export interface ProfileState {
-  me: Me;
-}
-
-export interface Profile {
-  fullName: string;
-  notifications: boolean;
-}
-
-export interface Me {
-  email: string;
-  profile: Profile;
+  data: Me | null;
+  errors: any;
 }

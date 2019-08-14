@@ -3,7 +3,7 @@ import { EMPTY, Observable, of } from 'rxjs';
 
 import { switchMap } from 'rxjs/operators';
 import AuthTokenService from '../../shared/services/authToken.service';
-import { Actions as AuthRequestActions, ActionTypes as AuthRequestActionTypes } from '../auth-request';
+import { Actions as AuthRequestActions, ActionTypes as AuthRequestActionTypes } from '../auth-requests';
 import { AppState, RootActions } from '../index';
 import { transferActionEpicFactory } from '../utils/transfer-action';
 import { Actions, ActionTypes } from './actions';

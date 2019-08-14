@@ -8,7 +8,7 @@ import './auth.css';
 
 import Centred from '../../../../shared/components/Centred/Centred';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
-import { loginRequestData, loginRequestState } from '../../../../store/auth-request/selectors';
+import { loginRequestData, loginRequestState } from '../../../../store/auth-requests/selectors';
 
 // STORE
 import { AppState } from '../../../../store';

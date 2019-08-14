@@ -10,25 +10,25 @@ import Icon from '@material-ui/core/Icon';
 
 import FetchError from '../../../../shared/components/FetchError/FetchError';
 import LogOut from '../../../../shared/components/LogOut/LogOut';
-import UpdateMeForm from './UpdateMeForm/UpdateMeForm';
 import ChangePasswordModal from './ChangePasswordModal/ChangePasswordModal';
+import UpdateMeForm from './UpdateMeForm/UpdateMeForm';
 
-import { UpdateUserInput } from '../../../../shared/generated/graphql';
+// import { UpdateUserInput } from '../../../../shared/generated/graphql';
 
 import { AppState } from '../../../../store';
-import { Actions } from '../../../../store/profile';
-import { getUpdateMeData, getUpdateMeState } from '../../../../store/profile/selectors';
+import { Actions } from '../../../../store/profile/actions';
+// import { getUpdateMeData, getUpdateMeState } from '../../../../store/profile/selectors';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    getUpdateMe: getUpdateMeData(state),
-    updateMeState: getUpdateMeState(state),
+    // getUpdateMe: getUpdateMeData(state),
+    // updateMeState: getUpdateMeState(state),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updateMe: (payload: UpdateUserInput) => dispatch(Actions.updateMe.action(payload)),
-  getMe: () => dispatch(Actions.getMe.action()),
+  // updateMe: (payload: UpdateUserInput) => dispatch(Actions.updateMe(payload)),
+  getMe: () => dispatch(Actions.getMe()),
 });
 
 type Props =
@@ -37,22 +37,26 @@ type Props =
   ;
 
 const ProfileSettings = (props: Props) => {
-  const { updateMe, getMe, getUpdateMe, updateMeState } = props;
+  const {
+    getMe,
+    // getUpdateMe,
+    // updateMeState,
+  } = props;
 
   useEffect(() => {
     getMe();
   }, [ getMe ]);
 
   const updateMeHandler = (values: any) => {
-    const payload = {
-      email: values.email,
-      profileInput: {
-        fullName: values.fullName,
-        notifications: values.notification,
-        avatar: null,
-      },
-    };
-    updateMe(payload);
+    // const payload = {
+    //   email: values.email,
+    //   profileInput: {
+    //     fullName: values.fullName,
+    //     notifications: values.notification,
+    //     avatar: null,
+    //   },
+    // };
+    // updateMe(payload);
   };
 
   return (
@@ -68,9 +72,9 @@ const ProfileSettings = (props: Props) => {
       </div>
       <div className='paper-actions'>
         {/* INFO block*/}
-        {updateMeState && updateMeState.loading && <div className='info-block'>saving</div>}
+        {/*{updateMeState && updateMeState.loading && <div className='info-block'>saving</div>}*/}
 
-        <FetchError data={getUpdateMe}/>
+        {/*<FetchError data={getUpdateMe}/>*/}
         <UpdateMeForm onSubmit={updateMeHandler}/>
 
         <ChangePasswordModal/>

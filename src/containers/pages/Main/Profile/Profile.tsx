@@ -10,17 +10,19 @@ import Loader from '../../../../shared/components/Loader/Loader';
 
 import Button from '@material-ui/core/Button';
 import { AppState } from '../../../../store';
-import { Actions } from '../../../../store/profile';
+import { profileRequestGetMe } from '../../../../store/profile-requests/selectors';
+import { Actions } from '../../../../store/profile/actions';
 import { getMe, getMeError } from '../../../../store/profile/selectors';
 
 const mapStateToProps = (state: AppState) => {
   return {
+    requestGetMe: profileRequestGetMe(state),
     getMeData: getMe(state),
     getMeErrors: getMeError(state),
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getMeAction: () => dispatch(Actions.getMe.action()),
+  getMeAction: () => dispatch(Actions.getMe()),
 });
 
 type Props =
@@ -28,13 +30,7 @@ type Props =
   & ReturnType<typeof mapDispatchToProps>
   ;
 
-const Profile: React.FC<Props> = (props) => {
-  const {
-    getMeData,
-    getMeAction,
-    getMeErrors,
-  } = props;
-
+const Profile: React.FC<Props> = ({ requestGetMe, getMeData, getMeAction, getMeErrors }) => {
   useEffect(() => {
     getMeAction();
   }, [ getMeAction ]);
@@ -42,10 +38,10 @@ const Profile: React.FC<Props> = (props) => {
   return (
     <main className='profile-page'>
       {/* Info block  */}
-      {!getMeData.loaded && <span>no data</span>}
+      {!requestGetMe.loaded && <span>no data</span>}
       {getMeErrors && <FetchError data={getMeErrors}/>}
-      {getMeData.loading && <Loader/>}
-      <h1>{getMeData.data && getMeData.data.me && getMeData.data.me.profile && getMeData.data.me.profile.fullName}</h1>
+      {requestGetMe.loading && <Loader/>}
+      <h1>{getMeData && getMeData.me.profile.fullName}</h1>
       <div className='profile-header'>
         <div className='profile-info'>
           <h2>Profile info</h2>

@@ -16,20 +16,20 @@ import { AppState } from '../../../../../store';
 const mapStateToProps = (state: AppState) => {
   return {
     initialValues: {
-      email: state.profile.getMe
-        && state.profile.getMe.data
-        && state.profile.getMe.data.me
-        && state.profile.getMe.data.me.email,
-      fullName: state.profile.getMe
-        && state.profile.getMe.data
-        && state.profile.getMe.data.me
-        && state.profile.getMe.data.me.profile
-        && state.profile.getMe.data.me.profile.fullName,
-      notification: state.profile.getMe
-        && state.profile.getMe.data
-        && state.profile.getMe.data.me
-        && state.profile.getMe.data.me.profile
-        && state.profile.getMe.data.me.profile.notifications,
+      // email: state.profile.getMe
+      //   && state.profile.getMe.data
+      //   && state.profile.getMe.data.me
+      //   && state.profile.getMe.data.me.email,
+      // fullName: state.profile.getMe
+      //   && state.profile.getMe.data
+      //   && state.profile.getMe.data.me
+      //   && state.profile.getMe.data.me.profile
+      //   && state.profile.getMe.data.me.profile.fullName,
+      // notification: state.profile.getMe
+      //   && state.profile.getMe.data
+      //   && state.profile.getMe.data.me
+      //   && state.profile.getMe.data.me.profile
+      //   && state.profile.getMe.data.me.profile.notifications,
     },
   };
 };
