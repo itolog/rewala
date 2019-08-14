@@ -7,6 +7,7 @@ import { Actions as ProfileRequestActions, ActionTypes as ProfileRequestActionTy
 import { transferActionEpicFactory } from '../utils/transfer-action';
 import { Actions, ActionTypes } from './actions';
 
+// GETME
 const getMeEpic = (action$: Observable<RootActions>) => action$.pipe(
   ofType(ActionTypes.GET_ME),
   switchMap(({ payload }) => of(ProfileRequestActions.getMe.action(payload)),

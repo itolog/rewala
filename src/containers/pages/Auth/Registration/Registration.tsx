@@ -10,8 +10,7 @@ import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import { UserInput } from '../../../../shared/generated/graphql';
 import RegistrationForm from './RegistrationForm/RegistrationForm';
 
-// import { Actions as RegistrationAction } from '../../../../store/registration';
-import { Actions as  RegistrationAction } from '../../../../store/profile/actions';
+import { Actions as RegistrationAction } from '../../../../store/profile/actions';
 
 import { AppState } from '../../../../store';
 import { Actions } from '../../../../store/config-request';

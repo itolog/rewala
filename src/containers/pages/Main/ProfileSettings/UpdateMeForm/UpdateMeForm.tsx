@@ -9,7 +9,7 @@ import './updateMeForm.css';
 
 import Button from '@material-ui/core/Button';
 import Previes from '../../../../../shared/components/FormElements/Prewies/Previes';
-import { updateMe } from '../../../../../shared/components/FormElements/validate';
+import { loginValidator } from '../../../../../shared/components/FormElements/validate';
 
 import { AppState } from '../../../../../store';
 import { getMe } from '../../../../../store/profile/selectors';
@@ -86,7 +86,7 @@ export default compose(
   connect(mapStateToProps),
   reduxForm<FormData, Props>({
     form: 'updateMeForm',
-    validate: updateMe,
+    validate: loginValidator,
     enableReinitialize: true,
   }),
   React.memo,

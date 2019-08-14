@@ -4,7 +4,8 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 import './registrationForm.css';
 
-import { CustomInput, CustomSelectCode } from '../../../../../shared/components/FormElements/customFields';
+import { CustomInput } from '../../../../../shared/components/FormElements/customFields';
+import CustomSelectCode from '../../../../../shared/components/FormElements/CustomSelectCode/CustomSelectCode';
 import { registration } from '../../../../../shared/components/FormElements/validate';
 
 interface IProps {
