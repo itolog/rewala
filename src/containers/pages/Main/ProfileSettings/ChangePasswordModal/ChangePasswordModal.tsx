@@ -7,16 +7,16 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import FetchError from '../../../shared/components/FetchError/FetchError';
+import FetchError from '../../../../../shared/components/FetchError/FetchError';
 import './changePasswordModal.css';
 
-import { changePasswordError, getPasswordState } from '../../../store/password/selectors';
+import { changePasswordError, getPasswordState } from '../../../../../store/password/selectors';
 
 import { Dispatch } from 'redux';
-import ChangePasswordForm from '../../forms/ChangePasswordForm/ChangePasswordForm';
+import ChangePasswordForm from './ChangePasswordForm/ChangePasswordForm';
 
-import { AppState } from '../../../store';
-import { Actions } from '../../../store/password';
+import { AppState } from '../../../../../store';
+import { Actions } from '../../../../../store/password';
 
 function getModalStyle() {
   const top = 50;

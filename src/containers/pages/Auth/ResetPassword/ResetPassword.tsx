@@ -12,7 +12,7 @@ import { getResetPasswordState, resetPasswordErrors } from '../../../../store/pa
 import Centred from '../../../../shared/components/Centred/Centred';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
 import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
-import ResetPasswordForm from '../../../forms/ResetPasswordForm/ResetPasswordForm';
+import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 
 import { AppState } from '../../../../store';
 

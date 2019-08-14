@@ -15,7 +15,7 @@ import { AppState } from '../../../../store';
 import { Actions } from '../../../../store/auth/actions';
 
 import { LoginInput } from '../../../../shared/generated/graphql';
-import LoginForm from '../../../forms/LoginForm/LoginForm';
+import LoginForm from './LoginForm/LoginForm';
 
 // STORE PROPS
 const mapStateToProps = (state: AppState) => {

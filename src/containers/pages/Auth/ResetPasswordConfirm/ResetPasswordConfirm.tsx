@@ -8,7 +8,7 @@ import './resetPasswordConfirm.css';
 import Centred from '../../../../shared/components/Centred/Centred';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
 import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
-import ResetPasswordConfirmCodeForm from '../../../forms/ResetPasswordConfirmCodeForm/ResetPasswordConfirmCodeForm';
+import ResetPasswordConfirmCodeForm from './ResetPasswordConfirmCodeForm/ResetPasswordConfirmCodeForm';
 
 import { Actions as VerifyCodeActions } from '../../../../store/verify-code/actions';
 

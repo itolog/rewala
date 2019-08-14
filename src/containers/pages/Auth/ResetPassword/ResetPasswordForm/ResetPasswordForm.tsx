@@ -2,8 +2,8 @@ import Button from '@material-ui/core/Button';
 import React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
-import { CustomInput } from '../../../shared/components/FormElements/customFields';
-import { loginValidator } from '../../../shared/components/FormElements/validate';
+import { CustomInput } from '../../../../../shared/components/FormElements/customFields';
+import { loginValidator } from '../../../../../shared/components/FormElements/validate';
 
 interface FormData {
   resetPasswordEmail: string;
@@ -17,7 +17,6 @@ const ConfirmCodeForm = (props: InjectedFormProps<FormData>) => {
         name='resetPasswordEmail'
         component={CustomInput}
         label='email'
-        type='email'
       />
       <br/>
       <Button

@@ -4,8 +4,8 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 import './registrationForm.css';
 
-import { CustomInput, CustomSelectCode } from '../../../shared/components/FormElements/customFields';
-import { registration } from '../../../shared/components/FormElements/validate';
+import { CustomInput, CustomSelectCode } from '../../../../../shared/components/FormElements/customFields';
+import { registration } from '../../../../../shared/components/FormElements/validate';
 
 interface IProps {
   countries: any;

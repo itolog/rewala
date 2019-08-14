@@ -10,8 +10,8 @@ import Icon from '@material-ui/core/Icon';
 
 import FetchError from '../../../../shared/components/FetchError/FetchError';
 import LogOut from '../../../../shared/components/LogOut/LogOut';
-import UpdateMeForm from '../../../forms/UpdateMeForm/UpdateMeForm';
-import ChangePasswordModal from '../../../modals/ChangePasswordModal/ChangePasswordModal';
+import UpdateMeForm from './UpdateMeForm/UpdateMeForm';
+import ChangePasswordModal from './ChangePasswordModal/ChangePasswordModal';
 
 import { UpdateUserInput } from '../../../../shared/generated/graphql';
 

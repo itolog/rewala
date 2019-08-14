@@ -3,8 +3,8 @@ import { compose } from 'redux';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 import Button from '@material-ui/core/Button';
-import { CustomInput } from '../../../shared/components/FormElements/customFields';
-import { changePasswordValidation } from '../../../shared/components/FormElements/validate';
+import { CustomInput } from '../../../../../../shared/components/FormElements/customFields';
+import { changePasswordValidation } from '../../../../../../shared/components/FormElements/validate';
 
 interface Props {
   loading: boolean;

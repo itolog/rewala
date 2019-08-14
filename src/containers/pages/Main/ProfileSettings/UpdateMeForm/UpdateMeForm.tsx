@@ -4,14 +4,14 @@ import { compose } from 'redux';
 
 import Icon from '@material-ui/core/Icon';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import { CustomInput } from '../../../shared/components/FormElements/customFields';
+import { CustomInput } from '../../../../../shared/components/FormElements/customFields';
 import './updateMeForm.css';
 
 import Button from '@material-ui/core/Button';
-import Previes from '../../../shared/components/FormElements/Prewies/Previes';
-import { updateMe } from '../../../shared/components/FormElements/validate';
+import Previes from '../../../../../shared/components/FormElements/Prewies/Previes';
+import { updateMe } from '../../../../../shared/components/FormElements/validate';
 
-import { AppState } from '../../../store';
+import { AppState } from '../../../../../store';
 
 const mapStateToProps = (state: AppState) => {
   return {

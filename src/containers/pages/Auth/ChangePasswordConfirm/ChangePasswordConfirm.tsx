@@ -9,7 +9,7 @@ import Centred from '../../../../shared/components/Centred/Centred';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
 import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 
-import ChangePasswordConfirmForm from '../../../forms/ChangePasswordConfirmForm/ChangePasswordConfirmForm';
+import ChangePasswordConfirmForm from './ChangePasswordConfirmForm/ChangePasswordConfirmForm';
 
 import { getVerifyCode } from '../../../../store/verify-code/selectors';
 
