@@ -1,12 +1,38 @@
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-
-import './registrationForm.css';
+import CustomCheckbox from '../../../../../shared/components/FormElements/CustomCheckbox/CustomCheckbox';
 
 import { CustomInput } from '../../../../../shared/components/FormElements/CustomFields/customFields';
 import CustomSelectCode from '../../../../../shared/components/FormElements/CustomSelectCode/CustomSelectCode';
 import { registration } from '../../../../../shared/components/FormElements/validate';
+
+const useStyles = makeStyles({
+  registrForm: {
+    display: 'flex',
+    flexFlow: 'column',
+  },
+  phoneWrapp: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexFlow: 'row wrap',
+  },
+  phoneNumber: {
+    flex: 1,
+  },
+  phoneCode: {
+    flexBasis: '80px',
+  },
+  policy: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexFlow: 'row-reverse',
+    marginBottom: '20px',
+  },
+});
 
 interface IProps {
   countries: any;
@@ -17,10 +43,10 @@ interface FormData {
   code: string;
 }
 
-const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, string> & IProps) => {
-  const { handleSubmit, countries } = props;
+const RegistrationForm: React.FC<InjectedFormProps<FormData, IProps, string> & IProps> = React.memo(({ handleSubmit, countries }) => {
+  const classes = useStyles();
   return (
-    <form onSubmit={handleSubmit} className='registr-form'>
+    <form onSubmit={handleSubmit} className={classes.registrForm}>
 
       <Field
         name='fullname'
@@ -28,19 +54,19 @@ const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, 
         label='full name'
         type='text'
       />
-      <div className='phone-wrapp'>
+      <div className={classes.phoneWrapp}>
         <Field
           name='code'
           component={CustomSelectCode}
           label='code'
-          className='phone-code'
+          className={classes.phoneCode}
           data={countries}
           style={{ width: '150px' }}
         />
         <div>
           <Field
             name='phone_number'
-            className='phone-number'
+            className={classes.phoneNumber}
             component={CustomInput}
             label='phone'
             type='tel'
@@ -65,10 +91,10 @@ const RegistrationForm = React.memo((props: InjectedFormProps<FormData, IProps, 
         label='confirm password'
         type='password'
       />
-      <div className='policy'>
+      <div className={classes.policy}>
         <label htmlFor='police'>agree whith Privacy Policy</label>
         <div>
-          <Field name='police' id='police' component='input' type='checkbox'/>
+          <Field name='police' id='police' component={CustomCheckbox} type='checkbox'/>
         </div>
       </div>
 

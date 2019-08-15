@@ -1,8 +1,7 @@
+import { makeStyles } from '@material-ui/styles';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-
-import './registration.css';
+import { compose, Dispatch } from 'redux';
 
 import Centred from '../../../../shared/components/Centred/Centred';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
@@ -13,9 +12,21 @@ import RegistrationForm from './RegistrationForm/RegistrationForm';
 import { Actions as RegistrationAction } from '../../../../store/auth/actions';
 
 import { AppState } from '../../../../store';
-import { registrationFetchData, registrationFetchErrors, registrationRequestState } from '../../../../store/auth-requests/selectors';
+import {
+  registrationFetchData,
+  registrationFetchErrors,
+  registrationRequestState,
+} from '../../../../store/auth-requests/selectors';
 import { Actions } from '../../../../store/config-request';
 import { getConfigData, getConfigErrors } from '../../../../store/config-request/selectors';
+
+const useStyles = makeStyles({
+    registrationContainer: {
+      backgroundImage: 'linear-gradient(to top, #a8edea 0%, #fed6e3 100%)',
+      height: ' 100%',
+    },
+  })
+;
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -46,7 +57,7 @@ const Registration: React.FC<Props> = ({
                                          registrationRequestData,
                                          configData,
                                        }) => {
-
+  const classes = useStyles();
   const countries = configData && configData.config.countries;
   const isRegistration = registrationRequestData && registrationRequestData.registration;
 
@@ -69,7 +80,7 @@ const Registration: React.FC<Props> = ({
   };
 
   return (
-    <main className='registration-container'>
+    <main className={classes.registrationContainer}>
       <Centred>
         {/* INFO  BLOCK*/}
         {getRegistration && getRegistration.loading &&
@@ -86,4 +97,6 @@ const Registration: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Registration);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+)(Registration);
