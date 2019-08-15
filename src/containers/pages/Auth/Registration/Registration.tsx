@@ -17,8 +17,8 @@ import {
   registrationFetchErrors,
   registrationRequestState,
 } from '../../../../store/auth-requests/selectors';
-import { Actions } from '../../../../store/config-request';
-import { getConfigData, getConfigErrors } from '../../../../store/config-request/selectors';
+import { Actions } from '../../../../store/config';
+import { getConfigData, getConfigErrors } from '../../../../store/config/selectors';
 
 const useStyles = makeStyles({
     registrationContainer: {

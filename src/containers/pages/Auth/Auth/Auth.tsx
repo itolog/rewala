@@ -54,7 +54,7 @@ export const Auth: React.FC<Props> = ({ login, authLoginRequestData, authLoginRe
         <h1>Rewala</h1>
         <br/>
         {/* INFO BLOCK */}
-        {authLoginRequestState && authLoginRequestState.loading && <div>loading</div>}
+        {authLoginRequestState && authLoginRequestState.loading && <div className='info-block'>loading</div>}
         <FetchError data={authLoginRequestData}/>
         <LoginForm
           onSubmit={loginSubmit}

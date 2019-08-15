@@ -17,7 +17,7 @@ import {
   ActionTypeUnion as ConfigActionTypesUnion,
   epics as configEpic,
   reducer as configReducer,
-} from './config-request';
+} from './config';
 
 // REFACTORING STORE
 import {

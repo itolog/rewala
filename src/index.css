@@ -44,6 +44,8 @@ a {
     top: 0;
     color: #00529B;
     background-color: #BDE5F8;
+    min-height: 30px;
+    text-align: center;
 }
 
 .success-block {
@@ -52,7 +54,6 @@ a {
     top: 0;
     color: #4F8A10;
     background-color: #DFF2BF;
-    padding: 2%;
 }
 
 .css-2b097c-container {
