@@ -1,15 +1,29 @@
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import './centred.css';
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    flexFlow: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    outline: 'none',
+    justifyContent: 'space-around',
+  },
+});
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Centred = (props: Props) => {
+const Centred: React.FC<Props> = ({children}) => {
+  const classes = useStyles();
   return (
-    <div className='centred'>
-      {props.children}
+    <div className={classes.root}>
+      {children}
     </div>
   );
 };

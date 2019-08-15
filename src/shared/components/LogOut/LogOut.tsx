@@ -35,4 +35,4 @@ const LogOut: React.FC<Props> = ({ logOut, history }) => {
 export default compose(
   withRouter,
   connect(null, mapDispatchToProps),
-)(LogOut) as React.FunctionComponent;
+)(LogOut) as React.FC;

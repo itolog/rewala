@@ -2,19 +2,32 @@ import Button from '@material-ui/core/Button';
 import React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
+import { makeStyles } from '@material-ui/styles';
 import { CustomInput } from '../../../../../shared/components/FormElements/CustomFields/customFields';
 import { loginValidator } from '../../../../../shared/components/FormElements/validate';
-import './loginForm.css';
 
 interface FormData {
   email: string;
   password: string;
 }
 
-const LoginForm = React.memo((props: InjectedFormProps<FormData>) => {
-  const { handleSubmit } = props;
+const useStyles = makeStyles({
+  loginForm: {
+    display: 'flex',
+    flexFlow: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    minWidth: '300px',
+    maxWidth: '600px',
+    minHeight: '200px',
+    textAlign: 'center',
+  },
+});
+
+const LoginForm: React.FC<InjectedFormProps<FormData>> = React.memo(({ handleSubmit }) => {
+  const classes = useStyles();
   return (
-    <form onSubmit={handleSubmit} className='login-form'>
+    <form onSubmit={handleSubmit} className={classes.loginForm}>
 
       <Field
         name='email'

@@ -26,10 +26,7 @@ type Props =
   & ReturnType<typeof mapDispatchToProps>
   ;
 
-const ProfileSettings = (props: Props) => {
-  const {
-    getMe,
-  } = props;
+const ProfileSettings: React.FC<Props> = ({ getMe }) => {
 
   useEffect(() => {
     getMe();

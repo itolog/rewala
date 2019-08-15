@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Dispatch } from 'redux';
 
 import Button from '@material-ui/core/Button';
-import './auth.css';
+import { makeStyles } from '@material-ui/styles';
 
 import Centred from '../../../../shared/components/Centred/Centred';
 import FetchError from '../../../../shared/components/FetchError/FetchError';
@@ -16,6 +16,13 @@ import { Actions } from '../../../../store/auth/actions';
 
 import { LoginInput } from '../../../../shared/generated/graphql';
 import LoginForm from './LoginForm/LoginForm';
+
+const useStyles = makeStyles({
+  authMain: {
+    backgroundImage: 'linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%)',
+    height: '100%',
+  },
+});
 
 // STORE PROPS
 const mapStateToProps = (state: AppState) => {
@@ -35,13 +42,14 @@ type Props =
   ;
 
 export const Auth: React.FC<Props> = ({ login, authLoginRequestData, authLoginRequestState }) => {
+  const classes = useStyles();
 
   const loginSubmit = (values: LoginInput) => {
     login(values);
   };
 
   return (
-    <main className='auth-main'>
+    <main className={classes.authMain}>
       <Centred>
         <h1>Rewala</h1>
         <br/>
