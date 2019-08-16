@@ -10,7 +10,7 @@ import { colors } from '../../../../shared/variebles/colors';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 
-import LogOut from '../../../../shared/components/LogOut/LogOut';
+import LogOut from './LogOut/LogOut';
 
 import { Actions } from '../../../../store/profile/actions';
 

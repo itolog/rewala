@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import Button from '@material-ui/core/Button';
 import { Dispatch } from 'redux';
 
-import { Actions } from '../../../store/auth/actions';
+import { Actions } from '../../../../../store/auth/actions';
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   logOut: () => dispatch(Actions.logOut()),
@@ -19,16 +19,14 @@ type Props =
 
 const LogOut: React.FC<Props> = ({ logOut, history }) => {
   const logOutHandler = () => {
-    history.push('/');
     logOut();
+    history.push('/');
   };
 
   return (
-    <>
-      <Button variant='outlined' color='secondary' onClick={logOutHandler}>
-        Log Out
-      </Button>
-    </>
+    <Button variant='outlined' color='secondary' onClick={logOutHandler}>
+      Log Out
+    </Button>
   );
 };
 

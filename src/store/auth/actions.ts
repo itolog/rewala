@@ -14,6 +14,8 @@ export enum ActionTypes {
   REGISTRATION = 'REGISTRATION',
   REGISTRATION_SUCCEDED = 'REGISTRATION_SUCCEDED',
   REGISTRATION_FAILED = 'REGISTRATION_FAILED',
+
+  GET_CONFIG = 'GET_CONFIG',
 }
 
 export const Actions = {
@@ -28,6 +30,8 @@ export const Actions = {
   registration: (payload: UserInput) => action(ActionTypes.REGISTRATION, payload),
   registrationSuccess: (payload: UserInput) => action(ActionTypes.REGISTRATION_SUCCEDED, payload),
   registrationFailed: (payload: any) => action(ActionTypes.REGISTRATION_FAILED, payload),
+
+  getConfig: () => action(ActionTypes.GET_CONFIG),
 };
 
 export type ActionTypeUnion = ActionType<typeof Actions>;

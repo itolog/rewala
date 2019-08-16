@@ -6,7 +6,7 @@ import CustomCheckbox from '../../../../../shared/components/FormElements/Custom
 
 import { CustomInput } from '../../../../../shared/components/FormElements/CustomFields/customFields';
 import CustomSelectCode from '../../../../../shared/components/FormElements/CustomSelectCode/CustomSelectCode';
-import { registration } from '../../../../../shared/components/FormElements/validate';
+import { validator } from '../../../../../shared/components/FormElements/validate';
 
 const useStyles = makeStyles({
   registrForm: {
@@ -112,5 +112,5 @@ const RegistrationForm: React.FC<InjectedFormProps<FormData, IProps, string> & I
 
 export default reduxForm<FormData, IProps>({
   form: 'registrationForm',
-  validate: registration,
+  validate: validator,
 })(RegistrationForm);

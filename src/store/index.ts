@@ -5,19 +5,13 @@ import { reducer as formReducer } from 'redux-form';
 import { ActionType, StateType } from 'typesafe-actions';
 import { ActionTypeUnion as authActionTypes } from './auth/actions';
 import { reducer as authReducer } from './auth/reducer';
-import { reducer as profileReducer } from './profile/reducers';
+import { reducer as profileReducer } from './profile/reducer';
 
 import {
   ActionTypeUnion as ProfileRequestActionTypesUnion,
   epics as profileRequestEpic,
   reducer as profileRequestReducer,
 } from './profile-requests';
-
-import {
-  ActionTypeUnion as ConfigActionTypesUnion,
-  epics as configEpic,
-  reducer as configReducer,
-} from './config';
 
 // REFACTORING STORE
 import {
@@ -28,14 +22,13 @@ import {
 
 // EPICS
 import { epics as authEpics } from './auth/epics';
-import { epics as profileEpics } from './profile/epics';
+import { epics as profileEpics } from './profile/epic';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 const rootEpic = combineEpics(
   ...profileRequestEpic,
   ...profileEpics,
-  ...configEpic,
   ...authRequestEpic,
   ...authEpics,
 );
@@ -46,12 +39,10 @@ const reducer = combineReducers({
   profileRequest: profileRequestReducer,
   profile: profileReducer,
   auth: authReducer,
-  config: configReducer,
   authRequest: authRequestReducer,
 });
 
 export type RootActions = ActionType<| ProfileRequestActionTypesUnion
-  | ConfigActionTypesUnion
   | authActionTypes
   | authRequestActionTypesUnion>;
 

@@ -2,9 +2,10 @@ import { execute } from 'apollo-link';
 import gql from 'graphql-tag';
 import { from, Observable, Subscribable } from 'rxjs';
 
-import { LoginInput, LogOutInput, User, UserInput } from '../../shared/generated/graphql';
+import { Config, LoginInput, LogOutInput, User, UserInput } from '../../shared/generated/graphql';
 import { GraphQLResponse } from '../../shared/types/garphql';
 
+import { pluck } from 'rxjs/operators';
 import link from '../../shared/Link/Link';
 
 class AuthService {
@@ -63,6 +64,26 @@ class AuthService {
 
       return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<{ registration: User }>>);
   }
+
+    static getConfig() {
+        const operation = {
+            query: gql`
+                query getConfig {
+                    config{
+                        countries{
+                            code
+                            shortName
+                            flag
+                        }
+                    }
+                }
+            `,
+        };
+
+        return from(execute(link, operation) as unknown as Subscribable<GraphQLResponse<Config>>).pipe(
+          pluck('data'),
+        );
+    }
 }
 
 export default AuthService;

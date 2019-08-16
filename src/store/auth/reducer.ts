@@ -26,10 +26,7 @@ export function reducer(state = initialState, action: ActionTypeUnion): AuthStat
     }
     case ActionTypes.LOG_OUT_SUCCEDED: {
       return {
-        data: null,
-        error: null,
-        isAuth: null,
-        token: null,
+        ...initialState,
       };
     }
     case ActionTypes.LOG_OUT_FAILED: {

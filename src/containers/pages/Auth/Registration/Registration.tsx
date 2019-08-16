@@ -9,16 +9,16 @@ import WrappForm from '../../../../shared/components/WrappForm/WrappForm';
 import { UserInput } from '../../../../shared/generated/graphql';
 import RegistrationForm from './RegistrationForm/RegistrationForm';
 
-import { Actions as RegistrationAction } from '../../../../store/auth/actions';
+import { Actions as AuthAction } from '../../../../store/auth/actions';
 
 import { AppState } from '../../../../store';
 import {
+  getConfigData,
+  getConfigErrors,
   registrationFetchData,
   registrationFetchErrors,
   registrationRequestState,
 } from '../../../../store/auth-requests/selectors';
-import { Actions } from '../../../../store/config';
-import { getConfigData, getConfigErrors } from '../../../../store/config/selectors';
 
 const useStyles = makeStyles({
     registrationContainer: {
@@ -39,8 +39,8 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchConfig: () => dispatch(Actions.getConfig.action()),
-  registration: (payload: UserInput) => dispatch(RegistrationAction.registration(payload)),
+  fetchConfig: () => dispatch(AuthAction.getConfig()),
+  registration: (payload: UserInput) => dispatch(AuthAction.registration(payload)),
 });
 
 type Props =
@@ -88,7 +88,13 @@ const Registration: React.FC<Props> = ({
         {/* Errors */}
         <FetchError data={getConfigError}/>
         <FetchError data={getRegistrationFetchErrors}/>
-        {isRegistration && getRegistration.loaded && <div className='success-block'>your profile registred</div>}
+        {
+          isRegistration && getRegistration.loaded
+          &&
+          <div className='success-block'>
+              your profile registred
+          </div>
+        }
         <WrappForm>
           <RegistrationForm onSubmit={handleOnRegister} countries={countries}/>
         </WrappForm>

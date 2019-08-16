@@ -1,22 +1,22 @@
 import { Epic } from 'redux-observable';
-import { Observable } from 'rxjs';
 import { Action } from 'typesafe-actions';
-import { UpdateUserInput, User } from '../../../shared/generated/graphql';
+import { Config } from '../../../shared/generated/graphql';
+
+import { Observable } from 'rxjs';
 import { asyncActionHandlerFactory } from '../../utils/async-action-helper';
-import ProfileService from '../service';
+
+import AuthService from '../service';
 
 const {
   effect,
   reducer,
   ActionTypes,
   Actions,
-} = asyncActionHandlerFactory<UpdateUserInput, User, Error>('UPDATE_ME_REQUEST');
+} = asyncActionHandlerFactory<string, Config, Error>('GET_CONFIG_REQUEST');
 
 const epic: Epic = (actions$: Observable<Action>) => effect(
   actions$,
-  (payload) => {
-    return ProfileService.upDateMe(payload);
-  },
+  () => AuthService.getConfig(),
 );
 
 export { epic, reducer, Actions, ActionTypes };

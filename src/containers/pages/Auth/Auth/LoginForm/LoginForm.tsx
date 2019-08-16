@@ -4,7 +4,7 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 import { makeStyles } from '@material-ui/styles';
 import { CustomInput } from '../../../../../shared/components/FormElements/CustomFields/customFields';
-import { loginValidator } from '../../../../../shared/components/FormElements/validate';
+import { validator } from '../../../../../shared/components/FormElements/validate';
 
 interface FormData {
   email: string;
@@ -56,5 +56,5 @@ const LoginForm: React.FC<InjectedFormProps<FormData>> = React.memo(({ handleSub
 
 export default reduxForm({
   form: 'loginForm',
-  validate: loginValidator,
+  validate: validator,
 })(LoginForm);

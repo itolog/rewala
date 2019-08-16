@@ -1,7 +1,7 @@
 import { Epic, ofType, StateObservable } from 'redux-observable';
 import { EMPTY, Observable, of } from 'rxjs';
 
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import AuthTokenService from '../../shared/services/authToken.service';
 import { Actions as AuthRequestActions, ActionTypes as AuthRequestActionTypes } from '../auth-requests';
 import { AppState, RootActions } from '../index';
@@ -70,10 +70,17 @@ const registrationFailedEpic: Epic = transferActionEpicFactory(
   Actions.registrationFailed,
 );
 
+const getConfigEpic: Epic = (action$: Observable<RootActions>) => action$.pipe(
+  ofType(ActionTypes.GET_CONFIG),
+  map(() => AuthRequestActions.getConfig.action(),
+  ),
+);
+
 export const epics = [
   logInEpic,
   loginSucceededEpic,
   loginFailedEpic,
+
   logOutEpic,
   logOutSucceededEpic,
   logOutFailedEpic,
@@ -81,4 +88,6 @@ export const epics = [
   registrationEpic,
   registrationSucceededEpic,
   registrationFailedEpic,
+
+  getConfigEpic,
 ];
