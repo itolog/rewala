@@ -59,6 +59,7 @@
     "@types/react-select": "^3.0.2",
     "@types/react-swipeable-views": "^0.13.0",
     "@types/redux-form": "^8.1.5",
+    "@typescript-eslint/parser": "^2.0.0",
     "tslint": "^5.18.0",
     "tslint-react": "^4.0.0",
     "tslint-react-hooks": "^2.2.1",
