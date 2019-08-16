@@ -3,7 +3,7 @@ import { AppState } from '../index';
 
 export const loginRequestState = (state: AppState) => state.authRequest.loginRequest;
 export const registrationRequestState = (state: AppState) => state.authRequest.registrationRequest;
-export const  configRequestState = (state: AppState) => state.authRequest.getConfig;
+export const configRequestState = (state: AppState) => state.authRequest.getConfig;
 
 export const loginRequestData = createSelector(
   loginRequestState,
